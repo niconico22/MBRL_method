@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 def train_epoch(model, buffer, optimizer, batch_size, training_noise_stdev, grad_clip):
     losses = []
-    a = 1
+
     for tr_states, tr_actions, tr_state_deltas, tr_rewards in buffer.train_batches(batch_size=batch_size):
         optimizer.zero_grad()
         loss = model.loss(tr_states, tr_actions, tr_state_deltas,
