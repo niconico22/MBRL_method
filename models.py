@@ -123,7 +123,7 @@ class Model(nn.Module):
         self.device = device
 
     def setup_normalizer(self, normalizer):
-        print(normalizer)
+        # print(normalizer)
         self.normalizer = TransitionNormalizer()
         self.normalizer.set_state(normalizer.get_state())
 

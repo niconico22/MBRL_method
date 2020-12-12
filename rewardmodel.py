@@ -124,7 +124,6 @@ class RewardModel(nn.Module):
         self.device = device
 
     def setup_normalizer(self, normalizer):
-        print(normalizer)
         self.normalizer = TransitionNormalizer()
         self.normalizer.set_state(normalizer.get_state())
 
@@ -206,7 +205,7 @@ class RewardModel(nn.Module):
             next state means (torch tensor): (batch size, ensemble_size, dim_state)
             next state variances (torch tensor): (batch size, ensemble_size, dim_state)
         """
-        print(states.shape)
+        # print(states.shape)
         states = states.unsqueeze(0).repeat(self.ensemble_size, 1, 1)
         actions = actions.unsqueeze(0).repeat(self.ensemble_size, 1, 1)
         reward_means, reward_vars = self(states, actions)
@@ -222,7 +221,7 @@ class RewardModel(nn.Module):
             var (torch tensor): any shape
 
         Returns:
-            next state (torch tensor): same shape as inputs
+            reward (torch tensor): same shape as inputs
         """
 
         return Normal(mean, torch.sqrt(var)).sample()

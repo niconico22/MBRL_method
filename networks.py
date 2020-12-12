@@ -89,7 +89,7 @@ class ActorNetwork(nn.Module):
     def sample_normal(self, state, reparameterize=True):
         mu, sigma = self.forward(state)
         probabilities = T.distributions.Normal(mu, sigma)
-
+        #print('mu %f ' % mu + 'sigma %f' % sigma)
         if reparameterize:
             actions = probabilities.rsample()  # reparameterizes the policy
         else:

@@ -3,6 +3,8 @@
 # import os
 # os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
 # os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+
+# python3 main_sac.py mpc=0/1
 import pybullet_envs
 import gym
 import numpy as np
@@ -15,6 +17,7 @@ from rewardmodel import RewardModel
 import torch
 from normalizer import TransitionNormalizer
 import matplotlib.pyplot as plt
+import sys
 
 
 def train_epoch(model, buffer, optimizer, batch_size, training_noise_stdev, grad_clip):
@@ -80,22 +83,27 @@ if __name__ == '__main__':
     # env_id = 'AntBulletEnv-v0'
     # env_id = 'InvertedPendulumBulletEnv-v0'
     # env_id = 'CartPoleContinuousBulletEnv-v0'
+    args = sys.argv
     env_id = 'MountainCarContinuous-v0'
     # env_id = 'CartPole-v1'
     # env_id = 'HalfCheetah-v2'
     env = gym.make(env_id)
+    use_mpc = int(args[1])
+    # mpc=MPC()
     n_steps = 50
     n_games = 2
+    ensemble_size = 2
     n_spaces = env.observation_space.shape[0]
     # print(n_spaces)
     n_actions = env.action_space.shape[0]
-    buffer = Buffer(n_spaces, n_actions, 1, 2, 20000)
+    buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, 20000)
     # modelbuffer = Buffer(n_spaces, n_actions, 1, 2, 20000)
 
     # normalizer = TransitionNormalizer()
     # buffer.setup_normalizer(normalizer)
-    model = Model(n_actions, n_spaces, 512, 3, 2)
-    rewardmodel = RewardModel(n_actions, n_spaces, 1, 512, 3, 2)
+    model = Model(n_actions, n_spaces, 512, 3, ensemble_size=ensemble_size)
+    rewardmodel = RewardModel(n_actions, n_spaces, 1,
+                              512, 3, ensemble_size=ensemble_size)
     modelloss = []
     rewards = []
 
@@ -121,21 +129,33 @@ if __name__ == '__main__':
             score = 0
             ep_length = 0
             while not done:
-                action = agent.choose_action(observation)
+                if not use_mpc:
+                    action = agent.choose_action(observation)
+                else:
+                    #action = mpc.choose_action()
                 observation_, reward, done, info = env.step(action)
                 steps += 1
                 agent.remember(observation, action, reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-                if ep_length % 100 == 0:
+                '''if ep_length % 100 == 0:
                     ac, ob, ns = buffer.pick()
 
                     x, y = model.forward_all(ob, ac)
                     r = rewardmodel.forward_all(ob, ac)
-                    mean_ = torch.mean(x, dim=1)
-                    var_ = torch.mean(y, dim=1)
-                    print(r)
-                    # print(observation_)
+                    id = torch.randint(ensemble_size, (1,))
+                    print(id)
+                    # print(x.size())
+
+                    # print(y.size())
+                    # print(x, y)
+
+                    print(x[:, id])
+                    print(y[:, id])
+                    print(model.sample(x[:, id], y[:, id]))
+                    # print(mean_)
+                    # print(observation_)'''
+
                 agent.learn()
                 score += reward
                 observation = observation_
@@ -152,6 +172,7 @@ if __name__ == '__main__':
             print('episode ', i, 'score %.1f' % score,
                   'trailing 100 games avg %.1f' % avg_score,
                   'steps %d' % steps, env_id,
+                  'ep_length %d' % ep_length
                   )
     x = np.arange(len(modelloss))
     modelloss = np.array(modelloss)
