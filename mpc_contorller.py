@@ -5,6 +5,8 @@ import copy
 from models import Model
 from rewardmodel import RewardModel
 import torch
+from sac_torch import Agent
+from modelbuffer import Buffer
 
 ##############################
 import gym
@@ -13,112 +15,126 @@ import gym
 
 class MPCController:
 
-    def __init__(self, env, horizon, num_control_samples, model, rewardmodel, device=torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')):
+    def __init__(self, env, horizon, num_control_samples, agent, model, rewardmodel,  model_buffer, device=torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')):
         self.horizon = horizon
         self.N = num_control_samples
         self.env = env
+        self.agent = agent
         self.model = model
         self.rewardmodel = rewardmodel
+        self.model_buffer = model_buffer
         self.device = device
 
     def get_action(self, cur_state):
-        '''states(torch tensor): (dim_state)'''
-
+        '''states(numpy array): (dim_state)'''
+        cur_state = torch.from_numpy(cur_state).float().clone()
         all_samples = np.random.uniform(
             self.env.action_space.low, self.env.action_space.high, (self.N, self.horizon, self.env.action_space.shape[0]))
-        all_samples = torch.from_numpy(all_samples).float()
+        all_samples = torch.from_numpy(all_samples).float().clone()
         all_samples = all_samples.to(self.device)
         all_states = np.zeros(
-            (self.N, self.horizon, env.observation_space.shape[0]))
-        all_states = torch.from_numpy(all_states).float()
+            (self.N, self.horizon, self.env.observation_space.shape[0]))
+        all_states = torch.from_numpy(all_states).float().clone()
         all_states = all_states.to(self.device)
         for i in range(self.N):
             all_states[i][0] = cur_state
-        # print(all_states[:, 0, :].shape)
-        # print(all_states.shape)
-        # print(all_samples[:, 0, :].shape)
         model_id = torch.randint(
-            self.model.ensemble_size, (self.horizon, self.N))
-        # print(model_id)
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
         rewardmodel_id = torch.randint(
-            self.model.ensemble_size, (self.horizon, self.N))
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
 
-        rewards_ = torch.zeros((self.N, self.horizon)).float()
-        sum_rewards = torch.zeros(self.N).float()
+        rewards_ = torch.zeros((self.N, self.horizon)).float().to(self.device)
+        sum_rewards = torch.zeros(self.N).float().to(self.device)
         for i in range(self.horizon):
-            # print(all_states[:, i, :], all_samples[:, i, :])
-            state_means_, state_vars_ = model.forward_all(
+            # predict next_state
+            state_means_, state_vars_ = self.model.forward_all(
                 all_states[:, i, :], all_samples[:, i, :])
-            # print(state_means.shape)
-            # print(state_means_)
-            # x = torch.reshape(model_id[i], (self.N, 1))
-            # print(x)
-            # state_means.gather(1, x)
+
             state_means = torch.zeros(
-                (self.N, env.observation_space.shape[0])).float()
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
             state_vars = torch.zeros(
-                (self.N, env.observation_space.shape[0])).float()
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
 
             for j in range(self.N):
                 state_means[j] = state_means_[j][model_id[i][j]]
                 state_vars[j] = state_vars_[j][model_id[i][j]]
 
-            next_states = model.sample(
+            next_states = self.model.sample(
                 state_means, state_vars)
-            # print(next_states)
-            # print(all_states[:, i, :])
+
             if i != self.horizon - 1:
-                # print(next_states.shape)
+
                 all_states[:, i + 1, :] = next_states
-                #print(all_states[:, i+1, :])
-            reward_means_, reward_vars_ = rewardmodel.forward_all(
+
+            # predict_reward
+            reward_means_, reward_vars_ = self.rewardmodel.forward_all(
                 all_states[:, i, :], all_samples[:, i, :])
             reward_means = torch.zeros(
-                (self.N, env.action_space.shape[0])).float()
+                (self.N)).float().to(self.device)
             reward_vars = torch.zeros(
-                (self.N, env.action_space.shape[0])).float()
+                (self.N)).float().to(self.device)
 
             for j in range(self.N):
+                # print(reward_means_[j][rewardmodel_id[i][j]])
                 reward_means[j] = reward_means_[j][rewardmodel_id[i][j]]
                 reward_vars[j] = reward_vars_[j][rewardmodel_id[i][j]]
-
-            rewards = rewardmodel.sample(
+            # print(reward_means)
+            rewards = self.rewardmodel.sample(
                 reward_means, reward_vars)
             # print(rewards)
-            rewards = rewards.squeeze(1)
+            #rewards = rewards.squeeze(1)
             # print(rewards.shape)
-            # print(rewards)
-
+            #print(rewards_[:, i].shape)
             rewards_[:, i] = rewards
-            #print(rewards_[:, i])
+
         sum_rewards = torch.sum(rewards_, 1)
         id = sum_rewards.argmax()
-        print(sum_rewards)
-        print(id.item())
-        best_action = all_samples[id, 0, :]
-        print(all_samples)
-        # print(best_action)
-        return best_action
 
-    def rollout(self):
-        return 1
+        best_action = all_samples[id, 0, :]
+
+        return best_action.to('cpu').detach().numpy().copy()
+
+    def remember(self, state, action, reward, new_state, done):
+        self.agent.memory.store_transition(
+            state, action, reward, new_state, done)
+
+    def model_remember(self, state, action, reward, new_state):
+        self.model_buffer.add(
+            state, action, new_state, reward)
+
+    def rollout(self, observation):
+        done = False
+        observation = env.reset()
+        while not done:
+            action = self.get_action(observation)
+            observation_, reward, done, _ = self.env.step(action)
+            self.remember(observation, action, reward, observation_, done)
+            self.model_remember(observation, action, reward, observation_)
 
 
 if __name__ == '__main__':
-
-    env = gym.make('MountainCarContinuous-v0')
+    #env_id = 'MountainCarContinuous-v0'
+    env_id = 'HalfCheetah-v2'
+    env = gym.make(env_id)
     n_steps = 50
     n_games = 2
     ensemble_size = 3
+    buffer_size = 100000
     n_spaces = env.observation_space.shape[0]
     # print(n_spaces)
+
     n_actions = env.action_space.shape[0]
     # buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, 20000)
+    agent = Agent(alpha=0.0003, beta=0.0003, reward_scale=2, env_id=env_id,
+                  input_dims=env.observation_space.shape, tau=0.005,
+                  env=env, batch_size=256, layer1_size=256, layer2_size=256,
+                  n_actions=n_actions)
 
     model = Model(n_actions, n_spaces, 512, 3, ensemble_size=ensemble_size)
+    buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, buffer_size)
     rewardmodel = RewardModel(n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
-    mpc = MPCController(env, 5, 4, model, rewardmodel)
+    mpc = MPCController(env, 30, 500, agent, model, rewardmodel, buffer,)
     observation = env.reset()
     observation = torch.from_numpy(observation)
-    mpc.get_action(observation)
+    mpc.rollout(observation)

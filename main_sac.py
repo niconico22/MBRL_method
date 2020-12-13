@@ -18,6 +18,7 @@ import torch
 from normalizer import TransitionNormalizer
 import matplotlib.pyplot as plt
 import sys
+from mpc_contorller import MPCController
 
 
 def train_epoch(model, buffer, optimizer, batch_size, training_noise_stdev, grad_clip):
@@ -59,6 +60,7 @@ def fit_model(buffer, n_epochs):
     # model = get_model()
     # print(buffer.normalizer)
     # model.setup_normalizer(buffer.normalizer)
+    print('model_loss')
     optimizer = get_optimizer_factory(1e-3, 0)(model.parameters())
     for epoch_i in range(1, n_epochs + 1):
         tr_loss = train_epoch(model=model, buffer=buffer,
@@ -67,10 +69,11 @@ def fit_model(buffer, n_epochs):
         modelloss.append(tr_loss)
 
     optimizer = get_optimizer_factory(1e-3, 0)(rewardmodel.parameters())
+    print('reward_loss')
     for epoch_i in range(1, n_epochs + 1):
         tr_loss = train_epoch_reward(rewardmodel=rewardmodel, buffer=buffer,
                                      optimizer=optimizer, batch_size=256, training_noise_stdev=0, grad_clip=5)
-        print('rewards')
+        # print('rewards')
         print(tr_loss)
         # rewardmodelloss.append(tr_loss)
 
@@ -91,7 +94,7 @@ if __name__ == '__main__':
     use_mpc = int(args[1])
     # mpc=MPC()
     n_steps = 50
-    n_games = 2
+    n_games = 1
     ensemble_size = 2
     n_spaces = env.observation_space.shape[0]
     # print(n_spaces)
@@ -112,7 +115,8 @@ if __name__ == '__main__':
                   input_dims=env.observation_space.shape, tau=0.005,
                   env=env, batch_size=256, layer1_size=256, layer2_size=256,
                   n_actions=n_actions)
-
+    mpc = MPCController(env, horizon=10, num_control_samples=500, agent=agent,
+                        model=model, rewardmodel=rewardmodel, model_buffer=buffer)
     # agent.setup_normalizer(model.normalizer)
     for nsteps in range(n_steps):
         model, rewardmodel = fit_model(buffer, 10)
@@ -123,57 +127,65 @@ if __name__ == '__main__':
             agent.load_models()
             # env.render(mode='human')'''
         steps = 0
-        for i in range(n_games):
-            observation = env.reset()
-            done = False
-            score = 0
-            ep_length = 0
+        observation = env.reset()
+        done = False
+        score = 0
+        ep_length = 0
+
+        if not use_mpc:
             while not done:
-                if not use_mpc:
-                    action = agent.choose_action(observation)
-                else:
-                    #action = mpc.choose_action()
+                action = agent.choose_action(observation)
                 observation_, reward, done, info = env.step(action)
                 steps += 1
-                agent.remember(observation, action, reward, observation_, done)
+                agent.remember(observation, action,
+                               reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-                '''if ep_length % 100 == 0:
-                    ac, ob, ns = buffer.pick()
-
-                    x, y = model.forward_all(ob, ac)
-                    r = rewardmodel.forward_all(ob, ac)
-                    id = torch.randint(ensemble_size, (1,))
-                    print(id)
-                    # print(x.size())
-
-                    # print(y.size())
-                    # print(x, y)
-
-                    print(x[:, id])
-                    print(y[:, id])
-                    print(model.sample(x[:, id], y[:, id]))
-                    # print(mean_)
-                    # print(observation_)'''
-
                 agent.learn()
                 score += reward
                 observation = observation_
                 # env.render()
                 ep_length += 1
-            score_history.append(score)
-            avg_score = np.mean(score_history[-100:])
-            rewards.append(avg_score)
-            if avg_score > best_score:
-                best_score = avg_score
-                '''if not load_checkpoint:
-                    self.save_models()'''
+        else:
+            while not done:
+                action = mpc.get_action(observation)
+                observation_, reward, done, info = env.step(action)
+                agent.remember(observation, action,
+                               reward, observation_, done)
+                buffer.add(state=observation, action=action,
+                           next_state=observation_, reward=reward)
+                if steps % 50 == 0:
+                    print(steps)
+                steps += 1
 
-            print('episode ', i, 'score %.1f' % score,
-                  'trailing 100 games avg %.1f' % avg_score,
-                  'steps %d' % steps, env_id,
-                  'ep_length %d' % ep_length
-                  )
+                agent.learn()
+                #score += reward
+                observation = observation_
+
+            # rewardの確認
+            observation = env.reset()
+            while not done:
+                action = agent.choose_action(observation)
+                observation_, reward, done, info = env.step(action)
+                steps += 1
+                # agent.learn()
+                score += reward
+                observation = observation_
+                # env.render()
+                ep_length += 1
+        score_history.append(score)
+        avg_score = np.mean(score_history[-100:])
+        rewards.append(avg_score)
+        if avg_score > best_score:
+            best_score = avg_score
+            '''if not load_checkpoint:
+                self.save_models()'''
+
+        print('episode ', n_steps, 'score %.1f' % score,
+              'trailing 100 games avg %.1f' % avg_score,
+              'steps %d' % steps, env_id,
+              'ep_length %d' % ep_length
+              )
     x = np.arange(len(modelloss))
     modelloss = np.array(modelloss)
     y = np.arange(len(rewards))
