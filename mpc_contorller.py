@@ -61,7 +61,6 @@ class MPCController:
 
             next_states = self.model.sample(
                 state_means, state_vars)
-
             if i != self.horizon - 1:
 
                 all_states[:, i + 1, :] = next_states
