@@ -18,6 +18,7 @@ import torch
 from normalizer import TransitionNormalizer
 import matplotlib.pyplot as plt
 import sys
+from mpc_contorller import MPCController
 
 
 def train_epoch(model, buffer, optimizer, batch_size, training_noise_stdev, grad_clip):
@@ -70,7 +71,7 @@ def fit_model(buffer, n_epochs):
     for epoch_i in range(1, n_epochs + 1):
         tr_loss = train_epoch_reward(rewardmodel=rewardmodel, buffer=buffer,
                                      optimizer=optimizer, batch_size=256, training_noise_stdev=0, grad_clip=5)
-        print('rewards')
+        # print('rewards')
         print(tr_loss)
         # rewardmodelloss.append(tr_loss)
 
@@ -112,7 +113,8 @@ if __name__ == '__main__':
                   input_dims=env.observation_space.shape, tau=0.005,
                   env=env, batch_size=256, layer1_size=256, layer2_size=256,
                   n_actions=n_actions)
-
+    mpc = MPCController(env, horizon=20, num_control_samples=1000, agent=agent,
+                        model=model, rewardmodel=rewardmodel, model_buffer=buffer)
     # agent.setup_normalizer(model.normalizer)
     for nsteps in range(n_steps):
         model, rewardmodel = fit_model(buffer, 10)
@@ -131,36 +133,26 @@ if __name__ == '__main__':
             while not done:
                 if not use_mpc:
                     action = agent.choose_action(observation)
-                else:
-                    #action = mpc.choose_action()
-                observation_, reward, done, info = env.step(action)
-                steps += 1
-                agent.remember(observation, action, reward, observation_, done)
-                buffer.add(state=observation, action=action,
-                           next_state=observation_, reward=reward)
-                '''if ep_length % 100 == 0:
-                    ac, ob, ns = buffer.pick()
-
-                    x, y = model.forward_all(ob, ac)
-                    r = rewardmodel.forward_all(ob, ac)
-                    id = torch.randint(ensemble_size, (1,))
-                    print(id)
-                    # print(x.size())
-
-                    # print(y.size())
-                    # print(x, y)
-
-                    print(x[:, id])
-                    print(y[:, id])
-                    print(model.sample(x[:, id], y[:, id]))
-                    # print(mean_)
-                    # print(observation_)'''
-
-                agent.learn()
-                score += reward
-                observation = observation_
+                    observation_, reward, done, info = env.step(action)
+                    steps += 1
+                    agent.remember(observation, action,
+                                   reward, observation_, done)
+                    buffer.add(state=observation, action=action,
+                               next_state=observation_, reward=reward)
+                    agent.learn()
+                    score += reward
+                    observation = observation_
                 # env.render()
-                ep_length += 1
+                    ep_length += 1
+                else:
+                    action = mpc.get_action(observation)
+                    print(steps)
+                    observation_, reward, done, info = env.step(action)
+                    steps += 1
+                    agent.learn()
+                    score += reward
+                    observation = observation_
+
             score_history.append(score)
             avg_score = np.mean(score_history[-100:])
             rewards.append(avg_score)
