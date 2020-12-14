@@ -184,7 +184,7 @@ if __name__ == '__main__':
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
                 # if steps % 50 == 0:
-                print(steps)
+                # print(steps)
                 steps += 1
 
                 agent.learn()
