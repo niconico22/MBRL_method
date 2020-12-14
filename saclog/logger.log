@@ -1,0 +1,43 @@
+INFO:root:erroroutputting error
+INFO:root:warning was outputted
+INFO:root:info test test
+INFO:root:erroroutputting error
+INFO:root:warning was outputted
+INFO:root:info test test
+INFO : 2020-12-14 13:17:19,261 : erroroutputting error
+INFO : 2020-12-14 13:17:19,261 : warning was outputted
+INFO : 2020-12-14 13:17:19,261 : info test test
+INFO : 2020-12-14 13:25:00,579 : erroroutputting error
+INFO : 2020-12-14 13:25:00,579 : warning was outputted
+INFO : 2020-12-14 13:25:00,579 : info 1 test
+INFO : 2020-12-14 13:25:18,545 : erroroutputting error
+INFO : 2020-12-14 13:25:18,545 : warning was outputted
+INFO : 2020-12-14 13:25:18,545 : info 1 test 1
+INFO : 2020-12-14 13:31:04,922 : erroroutputting error
+INFO : 2020-12-14 13:31:04,922 : warning was outputted
+INFO : 2020-12-14 13:31:04,922 : info 1 test 1
+INFO : 2020-12-14 13:31:12,503 : erroroutputting error
+INFO : 2020-12-14 13:31:12,503 : warning was outputted
+INFO : 2020-12-14 13:31:12,503 : info 1 test 1
+INFO : 2020-12-14 13:31:35,604 : erroroutputting error
+INFO : 2020-12-14 13:31:35,604 : warning was outputted
+INFO : 2020-12-14 13:31:35,604 : info 1 test 1
+INFO : 2020-12-14 13:40:00,709 : erroroutputting error
+INFO : 2020-12-14 13:40:00,709 : warning was outputted
+INFO : 2020-12-14 13:40:00,709 : info 1
+INFO : 2020-12-14 13:41:16,330 : erroroutputting error
+INFO : 2020-12-14 13:41:16,330 : warning was outputted
+INFO : 2020-12-14 13:41:16,330 : info 1
+INFO : 2020-12-14 13:41:45,698 : erroroutputting error
+INFO : 2020-12-14 13:41:45,698 : warning was outputted
+INFO : 2020-12-14 13:41:45,703 : info
+INFO : 2020-12-14 13:48:48,680 : Soft-Actor Critic
+INFO : 2020-12-14 13:48:48,681 : perameter n_steps: 100 ensemble_size: 3 MountainCarContinuous-v0
+INFO : 2020-12-14 13:48:48,716 : mpc horizon: 10 mpc_samples: 500
+INFO : 2020-12-14 13:49:06,806 : episode: %d score: %.1f 100 games avg: %.1fsteps %d 
+INFO : 2020-12-14 13:51:28,119 : Soft-Actor Critic
+INFO : 2020-12-14 13:51:28,120 : perameter n_steps: 100 ensemble_size: 3 MountainCarContinuous-v0
+INFO : 2020-12-14 13:51:28,159 : mpc horizon: 10 mpc_samples: 500
+INFO : 2020-12-14 13:51:46,501 : episode: 0 score: -0.4 100 games avg: -0.4 steps 999 
+INFO : 2020-12-14 13:52:15,436 : episode: 1 score: -0.1 100 games avg: -0.1 steps 999 
+INFO : 2020-12-14 13:52:42,933 : episode: 2 score: -21.9 100 games avg: -21.9 steps 999 
