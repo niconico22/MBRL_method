@@ -46,7 +46,6 @@ class Agent():
         actions, _ = self.actor.sample_normal(state, reparameterize=False)
         #actions, _ = self.actor.sample_mvnormal(state)
         # actions is an array of arrays due to the added dimension in state
-
         return actions.cpu().detach().numpy()[0]
 
     def remember(self, state, action, reward, new_state, done):
