@@ -15,6 +15,7 @@ import gym
 
 class MPCController:
 
+
     def __init__(self, dev_name, env, horizon, num_control_samples, agent, model, rewardmodel,  model_buffer):
         self.horizon = horizon
         self.N = num_control_samples
