@@ -102,9 +102,9 @@ if __name__ == '__main__':
     # env_id = 'InvertedPendulumBulletEnv-v0'
     # env_id = 'CartPoleContinuousBulletEnv-v0'
     args = sys.argv
-    env_id = 'MountainCarContinuous-v0'
+    # env_id = 'MountainCarContinuous-v0'
     # env_id = 'CartPole-v1'
-    # env_id = 'HalfCheetah-v2'
+    env_id = 'HalfCheetah-v2'
     env = gym.make(env_id)
     use_mpc = int(args[1])
 
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     n_actions = env.action_space.shape[0]
     logging.info('perameter n_steps: %d ensemble_size: %d env: %s',
                  n_steps, ensemble_size, env_id)
-    buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, 20000)
+    buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, 1000000)
     # modelbuffer = Buffer(n_spaces, n_actions, 1, 2, 20000)
 
     # normalizer = TransitionNormalizer()
@@ -140,15 +140,15 @@ if __name__ == '__main__':
                   env=env, batch_size=256, layer1_size=256, layer2_size=256,
                   n_actions=n_actions)
     horizon = 10
-    num_control_samples = 500
-    mpc = MPCController(env, horizon=10, num_control_samples=500, agent=agent,
+    num_control_samples = 100
+    mpc = MPCController(env, horizon=10, num_control_samples=100, agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
     # agent.setup_normalizer(model.normalizer)logging.StreamHandler()
     logging.info('mpc horizon: %d mpc_samples: %d',
                  horizon, num_control_samples)
 
     for nsteps in range(n_steps):
-        model, rewardmodel = fit_model(buffer, 10)
+        #model, rewardmodel = fit_model(buffer, 10)
         best_score = env.reward_range[0]
         score_history = []
         load_checkpoint = True
@@ -177,14 +177,14 @@ if __name__ == '__main__':
                 ep_length += 1
         else:
             while not done:
-                action = mpc.get_action(observation)
+                action = mpc.get_action_policy(observation)
                 observation_, reward, done, info = env.step(action)
                 agent.remember(observation, action,
                                reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-                # if steps % 50 == 0:
-                # print(steps)
+                if steps % 100 == 0:
+                    print(steps)
                 steps += 1
 
                 agent.learn()
@@ -194,7 +194,7 @@ if __name__ == '__main__':
             # rewardの確認
             observation = env.reset()
             done = False
-            steps = 0
+            steps = 0 
             while not done:
                 action = agent.choose_action(observation)
                 observation_, reward, done, info = env.step(action)
