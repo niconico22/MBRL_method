@@ -4,7 +4,7 @@
 # os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
 # os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
-# python3 main_sac.py mpc=0/1
+# python3 main_sac.py mpc=0/1 nsteps=1000 ensemble_size
 import pybullet_envs
 import gym
 import numpy as np
@@ -60,25 +60,19 @@ def get_optimizer_factory(lr, weight_decay):
 
 
 def fit_model(buffer, n_epochs):
-    # model = get_model()
-    # print(buffer.normalizer)
-    # model.setup_normalizer(buffer.normalizer)
-    # print('model_loss')
+
     optimizer = get_optimizer_factory(1e-3, 0)(model.parameters())
     for epoch_i in range(1, n_epochs + 1):
         tr_loss = train_epoch(model=model, buffer=buffer,
                               optimizer=optimizer, batch_size=256, training_noise_stdev=0, grad_clip=5)
-        # print(tr_loss)
+
         modelloss.append(tr_loss)
 
     optimizer = get_optimizer_factory(1e-3, 0)(rewardmodel.parameters())
-    # print('reward_loss')
+
     for epoch_i in range(1, n_epochs + 1):
         tr_loss = train_epoch_reward(rewardmodel=rewardmodel, buffer=buffer,
                                      optimizer=optimizer, batch_size=256, training_noise_stdev=0, grad_clip=5)
-        # print('rewards')
-        # print(tr_loss)
-        # rewardmodelloss.append(tr_loss)
 
     return model, rewardmodel
 
@@ -86,8 +80,9 @@ def fit_model(buffer, n_epochs):
 def set_log(s):
     # ログレベルを DEBUG に変更
     now = datetime.datetime.now()
-    filename = './' + s + 'log/' + 'log_' + \
-        now.strftime('%Y%m%d_%H%M%S') + '.log'
+    #filename = './' + s + 'log/' + 'log_' + now.strftime('%Y%m%d_%H%M%S') + '.log'
+    # DEBUGする時用のファイル
+    filename = './saclog/logger.log'
     formatter = '%(levelname)s : %(asctime)s : %(message)s'
 
     logging.basicConfig(filename=filename,
@@ -96,15 +91,15 @@ def set_log(s):
 
 if __name__ == '__main__':
 
+    args = sys.argv
     # env_id = 'LunarLanderContinuous-v2'
     # env_id = 'BipedalWalker-v2'
     # env_id = 'AntBulletEnv-v0'
     # env_id = 'InvertedPendulumBulletEnv-v0'
     # env_id = 'CartPoleContinuousBulletEnv-v0'
-    args = sys.argv
-    env_id = 'MountainCarContinuous-v0'
+    #env_id = 'MountainCarContinuous-v0'
     # env_id = 'CartPole-v1'
-    # env_id = 'HalfCheetah-v2'
+    env_id = 'HalfCheetah-v2'
     env = gym.make(env_id)
     use_mpc = int(args[1])
 
@@ -119,42 +114,34 @@ if __name__ == '__main__':
     n_games = 1
     ensemble_size = int(args[3])
     n_spaces = env.observation_space.shape[0]
-    # print(n_spaces)
-    n_actions = env.action_space.shape[0]
-    logging.info('perameter n_steps: %d ensemble_size: %d env: %s',
-                 n_steps, ensemble_size, env_id)
-    buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, 20000)
-    # modelbuffer = Buffer(n_spaces, n_actions, 1, 2, 20000)
 
-    # normalizer = TransitionNormalizer()
-    # buffer.setup_normalizer(normalizer)
+    n_actions = env.action_space.shape[0]
+    logging.info('parameter n_steps: %d ensemble_size: %d env: %s',
+                 n_steps, ensemble_size, env_id)
+    buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, 1000000)
     model = Model(n_actions, n_spaces, 512, 3, ensemble_size=ensemble_size)
     rewardmodel = RewardModel(n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
     modelloss = []
     rewards = []
 
-    # mdp = Imagination(model, n_actors=128,)
     agent = Agent(alpha=0.0003, beta=0.0003, reward_scale=2, env_id=env_id,
                   input_dims=env.observation_space.shape, tau=0.005,
                   env=env, batch_size=256, layer1_size=256, layer2_size=256,
                   n_actions=n_actions)
     horizon = 10
-    num_control_samples = 500
-    mpc = MPCController(env, horizon=10, num_control_samples=500, agent=agent,
+    num_control_samples = 100
+    mpc = MPCController(env, horizon=10, num_control_samples=100, agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
-    # agent.setup_normalizer(model.normalizer)logging.StreamHandler()
+
     logging.info('mpc horizon: %d mpc_samples: %d',
                  horizon, num_control_samples)
 
     for nsteps in range(n_steps):
-        model, rewardmodel = fit_model(buffer, 10)
+        model, rewardmodel = fit_model(buffer, 1)
         best_score = env.reward_range[0]
         score_history = []
         load_checkpoint = True
-        '''if load_checkpoint:
-            agent.load_models()
-            # env.render(mode='human')'''
         steps = 0
         observation = env.reset()
         done = False
@@ -175,22 +162,19 @@ if __name__ == '__main__':
                 observation = observation_
                 # env.render()
                 ep_length += 1
+
         else:
             while not done:
-                action = mpc.get_action(observation)
+                action = mpc.get_action_policy(observation)
                 observation_, reward, done, info = env.step(action)
                 agent.remember(observation, action,
                                reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-                # if steps % 50 == 0:
-                # print(steps)
                 steps += 1
 
-                agent.learn()
-                #score += reward
                 observation = observation_
-
+            agent.learn()
             # rewardの確認
             observation = env.reset()
             done = False
@@ -199,7 +183,7 @@ if __name__ == '__main__':
                 action = agent.choose_action(observation)
                 observation_, reward, done, info = env.step(action)
                 steps += 1
-                # agent.learn()
+                agent.learn()
                 score += reward
                 observation = observation_
                 # env.render()
@@ -219,14 +203,3 @@ if __name__ == '__main__':
               )
         logging.info('episode: %d score: %.1f 100 games avg: %.1f steps %d ',
                      nsteps, score, avg_score, steps,)
-    '''x = np.arange(len(modelloss))
-    modelloss = np.array(modelloss)
-    y = np.arange(len(rewards))
-    rewards = np.array(rewards)
-    plt.plot(x, modelloss)
-    plt.savefig('modelloss.png')
-    plt.plot(y, rewards)
-    plt.savefig('rewards.png')
-    if not load_checkpoint:
-        x = [i+1 for i in range(n_games)]
-        plot_learning_curve(x, score_history, figure_file)'''

@@ -1,0 +1,3 @@
+INFO : 2020-12-15 00:00:47,148 : method: Soft-Actor Critic
+INFO : 2020-12-15 00:00:47,148 : perameter n_steps: 100 ensemble_size: 3 env: MountainCarContinuous-v0
+INFO : 2020-12-15 00:00:47,183 : mpc horizon: 10 mpc_samples: 500
