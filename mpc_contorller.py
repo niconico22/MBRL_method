@@ -15,7 +15,7 @@ import gym
 
 class MPCController:
 
-    def __init__(self, env, horizon, num_control_samples, agent, model, rewardmodel,  model_buffer, device=torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')):
+    def __init__(self, env, horizon, num_control_samples, agent, model, rewardmodel,  model_buffer, device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')):
         self.horizon = horizon
         self.N = num_control_samples
         self.env = env
