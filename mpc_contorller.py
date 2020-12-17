@@ -15,7 +15,7 @@ import gym
 
 class MPCController:
 
-    def __init__(self, env, horizon, num_control_samples, agent, model, rewardmodel,  model_buffer, device=torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')):
+    def __init__(self, dev_name, env, horizon, num_control_samples, agent, model, rewardmodel,  model_buffer):
         self.horizon = horizon
         self.N = num_control_samples
         self.env = env
@@ -23,7 +23,8 @@ class MPCController:
         self.model = model
         self.rewardmodel = rewardmodel
         self.model_buffer = model_buffer
-        self.device = device
+        self.device = torch.device(
+            dev_name if torch.cuda.is_available() else 'cpu')
 
     def get_action_random(self, cur_state):
         '''states(numpy array): (dim_state)'''
@@ -81,9 +82,9 @@ class MPCController:
             rewards = self.rewardmodel.sample(
                 reward_means, reward_vars)
             # print(rewards)
-            #rewards = rewards.squeeze(1)
+            # rewards = rewards.squeeze(1)
             # print(rewards.shape)
-            #print(rewards_[:, i].shape)
+            # print(rewards_[:, i].shape)
             rewards_[:, i] = rewards
 
         sum_rewards = torch.sum(rewards_, 1)
@@ -202,7 +203,7 @@ class MPCController:
 
 
 if __name__ == '__main__':
-    #env_id = 'MountainCarContinuous-v0'
+    # env_id = 'MountainCarContinuous-v0'
     env_id = 'HalfCheetah-v2'
     env = gym.make(env_id)
     n_steps = 50
@@ -226,5 +227,5 @@ if __name__ == '__main__':
     mpc = MPCController(env, 5, 100, agent, model, rewardmodel, buffer)
 
     observation = env.reset()
-    #observation = torch.from_numpy(observation)
+    # observation = torch.from_numpy(observation)
     mpc.rollout_policy(observation)

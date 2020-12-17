@@ -121,20 +121,21 @@ if __name__ == '__main__':
     logging.info('parameter n_steps: %d ensemble_size: %d env: %s',
                  n_steps, ensemble_size, env_id)
     buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, 1000000)
-
-    model = Model(n_actions, n_spaces, 512, 3, ensemble_size=ensemble_size)
-    rewardmodel = RewardModel(n_actions, n_spaces, 1,
+    model_cuda = args[4]
+    model = Model(model_cuda, n_actions, n_spaces,
+                  512, 3, ensemble_size=ensemble_size)
+    rewardmodel = RewardModel(model_cuda, n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
     modelloss = []
     rewards = []
-
-    agent = Agent(alpha=0.0003, beta=0.0003, reward_scale=2, env_id=env_id,
+    agent_cuda = args[5]
+    agent = Agent(agent_cuda, alpha=0.0003, beta=0.0003, reward_scale=2, env_id=env_id,
                   input_dims=env.observation_space.shape, tau=0.005,
                   env=env, batch_size=256, layer1_size=256, layer2_size=256,
                   n_actions=n_actions)
     horizon = 10
     num_control_samples = 100
-    mpc = MPCController(env, horizon=10, num_control_samples=100, agent=agent,
+    mpc = MPCController(agent_cuda, env, horizon=10, num_control_samples=100, agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
 
     logging.info('mpc horizon: %d mpc_samples: %d',
@@ -185,7 +186,7 @@ if __name__ == '__main__':
             # rewardの確認
             observation = env.reset()
             done = False
-            steps = 0 
+            steps = 0
             while not done:
                 action = agent.choose_action(observation)
                 observation_, reward, done, info = env.step(action)

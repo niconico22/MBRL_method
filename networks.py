@@ -8,7 +8,7 @@ import numpy as np
 
 
 class CriticNetwork(nn.Module):
-    def __init__(self, beta, input_dims, fc1_dims, fc2_dims, n_actions,
+    def __init__(self, dev_name, beta, input_dims, fc1_dims, fc2_dims, n_actions,
                  name, chkpt_dir='tmp/sac'):
         super(CriticNetwork, self).__init__()
         self.input_dims = input_dims
@@ -25,7 +25,7 @@ class CriticNetwork(nn.Module):
         self.q1 = nn.Linear(self.fc2_dims, 1)
 
         self.optimizer = optim.Adam(self.parameters(), lr=beta)
-        self.device = T.device('cuda:0' if T.cuda.is_available() else 'cpu')
+        self.device = T.device(dev_name if T.cuda.is_available() else 'cpu')
 
         self.to(self.device)
 
@@ -47,7 +47,7 @@ class CriticNetwork(nn.Module):
 
 
 class ActorNetwork(nn.Module):
-    def __init__(self, alpha, input_dims, fc1_dims, fc2_dims, max_action,
+    def __init__(self, dev_name, alpha, input_dims, fc1_dims, fc2_dims, max_action,
                  n_actions, name, chkpt_dir='tmp/sac'):
         super(ActorNetwork, self).__init__()
         self.input_dims = input_dims
@@ -66,7 +66,7 @@ class ActorNetwork(nn.Module):
         self.sigma = nn.Linear(self.fc2_dims, self.n_actions)
 
         self.optimizer = optim.Adam(self.parameters(), lr=alpha)
-        self.device = T.device('cuda:0' if T.cuda.is_available() else 'cpu')
+        self.device = T.device(dev_name if T.cuda.is_available() else 'cpu')
 
         self.to(self.device)
 
@@ -137,7 +137,7 @@ class ActorNetwork(nn.Module):
 
 
 class ValueNetwork(nn.Module):
-    def __init__(self, beta, input_dims, fc1_dims, fc2_dims,
+    def __init__(self, dev_name, beta, input_dims, fc1_dims, fc2_dims,
                  name, chkpt_dir='tmp/sac'):
         super(ValueNetwork, self).__init__()
         self.input_dims = input_dims
@@ -152,7 +152,7 @@ class ValueNetwork(nn.Module):
         self.v = nn.Linear(self.fc2_dims, 1)
 
         self.optimizer = optim.Adam(self.parameters(), lr=beta)
-        self.device = T.device('cuda:0' if T.cuda.is_available() else 'cpu')
+        self.device = T.device(dev_name if T.cuda.is_available() else 'cpu')
 
         self.to(self.device)
 
