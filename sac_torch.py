@@ -37,22 +37,27 @@ class Agent():
         self.update_network_parameters(tau=1)
         self.alpha = 0.2
 
-    def setup_normalizer(self, normalizer):
-        self.normalizer = normalizer
-        self.setup_normalizer(normalizer)
-
     def choose_action(self, observation):
         state = T.Tensor([observation]).to(self.actor.device)
         actions, _ = self.actor.sample_normal(state, reparameterize=False)
         #actions, _ = self.actor.sample_mvnormal(state)
         # actions is an array of arrays due to the added dimension in state
+
         return actions.cpu().detach().numpy()[0]
+
+    def choose_action_batch(self, observation):
+        #state = T.Tensor([observation]).to(self.actor.device)
+        # print('a')
+        actions, _ = self.actor.sample_normal(
+            observation, reparameterize=False)
+        #actions, _ = self.actor.sample_mvnormal(state)
+        # actions is an array of arrays due to the added dimension in state
+        return actions
 
     def remember(self, state, action, reward, new_state, done):
         self.memory.store_transition(state, action, reward, new_state, done)
 
     def learn(self):
-
         if self.memory.mem_cntr < self.batch_size:
             return
 
@@ -93,7 +98,7 @@ class Agent():
         critic_value = T.min(q1_new_policy, q2_new_policy)
         critic_value = critic_value.view(-1)
 
-        actor_loss = self.alpha * log_probs - critic_value
+        actor_loss = self.alpha*log_probs - critic_value
         actor_loss = T.mean(actor_loss)
         self.actor.optimizer.zero_grad()
         actor_loss.backward(retain_graph=True)
@@ -128,45 +133,6 @@ class Agent():
                 (1-tau)*target_value_state_dict[name].clone()
 
         self.target_value.load_state_dict(value_state_dict)
-
-    def episode(self, env, n_games):
-
-        best_score = env.reward_range[0]
-        score_history = []
-        load_checkpoint = True
-        '''if load_checkpoint:
-            agent.load_models()
-            # env.render(mode='human')'''
-        steps = 0
-        for i in range(n_games):
-            observation = env.reset()
-            done = False
-            score = 0
-            ep_length = 0
-            while not done:
-                action = self.choose_action(observation)
-                observation_, reward, done, info = env.step(action)
-                steps += 1
-                self.remember(observation, action, reward, observation_, done)
-                # if not load_checkpoint:
-                # print('sa')
-                self.learn()
-                score += reward
-                observation = observation_
-                env.render()
-                ep_length += 1
-            score_history.append(score)
-            avg_score = np.mean(score_history[-100:])
-
-            if avg_score > best_score:
-                best_score = avg_score
-                if not load_checkpoint:
-                    self.save_models()
-
-            print('episode ', i, 'score %.1f' % score,
-                  'trailing 100 games avg %.1f' % avg_score,
-
-                  ' scale ', self.scale)
 
     def save_models(self):
         print('.... saving models ....')
