@@ -67,7 +67,7 @@ class RewardModel(nn.Module):
     min_log_var = -5
     max_log_var = -1
 
-    def __init__(self, d_action, d_state, d_reward, n_hidden, n_layers, ensemble_size, non_linearity='leaky_relu', device=torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')):
+    def __init__(self, dev_name, d_action, d_state, d_reward, n_hidden, n_layers, ensemble_size, non_linearity='leaky_relu'):
         """
         state space forward model.
         predicts mean and variance of next state given state and action i.e independent gaussians for each dimension of next state.
@@ -111,6 +111,8 @@ class RewardModel(nn.Module):
 
         self.layers = nn.Sequential(*layers)
 
+        device = torch.device(
+            dev_name if torch.cuda.is_available() else 'cpu')
         self.to(device)
 
         self.normalizer = None

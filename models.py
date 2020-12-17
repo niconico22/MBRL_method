@@ -67,7 +67,7 @@ class Model(nn.Module):
     min_log_var = -5
     max_log_var = -1
 
-    def __init__(self, d_action, d_state, n_hidden, n_layers, ensemble_size, non_linearity='leaky_relu', device=torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')):
+    def __init__(self, dev_name, d_action, d_state, n_hidden, n_layers, ensemble_size, non_linearity='leaky_relu'):
         """
         state space forward model.
         predicts mean and variance of next state given state and action i.e independent gaussians for each dimension of next state.
@@ -111,8 +111,10 @@ class Model(nn.Module):
 
         self.layers = nn.Sequential(*layers)
 
+        device = torch.device(
+            dev_name if torch.cuda.is_available() else 'cpu')
         self.to(device)
-
+        self.device = device
         self.normalizer = None
 
         self.d_action = d_action
@@ -120,7 +122,6 @@ class Model(nn.Module):
         self.n_hidden = n_hidden
         self.n_layers = n_layers
         self.ensemble_size = ensemble_size
-        self.device = device
 
     def setup_normalizer(self, normalizer):
         # print(normalizer)

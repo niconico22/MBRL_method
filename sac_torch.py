@@ -7,7 +7,7 @@ from networks import ActorNetwork, CriticNetwork, ValueNetwork
 
 
 class Agent():
-    def __init__(self, alpha, beta, input_dims, tau, env,
+    def __init__(self, dev_name, alpha, beta, input_dims, tau, env,
                  env_id, gamma=0.99,
                  n_actions=2, max_size=1000000, layer1_size=256,
                  layer2_size=256, batch_size=100, reward_scale=2):
@@ -17,20 +17,20 @@ class Agent():
         self.batch_size = batch_size
         self.n_actions = n_actions
 
-        self.actor = ActorNetwork(alpha, input_dims, layer1_size,
+        self.actor = ActorNetwork(dev_name, alpha, input_dims, layer1_size,
                                   layer2_size, n_actions=n_actions,
                                   name=env_id+'_actor',
                                   max_action=env.action_space.high)
-        self.critic_1 = CriticNetwork(beta, input_dims, layer1_size,
+        self.critic_1 = CriticNetwork(dev_name, beta, input_dims, layer1_size,
                                       layer2_size, n_actions=n_actions,
                                       name=env_id+'_critic_1')
-        self.critic_2 = CriticNetwork(beta, input_dims, layer1_size,
+        self.critic_2 = CriticNetwork(dev_name, beta, input_dims, layer1_size,
                                       layer2_size, n_actions=n_actions,
                                       name=env_id+'_critic_2')
 
-        self.value = ValueNetwork(beta, input_dims, layer1_size,
+        self.value = ValueNetwork(dev_name, beta, input_dims, layer1_size,
                                   layer2_size, name=env_id+'_value')
-        self.target_value = ValueNetwork(beta, input_dims, layer1_size,
+        self.target_value = ValueNetwork(dev_name, beta, input_dims, layer1_size,
                                          layer2_size, name=env_id+'_target_value')
 
         self.scale = reward_scale
