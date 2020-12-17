@@ -25,7 +25,7 @@ class MPCController:
         self.model_buffer = model_buffer
         self.device = device
 
-    def get_action(self, cur_state):
+    def get_action_random(self, cur_state):
         '''states(numpy array): (dim_state)'''
         cur_state = torch.from_numpy(cur_state).float().clone()
         all_samples = np.random.uniform(
@@ -93,6 +93,73 @@ class MPCController:
 
         return best_action.to('cpu').detach().numpy().copy()
 
+    def get_action_policy(self, cur_state):
+        '''states(numpy array): (dim_state)'''
+        cur_state = torch.from_numpy(cur_state).float().clone()
+        # 初期化
+
+        all_samples = torch.zeros(
+            (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
+        all_states = torch.zeros(
+            (self.N, self.horizon, self.env.observation_space.shape[0])).float().clone().to(self.device)
+        for i in range(self.N):
+            all_states[i][0] = cur_state
+        model_id = torch.randint(
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+        # ここにKLdivergenceを加えてモデルの精度を向上させたい
+        rewardmodel_id = torch.randint(
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+
+        rewards_ = torch.zeros((self.N, self.horizon)).float().to(self.device)
+        sum_rewards = torch.zeros(self.N).float().to(self.device)
+        for i in range(self.horizon):
+            # predict next_state
+
+            all_samples[:, i, :] = self.agent.choose_action_batch(
+                all_states[:, i, :])
+            state_means_, state_vars_ = self.model.forward_all(
+                all_states[:, i, :], all_samples[:, i, :])
+
+            state_means = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+            state_vars = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+
+            for j in range(self.N):
+                state_means[j] = state_means_[j][model_id[i][j]]
+                state_vars[j] = state_vars_[j][model_id[i][j]]
+
+            next_states = self.model.sample(
+                state_means, state_vars)
+            if i != self.horizon - 1:
+
+                all_states[:, i + 1, :] = next_states
+
+            # predict_reward
+            reward_means_, reward_vars_ = self.rewardmodel.forward_all(
+                all_states[:, i, :], all_samples[:, i, :])
+            reward_means = torch.zeros(
+                (self.N)).float().to(self.device)
+            reward_vars = torch.zeros(
+                (self.N)).float().to(self.device)
+
+            for j in range(self.N):
+
+                reward_means[j] = reward_means_[j][rewardmodel_id[i][j]]
+                reward_vars[j] = reward_vars_[j][rewardmodel_id[i][j]]
+
+            rewards = self.rewardmodel.sample(
+                reward_means, reward_vars)
+
+            rewards_[:, i] = rewards
+
+        sum_rewards = torch.sum(rewards_, 1)
+        id = sum_rewards.argmax()
+
+        best_action = all_samples[id, 0, :]
+
+        return best_action.to('cpu').detach().numpy().copy()
+
     def remember(self, state, action, reward, new_state, done):
         self.agent.memory.store_transition(
             state, action, reward, new_state, done)
@@ -101,14 +168,37 @@ class MPCController:
         self.model_buffer.add(
             state, action, new_state, reward)
 
-    def rollout(self, observation):
+    def rollout_random(self, observation):
         done = False
         observation = env.reset()
         while not done:
-            action = self.get_action(observation)
+            action = self.get_action_random(observation)
             observation_, reward, done, _ = self.env.step(action)
             self.remember(observation, action, reward, observation_, done)
             self.model_remember(observation, action, reward, observation_)
+
+    def rollout_policy(self, observation):
+        done = False
+        observation = env.reset()
+        step = 0
+        while not done:
+
+            step += 1
+            action = self.get_action_policy(observation)
+            observation_, reward, done, _ = self.env.step(action)
+            self.remember(observation, action, reward, observation_, done)
+            self.model_remember(observation, action, reward, observation_)
+
+    # def model_rollout(self, state):
+
+    def call_kldiv(self, state, action):
+        en_size = self.model.ensemble_size
+        next_distribution = self.nodel.forward_all(state, action)
+
+        for i in range(en_size):
+            sigma_sum = torch.zeros(self.env.observation_space.shape[0])
+            for j in range(en_size):
+                next_distribution[0, j, :]
 
 
 if __name__ == '__main__':
@@ -133,7 +223,8 @@ if __name__ == '__main__':
     buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, buffer_size)
     rewardmodel = RewardModel(n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
-    mpc = MPCController(env, 30, 500, agent, model, rewardmodel, buffer,)
+    mpc = MPCController(env, 5, 100, agent, model, rewardmodel, buffer)
+
     observation = env.reset()
-    observation = torch.from_numpy(observation)
-    mpc.rollout(observation)
+    #observation = torch.from_numpy(observation)
+    mpc.rollout_policy(observation)
