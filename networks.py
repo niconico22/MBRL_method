@@ -66,6 +66,8 @@ class ActorNetwork(nn.Module):
         self.sigma = nn.Linear(self.fc2_dims, self.n_actions)
 
         self.optimizer = optim.Adam(self.parameters(), lr=alpha)
+
+        print('dev' + dev_name)
         self.device = T.device(dev_name if T.cuda.is_available() else 'cpu')
 
         self.to(self.device)
