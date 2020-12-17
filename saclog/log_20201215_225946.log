@@ -1,0 +1,6 @@
+INFO : 2020-12-15 22:59:46,355 : method: Soft-Actor Critic
+INFO : 2020-12-15 22:59:46,355 : perameter n_steps: 3000 ensemble_size: 2 env: MountainCarContinuous-v0
+INFO : 2020-12-15 22:59:51,119 : mpc horizon: 10 mpc_samples: 500
+INFO : 2020-12-15 23:00:13,563 : episode: 0 score: nan 100 games avg: nan steps 999 
+INFO : 2020-12-15 23:00:44,433 : episode: 1 score: nan 100 games avg: nan steps 999 
+INFO : 2020-12-15 23:01:15,645 : episode: 2 score: nan 100 games avg: nan steps 999 

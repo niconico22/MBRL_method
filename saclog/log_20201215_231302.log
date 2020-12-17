@@ -1,0 +1,3 @@
+INFO : 2020-12-15 23:13:02,506 : method: Soft-Actor Critic
+INFO : 2020-12-15 23:13:02,507 : perameter n_steps: 3000 ensemble_size: 3 env: HalfCheetah-v2
+INFO : 2020-12-15 23:13:07,318 : mpc horizon: 10 mpc_samples: 500

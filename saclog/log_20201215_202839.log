@@ -1,0 +1,8 @@
+INFO : 2020-12-15 20:28:39,317 : method: Soft-Actor Critic
+INFO : 2020-12-15 20:28:39,318 : perameter n_steps: 3000 ensemble_size: 3 env: HalfCheetah-v2
+INFO : 2020-12-15 20:28:44,136 : mpc horizon: 10 mpc_samples: 500
+INFO : 2020-12-15 20:29:08,307 : episode: 0 score: -267.5 100 games avg: -267.5 steps 1000 
+INFO : 2020-12-15 20:29:41,164 : episode: 1 score: -348.4 100 games avg: -348.4 steps 1000 
+INFO : 2020-12-15 20:30:13,893 : episode: 2 score: -239.4 100 games avg: -239.4 steps 1000 
+INFO : 2020-12-15 20:30:46,578 : episode: 3 score: -268.9 100 games avg: -268.9 steps 1000 
+INFO : 2020-12-15 20:31:19,310 : episode: 4 score: -80.1 100 games avg: -80.1 steps 1000 

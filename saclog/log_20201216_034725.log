@@ -1,0 +1,25 @@
+INFO : 2020-12-16 03:47:25,486 : method: Soft-Actor Critic
+INFO : 2020-12-16 03:47:25,487 : perameter n_steps: 3000 ensemble_size: 3 env: HalfCheetah-v2
+INFO : 2020-12-16 03:47:30,297 : mpc horizon: 10 mpc_samples: 500
+INFO : 2020-12-16 03:47:53,045 : episode: 0 score: -155.3 100 games avg: -155.3 steps 1000 
+INFO : 2020-12-16 03:48:23,612 : episode: 1 score: -141.5 100 games avg: -141.5 steps 1000 
+INFO : 2020-12-16 03:48:54,524 : episode: 2 score: -66.8 100 games avg: -66.8 steps 1000 
+INFO : 2020-12-16 03:49:25,795 : episode: 3 score: -153.9 100 games avg: -153.9 steps 1000 
+INFO : 2020-12-16 03:49:57,419 : episode: 4 score: -163.6 100 games avg: -163.6 steps 1000 
+INFO : 2020-12-16 03:50:29,444 : episode: 5 score: -140.1 100 games avg: -140.1 steps 1000 
+INFO : 2020-12-16 03:51:01,924 : episode: 6 score: -163.9 100 games avg: -163.9 steps 1000 
+INFO : 2020-12-16 03:51:34,710 : episode: 7 score: -135.7 100 games avg: -135.7 steps 1000 
+INFO : 2020-12-16 03:52:07,813 : episode: 8 score: -113.4 100 games avg: -113.4 steps 1000 
+INFO : 2020-12-16 03:52:41,326 : episode: 9 score: -113.6 100 games avg: -113.6 steps 1000 
+INFO : 2020-12-16 03:53:15,264 : episode: 10 score: -105.7 100 games avg: -105.7 steps 1000 
+INFO : 2020-12-16 03:53:49,441 : episode: 11 score: -144.3 100 games avg: -144.3 steps 1000 
+INFO : 2020-12-16 03:54:24,024 : episode: 12 score: -119.6 100 games avg: -119.6 steps 1000 
+INFO : 2020-12-16 03:54:59,126 : episode: 13 score: -134.3 100 games avg: -134.3 steps 1000 
+INFO : 2020-12-16 03:55:34,517 : episode: 14 score: -128.6 100 games avg: -128.6 steps 1000 
+INFO : 2020-12-16 03:56:10,294 : episode: 15 score: -112.0 100 games avg: -112.0 steps 1000 
+INFO : 2020-12-16 03:56:46,454 : episode: 16 score: -108.0 100 games avg: -108.0 steps 1000 
+INFO : 2020-12-16 03:57:23,040 : episode: 17 score: 3.7 100 games avg: 3.7 steps 1000 
+INFO : 2020-12-16 03:57:59,996 : episode: 18 score: -90.2 100 games avg: -90.2 steps 1000 
+INFO : 2020-12-16 03:58:37,374 : episode: 19 score: -79.7 100 games avg: -79.7 steps 1000 
+INFO : 2020-12-16 03:59:15,132 : episode: 20 score: -76.6 100 games avg: -76.6 steps 1000 
+INFO : 2020-12-16 03:59:52,861 : episode: 21 score: -57.8 100 games avg: -57.8 steps 1000 
