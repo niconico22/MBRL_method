@@ -1,0 +1,15 @@
+random mpc
+INFO : 2020-12-17 23:22:12,297 : method: Model Predictive Contorol
+INFO : 2020-12-17 23:22:12,298 : parameter n_steps: 100 ensemble_size: 3 env: HalfCheetah-v2
+INFO : 2020-12-17 23:22:18,545 : mpc horizon: 10 mpc_samples: 100
+INFO : 2020-12-17 23:26:43,950 : episode: 0 score: -281.8 100 games avg: -281.8 steps 1000 
+INFO : 2020-12-17 23:31:11,021 : episode: 1 score: -171.7 100 games avg: -171.7 steps 1000 
+INFO : 2020-12-17 23:35:39,090 : episode: 2 score: -297.0 100 games avg: -297.0 steps 1000 
+INFO : 2020-12-17 23:40:05,257 : episode: 3 score: -204.8 100 games avg: -204.8 steps 1000 
+INFO : 2020-12-17 23:44:32,047 : episode: 4 score: -290.3 100 games avg: -290.3 steps 1000 
+INFO : 2020-12-17 23:49:00,508 : episode: 5 score: -270.6 100 games avg: -270.6 steps 1000 
+INFO : 2020-12-17 23:53:27,155 : episode: 6 score: -319.2 100 games avg: -319.2 steps 1000 
+INFO : 2020-12-17 23:57:54,349 : episode: 7 score: -318.0 100 games avg: -318.0 steps 1000 
+INFO : 2020-12-18 00:02:21,815 : episode: 8 score: -259.1 100 games avg: -259.1 steps 1000 
+INFO : 2020-12-18 00:06:34,016 : episode: 9 score: -351.5 100 games avg: -351.5 steps 1000 
+INFO : 2020-12-18 00:10:44,994 : episode: 10 score: -242.1 100 games avg: -242.1 steps 1000 
