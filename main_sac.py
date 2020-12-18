@@ -80,7 +80,8 @@ def fit_model(buffer, n_epochs):
 def set_log(s):
     # ログレベルを DEBUG に変更
     now = datetime.datetime.now()
-    filename = './' + s + 'log/' + 'log_' + now.strftime('%Y%m%d_%H%M%S') + '.log'
+    filename = './' + s + 'log/' + 'log_' + \
+        now.strftime('%Y%m%d_%H%M%S') + '.log'
     # DEBUGする時用のファイル
     #filename = './saclog/logger.log'
     formatter = '%(levelname)s : %(asctime)s : %(message)s'
@@ -140,7 +141,18 @@ if __name__ == '__main__':
 
     logging.info('mpc horizon: %d mpc_samples: %d',
                  horizon, num_control_samples)
+    function_name = args[6]
 
+    if function_name == 'random':
+        func = mpc.get_action_random
+    elif function_name == 'policy':
+        func = mpc.get_action_policy
+    elif function_name == 'policy-kl':
+        func = mpc.get_action_policy_kl
+    else:
+        print('error')
+        exit()
+    logging.info('mpc_function %s', function_name)
     for nsteps in range(n_steps):
         model, rewardmodel = fit_model(buffer, 1)
         best_score = env.reward_range[0]
@@ -169,7 +181,7 @@ if __name__ == '__main__':
 
         else:
             while not done:
-                action = mpc.get_action_random(observation)
+                action = func(observation)
                 observation_, reward, done, info = env.step(action)
                 agent.remember(observation, action,
                                reward, observation_, done)
