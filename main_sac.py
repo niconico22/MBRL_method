@@ -136,11 +136,12 @@ if __name__ == '__main__':
                   n_actions=n_actions)
     horizon = 10
     num_control_samples = 100
+    grad_steps = 10
     mpc = MPCController(agent_cuda, env, horizon=10, num_control_samples=100, agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
 
-    logging.info('mpc horizon: %d mpc_samples: %d',
-                 horizon, num_control_samples)
+    logging.info('mpc horizon: %d mpc_samples: %d grad_steps: %d',
+                 horizon, num_control_samples, grad_steps)
     function_name = args[6]
 
     if function_name == 'random':
@@ -154,7 +155,7 @@ if __name__ == '__main__':
         exit()
     logging.info('mpc_function %s', function_name)
     for nsteps in range(n_steps):
-        model, rewardmodel = fit_model(buffer, 1)
+        model, rewardmodel = fit_model(buffer, grad_steps)
         best_score = env.reward_range[0]
         score_history = []
         load_checkpoint = True
