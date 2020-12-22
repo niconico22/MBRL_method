@@ -2,3 +2,32 @@ INFO : 2020-12-19 02:46:27,242 : method: Model Predictive Contorol
 INFO : 2020-12-19 02:46:27,243 : parameter n_steps: 50 ensemble_size: 5 env: HalfCheetah-v2
 INFO : 2020-12-19 02:46:30,076 : mpc horizon: 10 mpc_samples: 100
 INFO : 2020-12-19 02:46:30,076 : mpc_function policy-kl
+INFO : 2020-12-19 03:14:54,788 : episode: 0 score: -367.3 100 games avg: -367.3 steps 1000 
+INFO : 2020-12-19 03:43:25,436 : episode: 1 score: -394.3 100 games avg: -394.3 steps 1000 
+INFO : 2020-12-19 04:11:56,003 : episode: 2 score: 166.4 100 games avg: 166.4 steps 1000 
+INFO : 2020-12-19 04:40:24,307 : episode: 3 score: -68.0 100 games avg: -68.0 steps 1000 
+INFO : 2020-12-19 05:08:53,587 : episode: 4 score: -3.1 100 games avg: -3.1 steps 1000 
+INFO : 2020-12-19 05:37:22,959 : episode: 5 score: -153.5 100 games avg: -153.5 steps 1000 
+INFO : 2020-12-19 06:05:52,601 : episode: 6 score: 36.2 100 games avg: 36.2 steps 1000 
+INFO : 2020-12-19 06:34:20,741 : episode: 7 score: 62.7 100 games avg: 62.7 steps 1000 
+INFO : 2020-12-19 07:02:50,841 : episode: 8 score: -141.8 100 games avg: -141.8 steps 1000 
+INFO : 2020-12-19 07:31:20,504 : episode: 9 score: -258.4 100 games avg: -258.4 steps 1000 
+INFO : 2020-12-19 07:59:50,350 : episode: 10 score: -100.5 100 games avg: -100.5 steps 1000 
+INFO : 2020-12-19 08:28:20,313 : episode: 11 score: -148.2 100 games avg: -148.2 steps 1000 
+INFO : 2020-12-19 08:56:50,321 : episode: 12 score: -154.5 100 games avg: -154.5 steps 1000 
+INFO : 2020-12-19 09:25:20,415 : episode: 13 score: -178.6 100 games avg: -178.6 steps 1000 
+INFO : 2020-12-19 09:53:50,206 : episode: 14 score: -215.3 100 games avg: -215.3 steps 1000 
+INFO : 2020-12-19 10:22:18,424 : episode: 15 score: 8.6 100 games avg: 8.6 steps 1000 
+INFO : 2020-12-19 10:50:47,054 : episode: 16 score: -145.3 100 games avg: -145.3 steps 1000 
+INFO : 2020-12-19 11:19:17,200 : episode: 17 score: 139.2 100 games avg: 139.2 steps 1000 
+INFO : 2020-12-19 11:47:47,591 : episode: 18 score: -1.0 100 games avg: -1.0 steps 1000 
+INFO : 2020-12-19 12:16:14,490 : episode: 19 score: 672.5 100 games avg: 672.5 steps 1000 
+INFO : 2020-12-19 12:44:45,641 : episode: 20 score: 946.5 100 games avg: 946.5 steps 1000 
+INFO : 2020-12-19 13:13:16,988 : episode: 21 score: 591.2 100 games avg: 591.2 steps 1000 
+INFO : 2020-12-19 13:41:48,195 : episode: 22 score: 1170.1 100 games avg: 1170.1 steps 1000 
+INFO : 2020-12-19 14:10:15,064 : episode: 23 score: 416.8 100 games avg: 416.8 steps 1000 
+INFO : 2020-12-19 14:38:45,280 : episode: 24 score: 1358.2 100 games avg: 1358.2 steps 1000 
+INFO : 2020-12-19 15:07:14,322 : episode: 25 score: 102.2 100 games avg: 102.2 steps 1000 
+INFO : 2020-12-19 15:35:41,732 : episode: 26 score: 229.2 100 games avg: 229.2 steps 1000 
+INFO : 2020-12-19 16:04:08,263 : episode: 27 score: 1186.1 100 games avg: 1186.1 steps 1000 
+INFO : 2020-12-19 16:32:34,529 : episode: 28 score: 143.2 100 games avg: 143.2 steps 1000 
