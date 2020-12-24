@@ -1,4 +1,0 @@
--20~2に変更
-INFO : 2020-12-17 16:15:24,042 : method: Soft-Actor Critic
-INFO : 2020-12-17 16:15:24,043 : perameter n_steps: 3000 ensemble_size: 3 env: HalfCheetah-v2
-INFO : 2020-12-17 16:15:29,279 : mpc horizon: 10 mpc_samples: 500

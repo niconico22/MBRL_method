@@ -370,6 +370,5 @@ if __name__ == '__main__':
     rewardmodel = RewardModel('cpu', n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
     mpc = MPCController('cpu', env, 10, 100, agent, model, rewardmodel, buffer)
-
     observation = env.reset()
     mpc.rollout(mpc.get_action_policy_kl, observation)

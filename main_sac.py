@@ -140,8 +140,9 @@ if __name__ == '__main__':
     mpc = MPCController(agent_cuda, env, horizon=10, num_control_samples=100, agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
 
-    logging.info('mpc horizon: %d mpc_samples: %d grad_steps: %d',
-                 horizon, num_control_samples, grad_steps)
+    if use_mpc == 1:
+        logging.info('mpc horizon: %d mpc_samples: %d grad_steps: %d',
+                     horizon, num_control_samples, grad_steps)
     function_name = args[6]
 
     if function_name == 'random':
