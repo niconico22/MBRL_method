@@ -3,3 +3,16 @@ INFO : 2020-12-24 12:30:38,627 : parameter n_steps: 100 ensemble_size: 5 env: Ha
 INFO : 2020-12-24 12:30:41,354 : mpc horizon: 10 mpc_samples: 100 grad_steps: 10
 INFO : 2020-12-24 12:30:41,355 : mpc_function policy-kl
 INFO : 2020-12-24 12:59:22,624 : episode: 0 score: -340.9 100 games avg: -340.9 steps 1000 
+INFO : 2020-12-24 13:27:59,441 : episode: 1 score: -307.2 100 games avg: -307.2 steps 1000 
+INFO : 2020-12-24 13:56:58,077 : episode: 2 score: -328.8 100 games avg: -328.8 steps 1000 
+INFO : 2020-12-24 14:25:49,108 : episode: 3 score: -86.0 100 games avg: -86.0 steps 1000 
+INFO : 2020-12-24 14:54:39,184 : episode: 4 score: -163.5 100 games avg: -163.5 steps 1000 
+INFO : 2020-12-24 15:23:10,282 : episode: 5 score: -236.5 100 games avg: -236.5 steps 1000 
+INFO : 2020-12-24 15:51:57,257 : episode: 6 score: -157.1 100 games avg: -157.1 steps 1000 
+INFO : 2020-12-24 16:20:45,692 : episode: 7 score: -180.2 100 games avg: -180.2 steps 1000 
+INFO : 2020-12-24 16:49:27,473 : episode: 8 score: -184.2 100 games avg: -184.2 steps 1000 
+INFO : 2020-12-24 17:21:13,136 : episode: 9 score: -203.6 100 games avg: -203.6 steps 1000 
+INFO : 2020-12-24 17:50:39,583 : episode: 10 score: -183.2 100 games avg: -183.2 steps 1000 
+INFO : 2020-12-24 18:19:35,622 : episode: 11 score: -139.4 100 games avg: -139.4 steps 1000 
+INFO : 2020-12-24 18:48:32,454 : episode: 12 score: -161.9 100 games avg: -161.9 steps 1000 
+INFO : 2020-12-24 19:17:32,421 : episode: 13 score: -110.6 100 games avg: -110.6 steps 1000 
