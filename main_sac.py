@@ -156,7 +156,7 @@ if __name__ == '__main__':
         exit()
     logging.info('mpc_function %s', function_name)
     for nsteps in range(n_steps):
-        model, rewardmodel = fit_model(buffer, grad_steps)
+        #model, rewardmodel = fit_model(buffer, grad_steps)
         best_score = env.reward_range[0]
         score_history = []
         load_checkpoint = True

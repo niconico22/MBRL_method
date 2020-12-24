@@ -1,0 +1,5 @@
+INFO : 2020-12-24 12:30:29,168 : method: Model Predictive Contorol
+INFO : 2020-12-24 12:30:29,169 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2020-12-24 12:30:31,907 : mpc horizon: 10 mpc_samples: 100 grad_steps: 10
+INFO : 2020-12-24 12:30:31,907 : mpc_function policy-kl
+INFO : 2020-12-24 12:59:06,936 : episode: 0 score: -398.1 100 games avg: -398.1 steps 1000 

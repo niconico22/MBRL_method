@@ -1,0 +1,2 @@
+INFO : 2020-12-24 12:42:54,853 : method: Soft-Actor Critic
+INFO : 2020-12-24 12:42:54,854 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
