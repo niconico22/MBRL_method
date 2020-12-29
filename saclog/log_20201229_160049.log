@@ -1,0 +1,5 @@
+INFO : 2020-12-29 16:00:49,869 : method: Soft-Actor Critic
+INFO : 2020-12-29 16:00:49,870 : parameter n_steps: 1 ensemble_size: 1 env: HalfCheetah-v2
+INFO : 2020-12-29 16:00:49,900 : mpc_function policy
+INFO : 2020-12-29 16:00:49,900 : cpu
+INFO : 2020-12-29 16:01:04,912 : episode: 0 score: -106.5 100 games avg: -106.5 steps 1000 

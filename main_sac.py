@@ -155,6 +155,9 @@ if __name__ == '__main__':
         print('error')
         exit()
     logging.info('mpc_function %s', function_name)
+    comment = args[7]
+    if comment is not None:
+        logging.info(comment)
     for nsteps in range(n_steps):
         #model, rewardmodel = fit_model(buffer, grad_steps)
         best_score = env.reward_range[0]

@@ -31,7 +31,7 @@ for i in range(100):
 
 
 dir_name = 'mpc-policy'
-data = [[0] * 100 for _ in range(4)]
+data = [[0] * 100 for _ in range(6)]
 i = 0
 for file in glob(dir_name + '/*.log'):
     # print(file)
@@ -50,11 +50,11 @@ for file in glob(dir_name + '/*.log'):
 # print(data)
 policy = []
 for i in range(100):
-    for j in range(4):
+    for j in range(6):
         policy.append(data[j][i])
 
 dir_name = 'sac-data'
-data = [[0] * 100 for _ in range(9)]
+data = [[0] * 100 for _ in range(17)]
 i = 0
 for file in glob(dir_name + '/*.log'):
     # print(file)
@@ -75,22 +75,23 @@ for file in glob(dir_name + '/*.log'):
 # print(data)
 sac = []
 for i in range(100):
-    for j in range(9):
+    for j in range(17):
         sac.append(data[j][i])
 
 
 sns.set(font='Yu Gothic')
 # plt.plot(x, np.array(reward_teian), label='proposedmethod')
 x = np.repeat(np.arange(0, 100000, 1000), 4)
-y = np.repeat(np.arange(0, 100000, 1000), 9)
+z = np.repeat(np.arange(0, 100000, 1000), 6)
+y = np.repeat(np.arange(0, 100000, 1000), 17)
 print(x.shape)
 print(np.array(policy_kl).shape)
 sns.set_context('poster')
 plt.figure(figsize=(15, 10))
 sns.lineplot(x, np.array(policy_kl), label='proposed_method')
 
-sns.lineplot(x, np.array(policy), label='past_method')
-sns.lineplot(y, np.array(sac), label='sac')
+sns.lineplot(z, np.array(policy), label='random_choise')
+sns.lineplot(y, np.array(sac), label='SAC')
 
 plt.legend(loc='upper left')
 # plt.legend()
@@ -99,5 +100,5 @@ plt.legend(loc='upper left')
 plt.xlabel('timesteps')
 plt.ylabel('reward')
 plt.grid()
-plt.savefig('test.png')
+# plt.savefig('test.png')
 plt.show()
