@@ -7,7 +7,7 @@ from rewardmodel import RewardModel
 import torch
 from sac_torch import Agent
 from modelbuffer import Buffer
-
+import scipy.stats as stats
 ##############################
 import gym
 ##############################
@@ -15,7 +15,7 @@ import gym
 
 class MPCController:
 
-    def __init__(self, dev_name, env, horizon, num_control_samples, agent, model, rewardmodel,  model_buffer):
+    def __init__(self, dev_name, env, horizon, num_control_samples, num_elite, agent, model, rewardmodel,  model_buffer):
         self.horizon = horizon
         self.N = num_control_samples
         self.env = env
@@ -25,6 +25,25 @@ class MPCController:
         self.model_buffer = model_buffer
         self.device = torch.device(
             dev_name if torch.cuda.is_available() else 'cpu')
+        ######################cem#############################
+
+        self.mean = torch.zeros(
+            (self.horizon, self.env.observation_space.shape[0]))
+        self.var = torch.zeros(
+            (self.horizon, self.env.observation_space.shape[0]))
+        self.alpha = 0.1
+        self.num_elites = num_elite
+        self.ac_lb = self.env.action_space.low
+        self.ac_ub = self.env.action_space.high
+        self.prev_sol = np.tile(
+            (self.ac_lb + self.ac_ub) / 2, [self.horizon])
+        self.init_var = np.tile(
+            np.square(self.ac_ub - self.ac_lb) / 16, [self.horizon])
+        self.max_iters = 5
+        self.epsilon = 0.001
+        self.dU = self.env.action_space.shape[0]
+        self.sol_dim = self.horizon*self.dU
+        ######################cem#############################
 
     def get_action_random(self, cur_state):
         '''states(numpy array): (dim_state)'''
@@ -443,10 +462,113 @@ class MPCController:
 
         return rewardmodel_id
 
+    '''PETS reward_function '''
+
+    def get_action_cem(self, cur_state):
+        '''cur_state(numpy array): (dim_state)'''
+
+        soln = self.obtain_solution(self.prev_sol, self.init_var, cur_state)
+        self.prev_sol = np.concatenate(
+            [np.copy(soln)[self.dU:], np.zeros(self.dU)])
+        best_action = soln[:self.dU].reshape(-1, self.dU)
+        return best_action[0]
+
+    def obtain_solution(self, init_mean, init_var, cur_state):
+        cur_state = torch.from_numpy(cur_state).float().clone()
+
+        mean, var, t = init_mean, init_var, 0
+        ac_lower_bound = np.tile(self.ac_lb, [self.horizon])
+        ac_upper_bound = np.tile(self.ac_ub, [self.horizon])
+
+        X = stats.truncnorm(-2, 2, loc=np.zeros_like(mean),
+                            scale=np.ones_like(mean))
+
+        while (t < self.max_iters):
+
+            lb_dist, ub_dist = mean - ac_lower_bound, ac_upper_bound - mean
+            constrained_var = np.minimum(np.minimum(
+                np.square(lb_dist / 2), np.square(ub_dist / 2)), var)
+
+            samples = X.rvs(size=[self.N, self.sol_dim]
+                            ) * np.sqrt(constrained_var) + mean
+            samples = samples.reshape(self.N, self.sol_dim//self.dU, self.dU)
+            # print(samples.shape)
+            all_samples = torch.from_numpy(samples).float().clone()
+
+            #costs = self.cost_function(samples)
+            all_states = np.zeros(
+                (self.N, self.horizon, self.env.observation_space.shape[0]))
+            all_states = torch.from_numpy(all_states).float().clone()
+            all_states = all_states.to(self.device)
+            for i in range(self.N):
+                all_states[i][0] = cur_state
+            model_id = torch.randint(
+                self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+            rewardmodel_id = torch.randint(
+                self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+
+            rewards_ = torch.zeros((self.N, self.horizon)
+                                   ).float().to(self.device)
+            sum_rewards = torch.zeros(self.N).float().to(self.device)
+            for i in range(self.horizon):
+                # predict next_state
+                state_means_, state_vars_ = self.model.forward_all(
+                    all_states[:, i, :], all_samples[:, i, :])
+
+                state_means = torch.zeros(
+                    (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+                state_vars = torch.zeros(
+                    (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+
+                for j in range(self.N):
+                    state_means[j] = state_means_[j][model_id[i][j]]
+                    state_vars[j] = state_vars_[j][model_id[i][j]]
+
+                next_states = self.model.sample(
+                    state_means, state_vars)
+                if i != self.horizon - 1:
+
+                    all_states[:, i + 1, :] = next_states
+
+                # predict_reward
+                reward_means_, reward_vars_ = self.rewardmodel.forward_all(
+                    all_states[:, i, :], all_samples[:, i, :])
+                reward_means = torch.zeros(
+                    (self.N)).float().to(self.device)
+                reward_vars = torch.zeros(
+                    (self.N)).float().to(self.device)
+
+                for j in range(self.N):
+
+                    reward_means[j] = reward_means_[j][rewardmodel_id[i][j]]
+                    reward_vars[j] = reward_vars_[j][rewardmodel_id[i][j]]
+
+                rewards = self.rewardmodel.sample(
+                    reward_means, reward_vars)
+
+                rewards_[:, i] = rewards
+
+            sum_rewards = torch.sum(rewards_, 1)
+            elites = all_samples[np.argsort(-sum_rewards)][: self.num_elites]
+            elites = elites.reshape(self.num_elites, self.dU*self.horizon)
+            # print(elites.shape)
+            elites = elites.to('cpu').detach().numpy().copy()
+            new_mean = np.mean(elites, axis=0)
+            new_var = np.var(elites, axis=0)
+            # print(elites)
+            # print(new_mean)
+            # print(new_mean)
+            mean = self.alpha * mean + (1 - self.alpha) * new_mean
+            var = self.alpha * var + (1 - self.alpha) * new_var
+
+            t += 1
+        sol, solvar = mean, var
+        return sol
+
 
 if __name__ == '__main__':
-    # env_id = 'MountainCarContinuous-v0'
-    env_id = 'HalfCheetah-v2'
+    env_id = 'MountainCarContinuous-v0'
+    # env_id = 'HalfCheetah-v2'
     env = gym.make(env_id)
     n_steps = 50
     n_games = 2
@@ -467,6 +589,7 @@ if __name__ == '__main__':
     buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, buffer_size)
     rewardmodel = RewardModel('cpu', n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
-    mpc = MPCController('cpu', env, 10, 100, agent, model, rewardmodel, buffer)
+    mpc = MPCController('cpu', env, 10, 100, 30, agent,
+                        model, rewardmodel, buffer)
     observation = env.reset()
-    mpc.rollout(mpc.get_action_policy_kl, observation)
+    mpc.get_action_cem(observation)

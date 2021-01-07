@@ -4,7 +4,7 @@
 # os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
 # os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
-# python3 main_sac.py mpc=0/1 nsteps=1000 ensemble_size
+# python3 main_sac.py mpc=0/1 nsteps=1000 ensemble_size cuda_model cuda_Agent policy comment
 import pybullet_envs
 import gym
 import numpy as np
@@ -136,13 +136,14 @@ if __name__ == '__main__':
                   n_actions=n_actions)
     horizon = 10
     num_control_samples = 100
+    num_elite = 30
     grad_steps = 10
-    mpc = MPCController(agent_cuda, env, horizon=10, num_control_samples=100, agent=agent,
+    mpc = MPCController(agent_cuda, env, horizon=10, num_control_samples=num_control_samples, num_elite=num_elite,  agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
 
     if use_mpc == 1:
-        logging.info('mpc horizon: %d mpc_samples: %d grad_steps: %d',
-                     horizon, num_control_samples, grad_steps)
+        logging.info('mpc horizon: %d mpc_samples: %d elite_sample: %d grad_steps: %d',
+                     horizon, num_control_samples, num_elite, grad_steps)
     function_name = args[6]
 
     if function_name == 'random':
@@ -151,6 +152,8 @@ if __name__ == '__main__':
         func = mpc.get_action_policy
     elif function_name == 'policy-kl':
         func = mpc.get_action_policy_kl
+    elif function_name == 'cem':
+        func = mpc.get_action_cem
     else:
         print('error')
         exit()
