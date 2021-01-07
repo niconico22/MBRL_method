@@ -549,10 +549,11 @@ class MPCController:
                 rewards_[:, i] = rewards
             rewards_ = rewards_.to('cpu').detach().numpy().copy()
             sum_rewards = np.sum(rewards_, 1)
+            all_samples = all_samples.to('cpu').detach().numpy().copy()
             elites = all_samples[np.argsort(-sum_rewards)][: self.num_elites]
             elites = elites.reshape(self.num_elites, self.dU*self.horizon)
             # print(elites.shape)
-            elites = elites.to('cpu').detach().numpy().copy()
+            #elites = elites.to('cpu').detach().numpy().copy()
             new_mean = np.mean(elites, axis=0)
             new_var = np.var(elites, axis=0)
             # print(elites)
