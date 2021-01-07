@@ -547,8 +547,8 @@ class MPCController:
                     reward_means, reward_vars)
 
                 rewards_[:, i] = rewards
-
-            sum_rewards = torch.sum(rewards_, 1)
+            rewards_ = rewards_.to('cpu').detach().numpy().copy()
+            sum_rewards = np.sum(rewards_, 1)
             elites = all_samples[np.argsort(-sum_rewards)][: self.num_elites]
             elites = elites.reshape(self.num_elites, self.dU*self.horizon)
             # print(elites.shape)
