@@ -1,0 +1,27 @@
+INFO : 2021-01-10 15:12:40,429 : method: Model Predictive Contorol
+INFO : 2021-01-10 15:12:40,429 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-01-10 15:12:40,489 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-10 15:12:40,489 : mpc_function cem
+INFO : 2021-01-10 15:12:40,489 : cem
+INFO : 2021-01-10 15:12:52,608 : episode: 0 score: 14.0 100 games avg: 14.0 steps 14 
+INFO : 2021-01-10 15:13:09,097 : episode: 1 score: 18.0 100 games avg: 18.0 steps 18 
+INFO : 2021-01-10 15:13:31,410 : episode: 2 score: 18.0 100 games avg: 18.0 steps 18 
+INFO : 2021-01-10 15:13:39,444 : episode: 3 score: 18.0 100 games avg: 18.0 steps 18 
+INFO : 2021-01-10 15:14:06,819 : episode: 4 score: 17.0 100 games avg: 17.0 steps 17 
+INFO : 2021-01-10 15:14:35,112 : episode: 5 score: 14.0 100 games avg: 14.0 steps 14 
+INFO : 2021-01-10 15:14:44,219 : episode: 6 score: 19.0 100 games avg: 19.0 steps 19 
+INFO : 2021-01-10 15:15:03,862 : episode: 7 score: 19.0 100 games avg: 19.0 steps 19 
+INFO : 2021-01-10 15:15:19,574 : episode: 8 score: 14.0 100 games avg: 14.0 steps 14 
+INFO : 2021-01-10 15:15:45,631 : episode: 9 score: 16.0 100 games avg: 16.0 steps 16 
+INFO : 2021-01-10 15:15:56,131 : episode: 10 score: 14.0 100 games avg: 14.0 steps 14 
+INFO : 2021-01-10 15:16:08,083 : episode: 11 score: 15.0 100 games avg: 15.0 steps 15 
+INFO : 2021-01-10 15:16:21,963 : episode: 12 score: 24.0 100 games avg: 24.0 steps 24 
+INFO : 2021-01-10 15:16:40,742 : episode: 13 score: 10.0 100 games avg: 10.0 steps 10 
+INFO : 2021-01-10 15:17:17,440 : episode: 14 score: 10.0 100 games avg: 10.0 steps 10 
+INFO : 2021-01-10 15:17:33,201 : episode: 15 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-10 15:17:47,107 : episode: 16 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-10 15:18:04,062 : episode: 17 score: 19.0 100 games avg: 19.0 steps 19 
+INFO : 2021-01-10 15:18:11,283 : episode: 18 score: 13.0 100 games avg: 13.0 steps 13 
+INFO : 2021-01-10 15:18:23,984 : episode: 19 score: 6.0 100 games avg: 6.0 steps 6 
+INFO : 2021-01-10 15:18:34,967 : episode: 20 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-10 15:18:50,968 : episode: 21 score: 17.0 100 games avg: 17.0 steps 17 

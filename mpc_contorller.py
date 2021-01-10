@@ -10,6 +10,7 @@ from modelbuffer import Buffer
 import scipy.stats as stats
 ##############################
 import gym
+from continuous_cartpole import ContinuousCartPoleEnv
 ##############################
 
 
@@ -466,10 +467,11 @@ class MPCController:
 
     def get_action_cem(self, cur_state):
         '''cur_state(numpy array): (dim_state)'''
-
+        # print(self.prev_sol)
         soln = self.obtain_solution(self.prev_sol, self.init_var, cur_state)
         self.prev_sol = np.concatenate(
             [np.copy(soln)[self.dU:], np.zeros(self.dU)])
+
         best_action = soln[:self.dU].reshape(-1, self.dU)
         return best_action[0]
 
@@ -491,8 +493,9 @@ class MPCController:
 
             samples = X.rvs(size=[self.N, self.sol_dim]
                             ) * np.sqrt(constrained_var) + mean
+            # print(mean)
             samples = samples.reshape(self.N, self.sol_dim//self.dU, self.dU)
-            # print(samples.shape)
+            # print(var)
             all_samples = torch.from_numpy(samples).float().clone()
 
             #costs = self.cost_function(samples)
@@ -510,15 +513,18 @@ class MPCController:
             rewards_ = torch.zeros((self.N, self.horizon)
                                    ).float().to(self.device)
             sum_rewards = torch.zeros(self.N).float().to(self.device)
+            state_means = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+            state_vars = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+            reward_means = torch.zeros(
+                (self.N)).float().to(self.device)
+            reward_vars = torch.zeros(
+                (self.N)).float().to(self.device)
             for i in range(self.horizon):
                 # predict next_state
                 state_means_, state_vars_ = self.model.forward_all(
                     all_states[:, i, :], all_samples[:, i, :])
-
-                state_means = torch.zeros(
-                    (self.N, self.env.observation_space.shape[0])).float().to(self.device)
-                state_vars = torch.zeros(
-                    (self.N, self.env.observation_space.shape[0])).float().to(self.device)
 
                 for j in range(self.N):
                     state_means[j] = state_means_[j][model_id[i][j]]
@@ -533,10 +539,6 @@ class MPCController:
                 # predict_reward
                 reward_means_, reward_vars_ = self.rewardmodel.forward_all(
                     all_states[:, i, :], all_samples[:, i, :])
-                reward_means = torch.zeros(
-                    (self.N)).float().to(self.device)
-                reward_vars = torch.zeros(
-                    (self.N)).float().to(self.device)
 
                 for j in range(self.N):
 
@@ -550,6 +552,8 @@ class MPCController:
             rewards_ = rewards_.to('cpu').detach().numpy().copy()
             sum_rewards = np.sum(rewards_, 1)
             all_samples = all_samples.to('cpu').detach().numpy().copy()
+            # print(sum_rewards)
+            # print(np.argsort(-sum_rewards))
             elites = all_samples[np.argsort(-sum_rewards)][: self.num_elites]
             elites = elites.reshape(self.num_elites, self.dU*self.horizon)
             # print(elites.shape)
@@ -568,9 +572,12 @@ class MPCController:
 
 
 if __name__ == '__main__':
-    env_id = 'MountainCarContinuous-v0'
-    # env_id = 'HalfCheetah-v2'
-    env = gym.make(env_id)
+    #env_id = 'MountainCarContinuous-v0'
+    #env_id = 'HalfCheetah-v2'
+    #env_id = 'CartPole-v1'
+    #env = gym.make(env_id)
+    env_id = 'ContinuousCartPole'
+    env = ContinuousCartPoleEnv()
     n_steps = 50
     n_games = 2
     ensemble_size = 3
@@ -590,7 +597,17 @@ if __name__ == '__main__':
     buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, buffer_size)
     rewardmodel = RewardModel('cpu', n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
-    mpc = MPCController('cpu', env, 10, 100, 30, agent,
+    mpc = MPCController('cpu', env, 3, 5, 5, agent,
                         model, rewardmodel, buffer)
     observation = env.reset()
-    mpc.get_action_cem(observation)
+    done = False
+    sum_reward = 0
+    for _ in range(50):
+        observation = env.reset()
+        done = False
+        while not done:
+            action = mpc.get_action_cem(observation)
+            observation_, reward, done, _ = env.step(action)
+            sum_reward += reward
+            observation = observation_
+            env.render()

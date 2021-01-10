@@ -1,0 +1,5 @@
+INFO : 2021-01-08 23:31:25,720 : method: Soft-Actor Critic
+INFO : 2021-01-08 23:31:25,721 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-08 23:31:25,791 : mpc_function cem
+INFO : 2021-01-08 23:31:25,791 : cem
+INFO : 2021-01-08 23:31:51,125 : episode: 0 score: -159.9 100 games avg: -159.9 steps 1000 

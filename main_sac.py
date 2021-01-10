@@ -22,6 +22,7 @@ from mpc_contorller import MPCController
 
 import logging
 import datetime
+from continuous_cartpole import ContinuousCartPoleEnv
 
 
 def train_epoch(model, buffer, optimizer, batch_size, training_noise_stdev, grad_clip):
@@ -102,8 +103,11 @@ if __name__ == '__main__':
     #env_id = 'MountainCarContinuous-v0'
 
     # env_id = 'CartPole-v1'
-    env_id = 'HalfCheetah-v2'
-    env = gym.make(env_id)
+    #env_id = 'HalfCheetah-v2'
+
+    #env = gym.make(env_id)
+    env_id = 'Continuous_CartPole'
+    env = ContinuousCartPoleEnv()
     use_mpc = int(args[1])
 
     if use_mpc == 0:
@@ -184,7 +188,7 @@ if __name__ == '__main__':
                 agent.learn()
                 score += reward
                 observation = observation_
-                # env.render()
+                env.render()
                 ep_length += 1
 
         else:
@@ -195,27 +199,14 @@ if __name__ == '__main__':
                                reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-
-                if steps % 100 == 0:
+                env.render()
+                if steps % 10 == 0:
                     print(steps)
 
                 steps += 1
-
-                observation = observation_
-            agent.learn()
-            # rewardの確認
-            observation = env.reset()
-            done = False
-            steps = 0
-            while not done:
-                action = agent.choose_action(observation)
-                observation_, reward, done, info = env.step(action)
-                steps += 1
-                agent.learn()
                 score += reward
                 observation = observation_
-                # env.render()
-                ep_length += 1
+
         score_history.append(score)
         avg_score = np.mean(score_history[-100:])
         rewards.append(avg_score)
