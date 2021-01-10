@@ -5,7 +5,7 @@
 # os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 # python3 main_sac.py mpc=0/1 nsteps=1000 ensemble_size cuda_model cuda_Agent policy comment
-import pybullet_envs
+#import pybullet_envs
 import gym
 import numpy as np
 from sac_torch import Agent
@@ -166,7 +166,7 @@ if __name__ == '__main__':
     if comment is not None:
         logging.info(comment)
     for nsteps in range(n_steps):
-        #model, rewardmodel = fit_model(buffer, grad_steps)
+        model, rewardmodel = fit_model(buffer, grad_steps)
         best_score = env.reward_range[0]
         score_history = []
         load_checkpoint = True
