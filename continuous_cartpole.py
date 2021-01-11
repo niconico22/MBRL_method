@@ -110,6 +110,7 @@ Any further steps are undefined behavior.
         return np.array(self.state), reward, done, {}
 
     def reset(self):
+        self.step_num = 0
         self.state = self.np_random.uniform(low=-0.05, high=0.05, size=(4,))
         self.steps_beyond_done = None
         return np.array(self.state)
