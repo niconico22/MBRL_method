@@ -1,0 +1,4 @@
+INFO : 2021-01-11 17:31:40,408 : method: Soft-Actor Critic
+INFO : 2021-01-11 17:31:40,408 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-01-11 17:31:43,760 : mpc_function policy
+INFO : 2021-01-11 17:31:43,760 : policy

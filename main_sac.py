@@ -103,11 +103,11 @@ if __name__ == '__main__':
     #env_id = 'MountainCarContinuous-v0'
 
     # env_id = 'CartPole-v1'
-    #env_id = 'HalfCheetah-v2'
+    env_id = 'HalfCheetah-v2'
 
-    #env = gym.make(env_id)
-    env_id = 'Continuous_CartPole'
-    env = ContinuousCartPoleEnv()
+    env = gym.make(env_id)
+    #env_id = 'Continuous_CartPole'
+    #env = ContinuousCartPoleEnv()
     use_mpc = int(args[1])
 
     if use_mpc == 0:
@@ -138,7 +138,7 @@ if __name__ == '__main__':
                   input_dims=env.observation_space.shape, tau=0.005,
                   env=env, batch_size=256, layer1_size=256, layer2_size=256,
                   n_actions=n_actions)
-    horizon = 10
+    horizon = 20
     num_control_samples = 100
     num_elite = 30
     grad_steps = 10
@@ -188,7 +188,7 @@ if __name__ == '__main__':
                 agent.learn()
                 score += reward
                 observation = observation_
-                env.render()
+                #env.render()
                 ep_length += 1
 
         else:
@@ -199,8 +199,8 @@ if __name__ == '__main__':
                                reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-                env.render()
-                if steps % 10 == 0:
+                #env.render()
+                if steps % 100 == 0:
                     print(steps)
 
                 steps += 1
