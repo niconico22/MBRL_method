@@ -30,7 +30,7 @@ class ContinuousCartPoleEnv(gym.Env):
         self.tau = 0.02  # seconds between state updates
         self.min_action = -1.0
         self.max_action = 1.0
-
+        self.step_num = 0
         # Angle at which to fail the episode
         self.theta_threshold_radians = 12 * 2 * math.pi / 360
         self.x_threshold = 2.4
@@ -80,13 +80,15 @@ class ContinuousCartPoleEnv(gym.Env):
         assert self.action_space.contains(action), \
             "%r (%s) invalid" % (action, type(action))
         # Cast action to float to strip np trappings
+        self.step_num += 1
         force = self.force_mag * float(action)
         self.state = self.stepPhysics(force)
         x, x_dot, theta, theta_dot = self.state
         done = x < -self.x_threshold \
             or x > self.x_threshold \
             or theta < -self.theta_threshold_radians \
-            or theta > self.theta_threshold_radians
+            or theta > self.theta_threshold_radians \
+            or self.step_num > 200
         done = bool(done)
 
         if not done:
@@ -94,7 +96,7 @@ class ContinuousCartPoleEnv(gym.Env):
         elif self.steps_beyond_done is None:
             # Pole just fell!
             self.steps_beyond_done = 0
-            reward = 1.0
+            reward = 0.0
         else:
             if self.steps_beyond_done == 0:
                 logger.warn("""

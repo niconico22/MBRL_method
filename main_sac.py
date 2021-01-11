@@ -46,6 +46,7 @@ def train_epoch_reward(rewardmodel, buffer, optimizer, batch_size, training_nois
         optimizer.zero_grad()
         loss = rewardmodel.loss(tr_states, tr_actions, tr_rewards,
                                 training_noise_stdev=training_noise_stdev)
+        print(loss)
         losses.append(loss.item())
         loss.backward()
         torch.nn.utils.clip_grad_value_(model.parameters(), grad_clip)
@@ -103,10 +104,10 @@ if __name__ == '__main__':
     #env_id = 'MountainCarContinuous-v0'
 
     # env_id = 'CartPole-v1'
-    #env_id = 'HalfCheetah-v2'
+    env_id = 'HalfCheetah-v2'
 
     #env = gym.make(env_id)
-    env_id = 'Continuous_CartPole'
+    #env_id = 'Continuous_CartPole'
     env = ContinuousCartPoleEnv()
     use_mpc = int(args[1])
 
@@ -200,6 +201,9 @@ if __name__ == '__main__':
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
                 env.render()
+                print(reward)
+                print(rewardmodel.forward_all(torch.from_numpy(
+                    observation).float(), torch.from_numpy(action).float()))
                 if steps % 10 == 0:
                     print(steps)
 

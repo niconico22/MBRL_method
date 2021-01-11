@@ -1,0 +1,6 @@
+INFO : 2021-01-11 02:15:52,616 : method: Model Predictive Contorol
+INFO : 2021-01-11 02:15:52,616 : parameter n_steps: 200 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-11 02:15:52,676 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-11 02:15:52,676 : mpc_function cem
+INFO : 2021-01-11 02:15:52,676 : cem
+INFO : 2021-01-11 02:16:19,536 : episode: 0 score: 32.0 100 games avg: 32.0 steps 33 
