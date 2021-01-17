@@ -550,7 +550,8 @@ class MPCController:
 
                 rewards_[:, i] = rewards
             rewards_ = rewards_.to('cpu').detach().numpy().copy()
-            sum_rewards = np.sum(rewards_, 1)
+            #sum_rewards = np.sum(rewards_, 1)
+            sum_rewards = self.reward_max(rewards_)
             all_samples = all_samples.to('cpu').detach().numpy().copy()
             # print(sum_rewards)
             # print(np.argsort(-sum_rewards))
@@ -569,6 +570,18 @@ class MPCController:
             t += 1
         sol, solvar = mean, var
         return sol
+
+    def reward_max(self, rewards_):
+
+        max_rewards = np.zeros(self.N)
+        for i in range(self.N):
+            cnt = 0
+            max_r = -10000
+            for j in range(self.horizon):
+                cnt += rewards_[i, j]
+                max_r = max(cnt, max_r)
+            max_rewards[i] = max_r
+        return max_rewards
 
 
 if __name__ == '__main__':
@@ -601,9 +614,9 @@ if __name__ == '__main__':
                         model, rewardmodel, buffer)
     observation = env.reset()
     done = False
-    sum_reward = 0
     for _ in range(50):
         observation = env.reset()
+        sum_reward = 0
         done = False
         while not done:
             action = mpc.get_action_cem(observation)
@@ -611,3 +624,4 @@ if __name__ == '__main__':
             sum_reward += reward
             observation = observation_
             env.render()
+        print(sum_reward)
