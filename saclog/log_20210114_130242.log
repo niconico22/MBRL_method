@@ -1,0 +1,28 @@
+INFO : 2021-01-14 13:02:42,555 : method: Soft-Actor Critic
+INFO : 2021-01-14 13:02:42,556 : parameter n_steps: 100 ensemble_size: 5 env: InvertedPendulum-v2
+INFO : 2021-01-14 13:02:42,635 : mpc_function cem
+INFO : 2021-01-14 13:02:42,635 : cem
+INFO : 2021-01-14 13:02:43,654 : episode: 0 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:43,894 : episode: 1 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:44,129 : episode: 2 score: 10.0 100 games avg: 10.0 steps 10 
+INFO : 2021-01-14 13:02:44,344 : episode: 3 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:44,590 : episode: 4 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:44,823 : episode: 5 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:45,071 : episode: 6 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:45,338 : episode: 7 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:45,581 : episode: 8 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:45,843 : episode: 9 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:46,092 : episode: 10 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:46,352 : episode: 11 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:46,606 : episode: 12 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:46,838 : episode: 13 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:47,076 : episode: 14 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:47,337 : episode: 15 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:47,592 : episode: 16 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:47,825 : episode: 17 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:48,088 : episode: 18 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:48,303 : episode: 19 score: 10.0 100 games avg: 10.0 steps 10 
+INFO : 2021-01-14 13:02:48,542 : episode: 20 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:48,771 : episode: 21 score: 10.0 100 games avg: 10.0 steps 10 
+INFO : 2021-01-14 13:02:49,081 : episode: 22 score: 11.0 100 games avg: 11.0 steps 11 
+INFO : 2021-01-14 13:02:49,655 : episode: 23 score: 12.0 100 games avg: 12.0 steps 12 

@@ -1,0 +1,8 @@
+INFO : 2021-01-14 22:00:14,568 : method: Soft-Actor Critic
+INFO : 2021-01-14 22:00:14,568 : parameter n_steps: 100 ensemble_size: 5 env: LunarLanderContinuous-v2
+INFO : 2021-01-14 22:00:14,624 : mpc_function policy-kl
+INFO : 2021-01-14 22:00:14,625 : a
+INFO : 2021-01-14 22:00:16,170 : episode: 0 score: -107.9 100 games avg: -107.9 steps 83 
+INFO : 2021-01-14 22:00:17,387 : episode: 1 score: -31.3 100 games avg: -31.3 steps 73 
+INFO : 2021-01-14 22:00:18,670 : episode: 2 score: -167.6 100 games avg: -167.6 steps 77 
+INFO : 2021-01-14 22:00:19,783 : episode: 3 score: -86.2 100 games avg: -86.2 steps 52 

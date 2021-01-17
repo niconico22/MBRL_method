@@ -46,7 +46,7 @@ def train_epoch_reward(rewardmodel, buffer, optimizer, batch_size, training_nois
         optimizer.zero_grad()
         loss = rewardmodel.loss(tr_states, tr_actions, tr_rewards,
                                 training_noise_stdev=training_noise_stdev)
-        print(loss)
+        # print(loss)
         losses.append(loss.item())
         loss.backward()
         torch.nn.utils.clip_grad_value_(model.parameters(), grad_clip)
@@ -95,7 +95,7 @@ def set_log(s):
 if __name__ == '__main__':
 
     args = sys.argv
-    # env_id = 'LunarLanderContinuous-v2'
+    env_id = 'LunarLanderContinuous-v2'
     # env_id = 'BipedalWalker-v2'
     # env_id = 'AntBulletEnv-v0'
     # env_id = 'InvertedPendulumBulletEnv-v0'
@@ -104,8 +104,8 @@ if __name__ == '__main__':
     #env_id = 'MountainCarContinuous-v0'
 
     # env_id = 'CartPole-v1'
-    env_id = 'HalfCheetah-v2'
-
+    #env_id = 'HalfCheetah-v2'
+    #env_id = 'Pendulum-v0'
     env = gym.make(env_id)
     #env_id = 'Continuous_CartPole'
     #env = ContinuousCartPoleEnv()
@@ -141,7 +141,7 @@ if __name__ == '__main__':
                   n_actions=n_actions)
     horizon = 20
     num_control_samples = 100
-    num_elite = 30
+    num_elite = 10
     grad_steps = 10
     mpc = MPCController(agent_cuda, env, horizon=10, num_control_samples=num_control_samples, num_elite=num_elite,  agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
@@ -167,7 +167,6 @@ if __name__ == '__main__':
     if comment is not None:
         logging.info(comment)
     for nsteps in range(n_steps):
-        model, rewardmodel = fit_model(buffer, grad_steps)
         best_score = env.reward_range[0]
         score_history = []
         load_checkpoint = True
@@ -181,6 +180,7 @@ if __name__ == '__main__':
             while not done:
                 action = agent.choose_action(observation)
                 observation_, reward, done, info = env.step(action)
+                print()
                 steps += 1
                 agent.remember(observation, action,
                                reward, observation_, done)
@@ -188,11 +188,14 @@ if __name__ == '__main__':
                            next_state=observation_, reward=reward)
                 agent.learn()
                 score += reward
+                if steps % 100 == 0:
+                    print(steps)
                 observation = observation_
-                # env.render()
+                env.render()
                 ep_length += 1
 
         else:
+            model, rewardmodel = fit_model(buffer, grad_steps)
             while not done:
                 action = func(observation)
                 observation_, reward, done, info = env.step(action)
@@ -200,7 +203,10 @@ if __name__ == '__main__':
                                reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-                # env.render()
+                env.render()
+                print(reward)
+                print(rewardmodel.forward_all(torch.from_numpy(
+                    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
                     print(steps)
 

@@ -1,0 +1,21 @@
+INFO : 2021-01-11 22:20:13,458 : method: Soft-Actor Critic
+INFO : 2021-01-11 22:20:13,459 : parameter n_steps: 200 ensemble_size: 5 env: LunarLanderContinuous-v2
+INFO : 2021-01-11 22:20:13,525 : mpc_function cem
+INFO : 2021-01-11 22:20:13,525 : cem
+INFO : 2021-01-11 22:20:15,616 : episode: 0 score: -85.3 100 games avg: -85.3 steps 111 
+INFO : 2021-01-11 22:20:18,049 : episode: 1 score: -132.9 100 games avg: -132.9 steps 98 
+INFO : 2021-01-11 22:20:20,508 : episode: 2 score: -161.1 100 games avg: -161.1 steps 72 
+INFO : 2021-01-11 22:20:25,926 : episode: 3 score: -439.7 100 games avg: -439.7 steps 130 
+INFO : 2021-01-11 22:20:30,425 : episode: 4 score: -369.3 100 games avg: -369.3 steps 96 
+INFO : 2021-01-11 22:20:34,688 : episode: 5 score: -812.7 100 games avg: -812.7 steps 104 
+INFO : 2021-01-11 22:20:39,564 : episode: 6 score: -635.3 100 games avg: -635.3 steps 85 
+INFO : 2021-01-11 22:20:44,245 : episode: 7 score: -624.5 100 games avg: -624.5 steps 80 
+INFO : 2021-01-11 22:20:49,968 : episode: 8 score: -487.4 100 games avg: -487.4 steps 70 
+INFO : 2021-01-11 22:20:56,539 : episode: 9 score: -521.4 100 games avg: -521.4 steps 73 
+INFO : 2021-01-11 22:21:03,254 : episode: 10 score: -298.6 100 games avg: -298.6 steps 116 
+INFO : 2021-01-11 22:21:11,440 : episode: 11 score: -447.0 100 games avg: -447.0 steps 131 
+INFO : 2021-01-11 22:21:21,166 : episode: 12 score: -259.2 100 games avg: -259.2 steps 174 
+INFO : 2021-01-11 22:21:30,202 : episode: 13 score: -342.6 100 games avg: -342.6 steps 113 
+INFO : 2021-01-11 22:21:43,745 : episode: 14 score: -333.4 100 games avg: -333.4 steps 280 
+INFO : 2021-01-11 22:21:56,844 : episode: 15 score: -525.9 100 games avg: -525.9 steps 209 
+INFO : 2021-01-11 22:22:11,610 : episode: 16 score: -106.0 100 games avg: -106.0 steps 224 

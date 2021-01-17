@@ -1,0 +1,11 @@
+INFO : 2021-01-11 20:52:30,094 : method: Model Predictive Contorol
+INFO : 2021-01-11 20:52:30,095 : parameter n_steps: 200 ensemble_size: 5 env: MountainCarContinuous-v0
+INFO : 2021-01-11 20:52:30,149 : mpc horizon: 20 mpc_samples: 100 elite_sample: 10 grad_steps: 10
+INFO : 2021-01-11 20:52:30,149 : mpc_function cem
+INFO : 2021-01-11 20:52:30,150 : cem
+INFO : 2021-01-11 21:05:51,697 : episode: 0 score: -25.0 100 games avg: -25.0 steps 999 
+INFO : 2021-01-11 21:19:30,715 : episode: 1 score: -4.8 100 games avg: -4.8 steps 999 
+INFO : 2021-01-11 21:33:05,575 : episode: 2 score: -4.5 100 games avg: -4.5 steps 999 
+INFO : 2021-01-11 21:46:52,880 : episode: 3 score: -4.9 100 games avg: -4.9 steps 999 
+INFO : 2021-01-11 22:00:45,562 : episode: 4 score: -4.8 100 games avg: -4.8 steps 999 
+INFO : 2021-01-11 22:14:44,850 : episode: 5 score: -4.7 100 games avg: -4.7 steps 999 

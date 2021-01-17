@@ -1,0 +1,5 @@
+INFO : 2021-01-11 20:48:48,681 : method: Model Predictive Contorol
+INFO : 2021-01-11 20:48:48,681 : parameter n_steps: 200 ensemble_size: 5 env: MountainCarContinuous-v0
+INFO : 2021-01-11 20:48:48,734 : mpc horizon: 20 mpc_samples: 100 elite_sample: 10 grad_steps: 10
+INFO : 2021-01-11 20:48:48,734 : mpc_function cem
+INFO : 2021-01-11 20:48:48,734 : cem
