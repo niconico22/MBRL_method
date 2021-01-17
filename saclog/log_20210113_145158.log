@@ -1,0 +1,2 @@
+INFO : 2021-01-13 14:51:58,774 : method: Soft-Actor Critic
+INFO : 2021-01-13 14:51:58,774 : parameter n_steps: 100 ensemble_size: 5 env: CarRacing-v0

@@ -1,0 +1,4 @@
+INFO : 2021-01-14 13:09:37,901 : method: Soft-Actor Critic
+INFO : 2021-01-14 13:09:37,902 : parameter n_steps: 100 ensemble_size: 5 env: Swimmer-v2
+INFO : 2021-01-14 13:09:38,038 : mpc_function cem
+INFO : 2021-01-14 13:09:38,038 : cem

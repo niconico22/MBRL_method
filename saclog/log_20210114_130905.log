@@ -1,0 +1,2 @@
+INFO : 2021-01-14 13:09:05,599 : method: Soft-Actor Critic
+INFO : 2021-01-14 13:09:05,600 : parameter n_steps: 100 ensemble_size: 5 env: HumanoidStandup-v2

@@ -1,0 +1,5 @@
+INFO : 2021-01-14 14:02:34,075 : method: Soft-Actor Critic
+INFO : 2021-01-14 14:02:34,075 : parameter n_steps: 100 ensemble_size: 5 env: Pendulum-v0
+INFO : 2021-01-14 14:02:34,134 : mpc_function cem
+INFO : 2021-01-14 14:02:34,134 : cem
+INFO : 2021-01-14 14:02:37,800 : episode: 0 score: -1745.3 100 games avg: -1745.3 steps 200 

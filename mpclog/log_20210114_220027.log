@@ -1,0 +1,5 @@
+INFO : 2021-01-14 22:00:27,728 : method: Model Predictive Contorol
+INFO : 2021-01-14 22:00:27,728 : parameter n_steps: 100 ensemble_size: 5 env: LunarLanderContinuous-v2
+INFO : 2021-01-14 22:00:27,784 : mpc horizon: 20 mpc_samples: 100 elite_sample: 10 grad_steps: 10
+INFO : 2021-01-14 22:00:27,784 : mpc_function policy-kl
+INFO : 2021-01-14 22:00:27,784 : a

@@ -1,0 +1,5 @@
+INFO : 2021-01-11 20:50:50,995 : method: Soft-Actor Critic
+INFO : 2021-01-11 20:50:50,995 : parameter n_steps: 200 ensemble_size: 5 env: MountainCarContinuous-v0
+INFO : 2021-01-11 20:50:51,051 : mpc_function cem
+INFO : 2021-01-11 20:50:51,051 : cem
+INFO : 2021-01-11 20:51:06,994 : episode: 0 score: -20.3 100 games avg: -20.3 steps 999 

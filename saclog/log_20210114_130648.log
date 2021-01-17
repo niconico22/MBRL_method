@@ -1,0 +1,12 @@
+INFO : 2021-01-14 13:06:48,051 : method: Soft-Actor Critic
+INFO : 2021-01-14 13:06:48,052 : parameter n_steps: 100 ensemble_size: 5 env: Walker2d-v2
+INFO : 2021-01-14 13:06:48,156 : mpc_function cem
+INFO : 2021-01-14 13:06:48,156 : cem
+INFO : 2021-01-14 13:06:49,596 : episode: 0 score: 52.7 100 games avg: 52.7 steps 130 
+INFO : 2021-01-14 13:06:50,853 : episode: 1 score: 56.3 100 games avg: 56.3 steps 141 
+INFO : 2021-01-14 13:06:52,007 : episode: 2 score: 12.5 100 games avg: 12.5 steps 26 
+INFO : 2021-01-14 13:06:53,984 : episode: 3 score: 0.8 100 games avg: 0.8 steps 40 
+INFO : 2021-01-14 13:07:01,465 : episode: 4 score: 18.3 100 games avg: 18.3 steps 121 
+INFO : 2021-01-14 13:07:08,438 : episode: 5 score: 4.2 100 games avg: 4.2 steps 124 
+INFO : 2021-01-14 13:07:14,228 : episode: 6 score: -19.7 100 games avg: -19.7 steps 113 
+INFO : 2021-01-14 13:07:23,530 : episode: 7 score: 300.5 100 games avg: 300.5 steps 187 
