@@ -213,7 +213,7 @@ class MPCController:
                 (self.N, self.env.observation_space.shape[0])).float().to(self.device)
             state_vars = torch.zeros(
                 (self.N, self.env.observation_space.shape[0])).float().to(self.device)
-            model_id = self.choose_index_model_klandrandom(
+            model_id = self.choose_index_model(
                 state_means_, state_vars_)
             # print(model_id.shape)
             for j in range(self.N):
@@ -234,7 +234,7 @@ class MPCController:
                 (self.N)).float().to(self.device)
             reward_vars = torch.zeros(
                 (self.N)).float().to(self.device)
-            reward_model_id = self.choose_index_reward_klandrandom(
+            reward_model_id = self.choose_index_reward(
                 reward_means_, reward_vars_)
             # print(reward_model_id.shape)
             for j in range(self.N):

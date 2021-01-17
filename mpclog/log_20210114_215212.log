@@ -1,0 +1,8 @@
+INFO : 2021-01-14 21:52:12,581 : method: Model Predictive Contorol
+INFO : 2021-01-14 21:52:12,581 : parameter n_steps: 400 ensemble_size: 5 env: LunarLanderContinuous-v2
+INFO : 2021-01-14 21:52:18,535 : mpc horizon: 10 mpc_samples: 100 elite_sample: 10 grad_steps: 10
+INFO : 2021-01-14 21:52:18,536 : mpc_function cem
+INFO : 2021-01-14 21:52:18,536 : cem
+INFO : 2021-01-14 21:55:15,721 : episode: 0 score: -293.7 100 games avg: -293.7 steps 152 
+INFO : 2021-01-14 21:56:45,053 : episode: 1 score: -202.9 100 games avg: -202.9 steps 77 
+INFO : 2021-01-14 21:58:07,852 : episode: 2 score: -508.7 100 games avg: -508.7 steps 71 
