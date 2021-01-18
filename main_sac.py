@@ -106,8 +106,8 @@ if __name__ == '__main__':
 
     # env_id = 'CartPole-v1'
 
-    env_id = 'HalfCheetah-v2'
-
+    #env_id = 'HalfCheetah-v2'
+    env_id='Ant-v2'
     env = gym.make(env_id)
     #env_id = 'Continuous_CartPole'
     #env = ContinuousCartPoleEnv()
@@ -143,7 +143,7 @@ if __name__ == '__main__':
                   n_actions=n_actions)
     horizon = 10
     num_control_samples = 100
-    num_elite = 10
+    num_elite = 30
     grad_steps = 10
     mpc = MPCController(agent_cuda, env, horizon=10, num_control_samples=num_control_samples, num_elite=num_elite,  agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
@@ -182,7 +182,6 @@ if __name__ == '__main__':
             while not done:
                 action = agent.choose_action(observation)
                 observation_, reward, done, info = env.step(action)
-                print()
                 steps += 1
                 agent.remember(observation, action,
                                reward, observation_, done)
@@ -193,7 +192,7 @@ if __name__ == '__main__':
                 if steps % 100 == 0:
                     print(steps)
                 observation = observation_
-                env.render()
+                #env.render()
                 ep_length += 1
 
         else:
