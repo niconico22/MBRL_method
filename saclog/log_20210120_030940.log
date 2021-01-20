@@ -1,0 +1,2 @@
+INFO : 2021-01-20 03:09:40,936 : method: Soft-Actor Critic
+INFO : 2021-01-20 03:09:40,937 : parameter n_steps: 1000 ensemble_size: 5 env: Hopper-v2
