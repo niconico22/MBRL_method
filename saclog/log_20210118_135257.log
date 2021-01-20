@@ -1,2 +1,0 @@
-INFO : 2021-01-18 13:52:57,709 : method: Soft-Actor Critic
-INFO : 2021-01-18 13:52:57,710 : parameter n_steps: 1000 ensemble_size: 5 env: Ant-v2

@@ -107,8 +107,8 @@ if __name__ == '__main__':
     # env_id = 'CartPole-v1'
 
     #env_id = 'HalfCheetah-v2'
-    #env_id='Ant-v2'
-    env_id='Hopper-v2'
+    # env_id='Ant-v2'
+    env_id = args[6]
     env = gym.make(env_id)
     #env_id = 'Continuous_CartPole'
     #env = ContinuousCartPoleEnv()
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     if use_mpc == 1:
         logging.info('mpc horizon: %d mpc_samples: %d elite_sample: %d grad_steps: %d',
                      horizon, num_control_samples, num_elite, grad_steps)
-    function_name = args[6]
+    function_name = args[7]
 
     if function_name == 'random':
         func = mpc.get_action_random
@@ -193,7 +193,7 @@ if __name__ == '__main__':
                 if steps % 100 == 0:
                     print(steps)
                 observation = observation_
-                #env.render()
+                # env.render()
                 ep_length += 1
 
         else:

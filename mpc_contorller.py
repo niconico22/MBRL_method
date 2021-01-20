@@ -181,6 +181,78 @@ class MPCController:
 
         return best_action.to('cpu').detach().numpy().copy()
 
+    def get_action_policy_entropy(self, cur_state):
+        '''states(numpy array): (dim_state)'''
+        cur_state = torch.from_numpy(cur_state).float().clone()
+        # 初期化
+
+        all_samples = torch.zeros(
+            (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
+        all_states = torch.zeros(
+            (self.N, self.horizon, self.env.observation_space.shape[0])).float().clone().to(self.device)
+        for i in range(self.N):
+            all_states[i][0] = cur_state
+        model_id = torch.randint(
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+        # ここにKLdivergenceを加えてモデルの精度を向上させたい
+        rewardmodel_id = torch.randint(
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+
+        rewards_ = torch.zeros((self.N, self.horizon)).float().to(self.device)
+        sum_rewards = torch.zeros(self.N).float().to(self.device)
+        for i in range(self.horizon):
+            # predict next_state
+
+            all_samples[:, i, :] = self.agent.choose_action_batch(
+                all_states[:, i, :])
+            state_means_, state_vars_ = self.model.forward_all(
+                all_states[:, i, :], all_samples[:, i, :])
+
+            state_means = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+            state_vars = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+
+            for j in range(self.N):
+                state_means[j] = state_means_[j][model_id[i][j]]
+                state_vars[j] = state_vars_[j][model_id[i][j]]
+
+            next_states = self.model.sample(
+                state_means, state_vars)
+            if i != self.horizon - 1:
+
+                all_states[:, i + 1, :] = next_states
+
+            # predict_reward
+            reward_means_, reward_vars_ = self.rewardmodel.forward_all(
+                all_states[:, i, :], all_samples[:, i, :])
+            reward_means = torch.zeros(
+                (self.N)).float().to(self.device)
+            reward_vars = torch.zeros(
+                (self.N)).float().to(self.device)
+
+            for j in range(self.N):
+
+                reward_means[j] = reward_means_[j][rewardmodel_id[i][j]]
+                reward_vars[j] = reward_vars_[j][rewardmodel_id[i][j]]
+
+            rewards = self.rewardmodel.sample(
+                reward_means, reward_vars)
+            action, entropy = self.agent.actor.sample_normal(
+                all_states[:, i, :], reparameterize=False)
+            entropy = entropy.view(-1)
+            print(rewards)
+            print(entropy)
+            print(rewards+entropy)
+            rewards_[:, i] = rewards+0.1*entropy
+
+        sum_rewards = torch.sum(rewards_, 1)
+        id = sum_rewards.argmax()
+
+        best_action = all_samples[id, 0, :]
+
+        return best_action.to('cpu').detach().numpy().copy()
+
     def get_action_policy_kl(self, cur_state):
         '''states(numpy array): (dim_state)'''
         cur_state = torch.from_numpy(cur_state).float().clone()
@@ -619,7 +691,7 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action = mpc.get_action_cem(observation)
+            action = mpc.get_action_policy_entropy(observation)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_
