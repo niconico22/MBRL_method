@@ -1,2 +1,0 @@
-INFO : 2021-01-19 21:40:20,241 : method: Model Predictive Contorol
-INFO : 2021-01-19 21:40:20,242 : parameter n_steps: 200 ensemble_size: 5 env: Hopper-v2

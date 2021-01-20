@@ -1,5 +1,0 @@
-INFO : 2021-01-18 13:18:29,842 : method: Model Predictive Contorol
-INFO : 2021-01-18 13:18:29,843 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
-INFO : 2021-01-18 13:18:32,475 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
-INFO : 2021-01-18 13:18:32,475 : mpc_function policy
-INFO : 2021-01-18 13:18:32,475 : policy
