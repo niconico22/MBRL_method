@@ -165,7 +165,7 @@ if __name__ == '__main__':
                   input_dims=env.observation_space.shape, tau=0.005,
                   env=env, batch_size=256, layer1_size=256, layer2_size=256,
                   n_actions=n_actions)
-    horizon = int(args[8])
+    horizon = int(args[9])
     num_control_samples = 100
     num_elite = 30
     grad_steps = 10
@@ -185,11 +185,13 @@ if __name__ == '__main__':
         func = mpc.get_action_policy_kl
     elif function_name == 'cem':
         func = mpc.get_action_cem
+    elif function_name == 'policy-entropy':
+        func=mpc.get_action_policy_entropy
     else:
         print('error')
         exit()
     logging.info('mpc_function %s', function_name)
-    comment = args[7]
+    comment = args[8]
     if comment is not None:
         logging.info(comment)
     for nsteps in range(n_steps):
