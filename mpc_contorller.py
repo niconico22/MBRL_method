@@ -179,7 +179,8 @@ class MPCController:
 
         best_action = all_samples[id, 0, :]
 
-        return best_action.to('cpu').detach().numpy().copy()
+        sum_rewards = torch.sum(rewards_, 1)
+        return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
 
     def get_action_policy_entropy(self, cur_state):
         '''states(numpy array): (dim_state)'''
@@ -240,6 +241,7 @@ class MPCController:
                 reward_means, reward_vars)
             action, entropy = self.agent.actor.sample_normal(
                 all_states[:, i, :], reparameterize=False)
+            print(entropy)
             entropy = entropy.view(-1)
             rewards_[:, i] = rewards+0.5*entropy
 
@@ -688,7 +690,8 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action = mpc.get_action_policy_entropy(observation)
+            action, *a = mpc.get_action_policy(observation)
+            print(a)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_
