@@ -23,6 +23,7 @@ from mpc_contorller import MPCController
 import logging
 import datetime
 from continuous_cartpole import ContinuousCartPoleEnv
+import time
 
 
 def train_epoch(model, buffer, optimizer, batch_size, training_noise_stdev, grad_clip):
@@ -79,13 +80,34 @@ def fit_model(buffer, n_epochs):
     return model, rewardmodel
 
 
+def square_mean_error(env, env_evaluate, actions, states, model_sum_reward, horizon, step):
+    env_evaluate.reset()
+    qpos = env.sim.data.qpos.copy()
+    qvel = env.sim.data.qvel.copy()
+    env_evaluate.set_state(qpos, qvel)
+    real_sum_reward = 0
+    for i in range(horizon):
+        obs, reward, done, _ = env_evaluate.step(actions[i])
+        real_sum_reward += reward
+    state_square_error = np.square(obs - states[-1])
+    state_square_error = state_square_error.sum()
+    state_square_error /= env_evaluate.observation_space.shape[0]
+    reward_error = model_sum_reward - real_sum_reward
+
+    if step % 100 == 0:
+        logging.info('state_square_error: %.3f reward_error: %.3f',
+                     state_square_error, reward_error)
+    #env.set_state(qpos, qvel)
+    return state_square_error, reward_error
+
+
 def set_log(s):
     # ログレベルを DEBUG に変更
     now = datetime.datetime.now()
-    filename = './' + s + 'log/' + 'log_' + \
-        now.strftime('%Y%m%d_%H%M%S') + '.log'
+    # filename = './' + s + 'log/' + 'log_' + \
+    #    now.strftime('%Y%m%d_%H%M%S') + '.log'
     # DEBUGする時用のファイル
-    #filename = './saclog/logger.log'
+    filename = './saclog/logger.log'
     formatter = '%(levelname)s : %(asctime)s : %(message)s'
 
     logging.basicConfig(filename=filename,
@@ -110,6 +132,7 @@ if __name__ == '__main__':
     # env_id='Ant-v2'
     env_id = args[6]
     env = gym.make(env_id)
+    env_evaluate = gym.make(env_id)
     #env_id = 'Continuous_CartPole'
     #env = ContinuousCartPoleEnv()
     use_mpc = int(args[1])
@@ -183,6 +206,7 @@ if __name__ == '__main__':
             while not done:
                 action = agent.choose_action(observation)
                 observation_, reward, done, info = env.step(action)
+                #print(env.sim.data.qpos, env.sim.data.qvel)
                 steps += 1
                 agent.remember(observation, action,
                                reward, observation_, done)
@@ -193,13 +217,16 @@ if __name__ == '__main__':
                 if steps % 100 == 0:
                     print(steps)
                 observation = observation_
-                # env.render()
+                env.render()
                 ep_length += 1
-
+                # time.sleep(0.1)
         else:
             model, rewardmodel = fit_model(buffer, grad_steps)
             while not done:
-                action = func(observation)
+                # return best_action ,,actions, states, sum_rewards
+                action, actions, states, sum_rewards = func(observation)
+                square_mean_error(env, env_evaluate, actions,
+                                  states, sum_rewards, horizon, steps)
                 observation_, reward, done, info = env.step(action)
                 agent.remember(observation, action,
                                reward, observation_, done)
@@ -207,8 +234,9 @@ if __name__ == '__main__':
                            next_state=observation_, reward=reward)
 
                 agent.learn()
-                # env.render()
-
+                env.render()
+                # print(rewardmodel.forward_all(torch.from_numpy(
+                #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
                     print(steps)
 
