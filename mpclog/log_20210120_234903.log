@@ -5,3 +5,9 @@ INFO : 2021-01-20 23:49:06,654 : mpc_function cem
 INFO : 2021-01-20 23:49:06,654 : cem
 INFO : 2021-01-21 01:16:11,393 : episode: 0 score: -75.0 100 games avg: -75.0 steps 1000 
 INFO : 2021-01-21 02:43:21,964 : episode: 1 score: -76.6 100 games avg: -76.6 steps 1000 
+INFO : 2021-01-21 04:33:36,341 : episode: 2 score: -41.2 100 games avg: -41.2 steps 1000 
+INFO : 2021-01-21 06:00:43,960 : episode: 3 score: -157.0 100 games avg: -157.0 steps 1000 
+INFO : 2021-01-21 07:27:54,681 : episode: 4 score: 93.1 100 games avg: 93.1 steps 1000 
+INFO : 2021-01-21 08:55:04,073 : episode: 5 score: -132.2 100 games avg: -132.2 steps 1000 
+INFO : 2021-01-21 10:22:15,935 : episode: 6 score: -36.0 100 games avg: -36.0 steps 1000 
+INFO : 2021-01-21 11:49:27,379 : episode: 7 score: -5.1 100 games avg: -5.1 steps 1000 
