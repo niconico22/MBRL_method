@@ -241,10 +241,7 @@ class MPCController:
             action, entropy = self.agent.actor.sample_normal(
                 all_states[:, i, :], reparameterize=False)
             entropy = entropy.view(-1)
-            print(rewards)
-            print(entropy)
-            print(rewards+entropy)
-            rewards_[:, i] = rewards+0.1*entropy
+            rewards_[:, i] = rewards+0.5*entropy
 
         sum_rewards = torch.sum(rewards_, 1)
         id = sum_rewards.argmax()
