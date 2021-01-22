@@ -405,9 +405,6 @@ class MPCController:
         sigma = torch.zeros((self.N, en_size, space_dim)
                             ).float().to(self.device)
 
-        sigma2 = torch.zeros((self.N, en_size, space_dim)
-                             ).float().to(self.device)
-
         for i in range(en_size):
             mu[:, i, :] = torch.sum(next_means, axis=1)
             mu[:, i, :] -= next_means[:, i, :]
