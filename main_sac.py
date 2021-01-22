@@ -89,11 +89,14 @@ def square_mean_error(env, env_evaluate, actions, states, model_sum_reward, hori
     for i in range(horizon):
         obs, reward, done, _ = env_evaluate.step(actions[i])
         real_sum_reward += reward
+    print(obs)
+    print(states[-1])
     state_square_error = np.square(obs - states[-1])
     state_square_error = state_square_error.sum()
     state_square_error /= env_evaluate.observation_space.shape[0]
     reward_error = model_sum_reward - real_sum_reward
     env.set_state(qpos, qvel)
+
     logging.info('state_square_error: %.3f reward_error: %.3f',
                  state_square_error, reward_error)
     #env.set_state(qpos, qvel)
@@ -231,7 +234,9 @@ if __name__ == '__main__':
                                reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-
+                print(observation_)
+                time.sleep(2)
+                print(observation_)
                 agent.learn()
                 #env.render()
                 # print(rewardmodel.forward_all(torch.from_numpy(
