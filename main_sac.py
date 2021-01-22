@@ -104,10 +104,10 @@ def square_mean_error(env, env_evaluate, actions, states, model_sum_reward, hori
 def set_log(s):
     # ログレベルを DEBUG に変更
     now = datetime.datetime.now()
-    # filename = './' + s + 'log/' + 'log_' + \
-    #    now.strftime('%Y%m%d_%H%M%S') + '.log'
+    filename = './' + s + 'log/' + 'log_' + \
+        now.strftime('%Y%m%d_%H%M%S') + '.log'
     # DEBUGする時用のファイル
-    filename = './saclog/logger.log'
+    #filename = './saclog/logger.log'
     formatter = '%(levelname)s : %(asctime)s : %(message)s'
 
     logging.basicConfig(filename=filename,
@@ -236,7 +236,7 @@ if __name__ == '__main__':
                            next_state=observation_, reward=reward)
 
                 agent.learn()
-                env.render()
+                #env.render()
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
