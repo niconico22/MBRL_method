@@ -94,9 +94,8 @@ def square_mean_error(env, env_evaluate, actions, states, model_sum_reward, hori
     state_square_error /= env_evaluate.observation_space.shape[0]
     reward_error = model_sum_reward - real_sum_reward
 
-    if step % 100 == 0:
-        logging.info('state_square_error: %.3f reward_error: %.3f',
-                     state_square_error, reward_error)
+    logging.info('state_square_error: %.3f reward_error: %.3f',
+                 state_square_error, reward_error)
     #env.set_state(qpos, qvel)
     return state_square_error, reward_error
 
@@ -186,7 +185,7 @@ if __name__ == '__main__':
     elif function_name == 'cem':
         func = mpc.get_action_cem
     elif function_name == 'policy-entropy':
-        func=mpc.get_action_policy_entropy
+        func = mpc.get_action_policy_entropy
     else:
         print('error')
         exit()
@@ -227,8 +226,6 @@ if __name__ == '__main__':
             while not done:
                 # return best_action ,,actions, states, sum_rewards
                 action, actions, states, sum_rewards = func(observation)
-                square_mean_error(env, env_evaluate, actions,
-                                  states, sum_rewards, horizon, steps)
                 observation_, reward, done, info = env.step(action)
                 agent.remember(observation, action,
                                reward, observation_, done)
@@ -240,6 +237,9 @@ if __name__ == '__main__':
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
+                    square_mean_error(env, env_evaluate, actions,
+                                      states, sum_rewards, horizon, steps)
+
                     print(steps)
 
                 steps += 1
