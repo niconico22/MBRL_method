@@ -322,7 +322,7 @@ class MPCController:
 
         best_action = all_samples[id, 0, :]
 
-        return best_action.to('cpu').detach().numpy().copy()
+        return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
 
     def remember(self, state, action, reward, new_state, done):
         self.agent.memory.store_transition(
@@ -361,34 +361,35 @@ class MPCController:
                             ).float().to(self.device)
 
         for i in range(en_size):
-            for j in range(en_size):
-                if i == j:
-                    continue
-                mu[:, i, :] += next_means[:, j, :]
-            mu[:, i, :] /= (en_size - 1)
+            mu[:, i, :] = torch.sum(next_means, axis=1)
+            mu[:, i, :] -= next_means[:, i, :]
+            mu[:, i, :] /= (en_size-1)
 
         # next calc sigma
         for i in range(en_size):
-            for j in range(en_size):
-                if i == j:
-                    continue
-                sigma[:, i, :] += torch.pow(next_sigmas[:, j, :], 2) + \
-                    torch.pow(next_means[:, j, :], 2)
+
+            next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 2)
+            next_means[:, i, :] = torch.pow(next_means[:, i, :], 2)
+
+        for i in range(en_size):
+            sigma[:, i, :] = torch.sum(next_sigmas[:, :, :], axis=1) + torch.sum(
+                next_means[:, :, :], axis=1) - (next_sigmas[:, i, :] + next_means[:, i, :])
             sigma[:, i, :] /= (en_size - 1)
             sigma[:, i, :] -= torch.pow(mu[:, i, :], 2)
+
+        for i in range(en_size):
+            next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 0.5)
+            next_means[:, i, :] = torch.pow(next_means[:, i, :], 0.5)
 
         # calc kl div
         kl_result = torch.zeros(
             (self.N, en_size, space_dim)).float().to(self.device)
 
-        for i in range(en_size):
-            kl_result[:, i, :] = self.calc_kl(
-                next_means[:, i, :], next_sigmas[:, i, :], mu[:, i, :], sigma[:, i, :])
+        kl_result[:, :, :] = self.calc_kl(
+            next_means[:, :, :], next_sigmas[:, :, :], mu[:, :, :], sigma[:, :, :])
         rewardmodel_id = torch.zeros(
             (self.N, space_dim)).long().to(self.device)
-
-        for i in range(self.N):
-            rewardmodel_id[i, :] = torch.argmin(kl_result[i, :, :], axis=0)
+        rewardmodel_id[:, :] = torch.argmin(kl_result[:, :, :], axis=1)
 
         return rewardmodel_id
 
@@ -404,36 +405,38 @@ class MPCController:
         sigma = torch.zeros((self.N, en_size, space_dim)
                             ).float().to(self.device)
 
-        for i in range(en_size):
-            for j in range(en_size):
-                if i == j:
-                    continue
-                mu[:, i, :] += next_means[:, j, :]
-            mu[:, i, :] /= (en_size - 1)
+        sigma2 = torch.zeros((self.N, en_size, space_dim)
+                             ).float().to(self.device)
 
-        # next calc sigma
         for i in range(en_size):
-            for j in range(en_size):
-                if i == j:
-                    continue
-                sigma[:, i, :] += torch.pow(next_sigmas[:, j, :], 2) + \
-                    torch.pow(next_means[:, j, :], 2)
+            mu[:, i, :] = torch.sum(next_means, axis=1)
+            mu[:, i, :] -= next_means[:, i, :]
+            mu[:, i, :] /= (en_size-1)
+        # next calc sigma
+
+        for i in range(en_size):
+
+            next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 2)
+            next_means[:, i, :] = torch.pow(next_means[:, i, :], 2)
+
+        for i in range(en_size):
+            sigma[:, i, :] = torch.sum(next_sigmas[:, :, :], axis=1) + torch.sum(
+                next_means[:, :, :], axis=1) - (next_sigmas[:, i, :] + next_means[:, i, :])
             sigma[:, i, :] /= (en_size - 1)
             sigma[:, i, :] -= torch.pow(mu[:, i, :], 2)
+
+        for i in range(en_size):
+            next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 0.5)
+            next_means[:, i, :] = torch.pow(next_means[:, i, :], 0.5)
 
         # calc kl div
         kl_result = torch.zeros(
             (self.N, en_size, space_dim)).float().to(self.device)
 
-        for i in range(en_size):
-
-            kl_result[:, i, :] = self.calc_kl(
-                next_means[:, i, :], next_sigmas[:, i, :], mu[:, i, :], sigma[:, i, :])
-
+        kl_result[:, :, :] = self.calc_kl(
+            next_means[:, :, :], next_sigmas[:, :, :], mu[:, :, :], sigma[:, :, :])
         model_id = torch.zeros((self.N, space_dim)).long().to(self.device)
-
-        for i in range(self.N):
-            model_id[i, :] = torch.argmin(kl_result[i, :, :], axis=0)
+        model_id[:, :] = torch.argmin(kl_result[:, :, :], axis=1)
 
         return model_id
 
@@ -690,8 +693,7 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action, *a = mpc.get_action_policy(observation)
-            print(a)
+            action, *a = mpc.get_action_policy_kl(observation)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_
