@@ -4,3 +4,6 @@ INFO : 2021-01-24 02:10:56,567 : mpc horizon: 10 mpc_samples: 100 elite_sample: 
 INFO : 2021-01-24 02:10:56,567 : mpc_function policy-kl
 INFO : 2021-01-24 02:10:56,567 : policy-kl
 INFO : 2021-01-24 02:36:55,429 : episode: 0 score: -286.5 100 games avg: -286.5 steps 1000 
+INFO : 2021-01-24 03:03:04,189 : episode: 1 score: -220.6 100 games avg: -220.6 steps 1000 
+INFO : 2021-01-24 03:29:13,222 : episode: 2 score: -107.4 100 games avg: -107.4 steps 1000 
+INFO : 2021-01-24 03:55:17,654 : episode: 3 score: -144.4 100 games avg: -144.4 steps 1000 

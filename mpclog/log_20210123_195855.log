@@ -448,3 +448,54 @@ INFO : 2021-01-24 02:54:41,203 : state_square_error: 0.612 reward_error: 5.566
 INFO : 2021-01-24 02:56:20,843 : state_square_error: 0.569 reward_error: 14.664
 INFO : 2021-01-24 02:57:59,135 : episode: 49 score: 769.1 100 games avg: 769.1 steps 1000 
 INFO : 2021-01-24 02:58:30,690 : state_square_error: 1.098 reward_error: 9.723
+INFO : 2021-01-24 02:58:55,173 : episode: 50 score: 8.9 100 games avg: 8.9 steps 26 
+INFO : 2021-01-24 02:59:26,492 : state_square_error: 0.524 reward_error: 3.847
+INFO : 2021-01-24 03:01:06,889 : state_square_error: 0.994 reward_error: 2.311
+INFO : 2021-01-24 03:02:44,668 : state_square_error: 0.840 reward_error: 17.667
+INFO : 2021-01-24 03:04:21,982 : state_square_error: 0.851 reward_error: 6.770
+INFO : 2021-01-24 03:05:59,286 : state_square_error: 0.279 reward_error: 1.738
+INFO : 2021-01-24 03:07:37,747 : state_square_error: 0.592 reward_error: 4.364
+INFO : 2021-01-24 03:09:15,761 : state_square_error: 0.387 reward_error: 3.218
+INFO : 2021-01-24 03:10:52,343 : state_square_error: 0.627 reward_error: 2.160
+INFO : 2021-01-24 03:12:28,065 : state_square_error: 0.545 reward_error: 4.235
+INFO : 2021-01-24 03:14:02,793 : state_square_error: 1.000 reward_error: 2.050
+INFO : 2021-01-24 03:15:38,188 : episode: 51 score: 574.2 100 games avg: 574.2 steps 1000 
+INFO : 2021-01-24 03:16:10,053 : state_square_error: 2.370 reward_error: 2.054
+INFO : 2021-01-24 03:17:41,419 : episode: 52 score: 58.7 100 games avg: 58.7 steps 97 
+INFO : 2021-01-24 03:18:12,935 : state_square_error: 0.911 reward_error: 4.411
+INFO : 2021-01-24 03:19:48,430 : state_square_error: 0.945 reward_error: 11.612
+INFO : 2021-01-24 03:21:22,923 : state_square_error: 0.775 reward_error: 4.269
+INFO : 2021-01-24 03:22:57,689 : state_square_error: 0.499 reward_error: 7.229
+INFO : 2021-01-24 03:24:30,839 : state_square_error: 1.059 reward_error: 7.099
+INFO : 2021-01-24 03:26:04,577 : state_square_error: 0.585 reward_error: 8.661
+INFO : 2021-01-24 03:27:37,388 : state_square_error: 0.622 reward_error: 10.141
+INFO : 2021-01-24 03:29:11,692 : state_square_error: 1.894 reward_error: 0.967
+INFO : 2021-01-24 03:30:45,900 : state_square_error: 0.257 reward_error: 2.770
+INFO : 2021-01-24 03:32:19,792 : state_square_error: 0.995 reward_error: 7.485
+INFO : 2021-01-24 03:33:53,488 : episode: 53 score: 909.7 100 games avg: 909.7 steps 1000 
+INFO : 2021-01-24 03:34:26,077 : state_square_error: 0.612 reward_error: 9.410
+INFO : 2021-01-24 03:35:36,630 : episode: 54 score: 74.6 100 games avg: 74.6 steps 75 
+INFO : 2021-01-24 03:36:09,450 : state_square_error: 1.131 reward_error: 9.462
+INFO : 2021-01-24 03:37:44,408 : state_square_error: 1.007 reward_error: 18.563
+INFO : 2021-01-24 03:39:17,465 : state_square_error: 0.252 reward_error: 13.354
+INFO : 2021-01-24 03:40:50,995 : state_square_error: 0.571 reward_error: 6.281
+INFO : 2021-01-24 03:42:26,387 : state_square_error: 0.932 reward_error: 10.388
+INFO : 2021-01-24 03:44:01,853 : state_square_error: 0.640 reward_error: 4.071
+INFO : 2021-01-24 03:45:35,518 : state_square_error: 0.798 reward_error: 6.518
+INFO : 2021-01-24 03:47:08,984 : state_square_error: 0.349 reward_error: 3.351
+INFO : 2021-01-24 03:48:42,979 : state_square_error: 1.231 reward_error: 1.600
+INFO : 2021-01-24 03:50:16,787 : state_square_error: 0.983 reward_error: 9.092
+INFO : 2021-01-24 03:51:49,601 : episode: 55 score: 807.3 100 games avg: 807.3 steps 1000 
+INFO : 2021-01-24 03:52:22,045 : state_square_error: 1.776 reward_error: 7.586
+INFO : 2021-01-24 03:53:56,949 : state_square_error: 1.378 reward_error: 9.954
+INFO : 2021-01-24 03:55:31,493 : state_square_error: 1.506 reward_error: 8.798
+INFO : 2021-01-24 03:57:04,032 : state_square_error: 1.981 reward_error: 5.369
+INFO : 2021-01-24 03:58:38,803 : state_square_error: 0.814 reward_error: 5.244
+INFO : 2021-01-24 04:00:11,994 : state_square_error: 0.782 reward_error: 3.360
+INFO : 2021-01-24 04:01:46,156 : state_square_error: 2.591 reward_error: 6.451
+INFO : 2021-01-24 04:03:20,074 : state_square_error: 1.046 reward_error: 7.451
+INFO : 2021-01-24 04:04:53,694 : state_square_error: 0.938 reward_error: 6.172
+INFO : 2021-01-24 04:06:26,595 : state_square_error: 0.260 reward_error: 5.472
+INFO : 2021-01-24 04:07:59,991 : episode: 56 score: 791.5 100 games avg: 791.5 steps 1000 
+INFO : 2021-01-24 04:08:34,348 : state_square_error: 1.529 reward_error: 5.020
+INFO : 2021-01-24 04:10:09,293 : state_square_error: 0.392 reward_error: 6.338
