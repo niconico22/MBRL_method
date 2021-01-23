@@ -1,0 +1,5 @@
+INFO : 2021-01-23 14:23:38,352 : method: Model Predictive Contorol
+INFO : 2021-01-23 14:23:38,353 : parameter n_steps: 500 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-23 14:23:40,733 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 14:23:40,734 : mpc_function policy
+INFO : 2021-01-23 14:23:40,734 : policy
