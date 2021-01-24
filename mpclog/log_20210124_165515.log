@@ -1,0 +1,15 @@
+INFO : 2021-01-24 16:55:15,640 : method: Model Predictive Contorol
+INFO : 2021-01-24 16:55:15,641 : parameter n_steps: 100 ensemble_size: 5 env: Ant-v2
+INFO : 2021-01-24 16:55:19,659 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 16:55:19,660 : mpc_function policy
+INFO : 2021-01-24 16:55:19,660 : policy
+INFO : 2021-01-24 16:55:20,878 : state_square_error: 4817773.302 reward_error: 4362.173
+INFO : 2021-01-24 16:57:15,585 : state_square_error: 1492002.301 reward_error: 3046.155
+INFO : 2021-01-24 16:59:09,319 : state_square_error: 1697125.743 reward_error: 2547.592
+INFO : 2021-01-24 17:01:03,924 : state_square_error: 5471699.510 reward_error: 12428.639
+INFO : 2021-01-24 17:02:49,827 : episode: 0 score: 198.6 100 games avg: 198.6 steps 391 
+INFO : 2021-01-24 17:02:51,226 : state_square_error: 338.135 reward_error: -42.985
+INFO : 2021-01-24 17:05:00,649 : episode: 1 score: -51.5 100 games avg: -51.5 steps 111 
+INFO : 2021-01-24 17:05:02,033 : state_square_error: 140.916 reward_error: 88.245
+INFO : 2021-01-24 17:05:43,307 : episode: 2 score: -19.6 100 games avg: -19.6 steps 36 
+INFO : 2021-01-24 17:06:11,653 : episode: 3 score: -24.0 100 games avg: -24.0 steps 24 
