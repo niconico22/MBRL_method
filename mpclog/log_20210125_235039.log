@@ -1,0 +1,14 @@
+INFO : 2021-01-25 23:50:39,834 : method: Model Predictive Contorol
+INFO : 2021-01-25 23:50:39,835 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-25 23:50:42,271 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-25 23:50:42,271 : mpc_function policy-kl2
+INFO : 2021-01-25 23:50:42,271 : policy-kl2
+INFO : 2021-01-25 23:50:42,521 : state_square_error: 1.306 reward_error: 1.692
+INFO : 2021-01-25 23:51:05,917 : state_square_error: 1.689 reward_error: 1.295
+INFO : 2021-01-25 23:51:29,294 : state_square_error: 0.650 reward_error: 1.638
+INFO : 2021-01-25 23:51:53,672 : state_square_error: 30.900 reward_error: 7.258
+INFO : 2021-01-25 23:52:19,224 : state_square_error: 36.472 reward_error: 10.770
+INFO : 2021-01-25 23:52:44,750 : state_square_error: 16.306 reward_error: 5.798
+INFO : 2021-01-25 23:53:10,110 : state_square_error: 42.475 reward_error: 8.488
+INFO : 2021-01-25 23:53:35,935 : state_square_error: 22.889 reward_error: 12.333
+INFO : 2021-01-25 23:54:01,504 : state_square_error: 78.694 reward_error: 5.362
