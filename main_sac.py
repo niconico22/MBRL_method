@@ -108,7 +108,7 @@ def set_log(s):
     filename = './' + s + 'log/' + 'log_' + \
         now.strftime('%Y%m%d_%H%M%S') + '.log'
     # DEBUGする時用のファイル
-    filename = './saclog/logger.log'
+    #filename = './saclog/logger.log'
     formatter = '%(levelname)s : %(asctime)s : %(message)s'
 
     logging.basicConfig(filename=filename,
@@ -247,8 +247,8 @@ if __name__ == '__main__':
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
-                    # square_mean_error(env, env_evaluate, actions,
-                    # states, sum_rewards, horizon, steps)
+                    square_mean_error(env, env_evaluate, actions,
+                    states, sum_rewards, horizon, steps)
 
                     print(steps)
 
