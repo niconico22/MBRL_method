@@ -89,6 +89,7 @@ def square_mean_error(env, env_evaluate, actions, states, model_sum_reward, hori
     for i in range(horizon):
         obs, reward, done, _ = env_evaluate.step(actions[i])
         real_sum_reward += reward
+
         if done:
             break
     if not done:
@@ -96,8 +97,7 @@ def square_mean_error(env, env_evaluate, actions, states, model_sum_reward, hori
         state_square_error = state_square_error.sum()
         state_square_error /= env_evaluate.observation_space.shape[0]
         reward_error = model_sum_reward - real_sum_reward
-        logging.info('state_square_error: %.3f reward_error: %.3f',
-                 state_square_error, reward_error)
+        logging.info('state_square_error: %.3f reward_error: %.3f',state_square_error, reward_error)
     env.set_state(qpos, qvel)
     
 
@@ -151,6 +151,7 @@ if __name__ == '__main__':
     n_spaces = env.observation_space.shape[0]
 
     n_actions = env.action_space.shape[0]
+    print('spaces %d actions %d' % (n_spaces, n_actions))
     logging.info('parameter n_steps: %d ensemble_size: %d env: %s',
                  n_steps, ensemble_size, env_id)
     buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, 1000000)
@@ -184,6 +185,8 @@ if __name__ == '__main__':
         func = mpc.get_action_policy
     elif function_name == 'policy-kl':
         func = mpc.get_action_policy_kl
+    elif function_name == 'policy-kl2':
+        func = mpc.get_action_policy_kl_2
     elif function_name == 'cem':
         func = mpc.get_action_cem
     elif function_name == 'policy-entropy':
@@ -234,7 +237,7 @@ if __name__ == '__main__':
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
                 agent.learn()
-                #env.render()
+                # env.render()
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
