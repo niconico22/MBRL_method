@@ -2,7 +2,7 @@ INFO : 2021-01-20 18:09:13,656 : method: Model Predictive Contorol
 INFO : 2021-01-20 18:09:13,656 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
 INFO : 2021-01-20 18:09:16,069 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
 INFO : 2021-01-20 18:09:16,069 : mpc_function policy-entropy
-INFO : 2021-01-20 18:09:16,069 : policy-entropy
+INFO : 2021-01-20 18:09:16,069 : policy-entropy=0.2
 INFO : 2021-01-20 18:12:16,650 : episode: 0 score: -207.6 100 games avg: -207.6 steps 1000 
 INFO : 2021-01-20 18:15:22,714 : episode: 1 score: -180.9 100 games avg: -180.9 steps 1000 
 INFO : 2021-01-20 18:18:29,369 : episode: 2 score: -151.3 100 games avg: -151.3 steps 1000 

@@ -97,9 +97,9 @@ def square_mean_error(env, env_evaluate, actions, states, model_sum_reward, hori
         state_square_error = state_square_error.sum()
         state_square_error /= env_evaluate.observation_space.shape[0]
         reward_error = model_sum_reward - real_sum_reward
-        logging.info('state_square_error: %.3f reward_error: %.3f',state_square_error, reward_error)
+        logging.info('state_square_error: %.3f reward_error: %.3f',
+                     state_square_error, reward_error)
     env.set_state(qpos, qvel)
-    
 
 
 def set_log(s):
@@ -108,7 +108,7 @@ def set_log(s):
     filename = './' + s + 'log/' + 'log_' + \
         now.strftime('%Y%m%d_%H%M%S') + '.log'
     # DEBUGする時用のファイル
-    #filename = './saclog/logger.log'
+    filename = './saclog/logger.log'
     formatter = '%(levelname)s : %(asctime)s : %(message)s'
 
     logging.basicConfig(filename=filename,
@@ -187,6 +187,8 @@ if __name__ == '__main__':
         func = mpc.get_action_policy_kl
     elif function_name == 'policy-kl2':
         func = mpc.get_action_policy_kl_2
+    elif function_name == 'policy_double':
+        func = mpc.get_action_policy
     elif function_name == 'cem':
         func = mpc.get_action_cem
     elif function_name == 'policy-entropy':
@@ -228,6 +230,9 @@ if __name__ == '__main__':
                 # time.sleep(0.1)
         else:
             model, rewardmodel = fit_model(buffer, grad_steps)
+            if function_name == 'policy_double':
+                if nsteps >= 0.1 * n_steps:
+                    func = mpc.get_action_policy_kl_2
             while not done:
                 # return best_action ,,actions, states, sum_rewards
                 action, actions, states, sum_rewards = func(observation)
@@ -237,12 +242,13 @@ if __name__ == '__main__':
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
                 agent.learn()
+                print(steps)
                 # env.render()
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
-                    #square_mean_error(env, env_evaluate, actions,
-                                      #states, sum_rewards, horizon, steps)
+                    # square_mean_error(env, env_evaluate, actions,
+                    # states, sum_rewards, horizon, steps)
 
                     print(steps)
 

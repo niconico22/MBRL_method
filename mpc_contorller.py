@@ -286,11 +286,7 @@ class MPCController:
                 (self.N, self.env.observation_space.shape[0])).float().to(self.device)
             model_id = self.choose_index_model(
                 state_means_, state_vars_)
-<<<<<<< HEAD
-            #print(model_id[0])
-=======
-
->>>>>>> 0ce09527d8f542af7d664f7591b1496691bc12b6
+            # print(model_id[0])
             for j in range(self.N):
                 for k in range(self.env.observation_space.shape[0]):
                     state_means[j][k] = state_means_[j][model_id[j][k]][k]
@@ -555,10 +551,11 @@ class MPCController:
         kl_result_sum = torch.zeros((self.N, en_size)).float().to(self.device)
 
         kl_result_sum[:, :] = torch.sum(kl_result[:, :, :], axis=2)
-
+        # print(kl_result)
+        # print(kl_result_sum)
         model_id = torch.zeros((self.N)).long().to(self.device)
         model_id[:] = torch.argmin(kl_result_sum[:, :], axis=1)
-        # print(model_id)
+        print(model_id)
         return model_id
 
     '''PETS reward_function '''
@@ -686,10 +683,10 @@ if __name__ == '__main__':
     # env_id = 'MountainCarContinuous-v0'
     # env_id = 'HalfCheetah-v2'
     # env_id = 'CartPole-v1'
-    env_id = 'Hopper-v2'
-    env = gym.make(env_id)
-    # env_id = 'ContinuousCartPole'
-    # env = ContinuousCartPoleEnv()
+    #env_id = 'Hopper-v2'
+    #env = gym.make(env_id)
+    env_id = 'ContinuousCartPole'
+    env = ContinuousCartPoleEnv()
     n_steps = 50
     n_games = 2
     ensemble_size = 3

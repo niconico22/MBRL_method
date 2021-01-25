@@ -1,7 +1,0 @@
-INFO : 2021-01-24 16:56:58,014 : method: Model Predictive Contorol
-INFO : 2021-01-24 16:56:58,015 : parameter n_steps: 100 ensemble_size: 5 env: Ant-v2
-INFO : 2021-01-24 16:57:01,171 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
-INFO : 2021-01-24 16:57:01,171 : mpc_function policy
-INFO : 2021-01-24 16:57:01,172 : policy
-INFO : 2021-01-24 16:57:03,375 : state_square_error: 681093.475 reward_error: 2338.425
-INFO : 2021-01-24 17:00:39,325 : state_square_error: 466899.065 reward_error: 1176.616

@@ -6,8 +6,8 @@ import japanize_matplotlib
 import seaborn as sns
 
 
-'''dir_name = 'mpc_hopper10'
-data = [[0] * 500 for _ in range(5)]
+dir_name = 'mpc-ant'
+data = [[0] * 100 for _ in range(6)]
 i = 0
 for file in glob(dir_name + '/*.log'):
     # print(file)
@@ -19,21 +19,68 @@ for file in glob(dir_name + '/*.log'):
             result = re.match(pattern, line)
             # print(result)
             if result:
-                if j >= 500:
+                if j >= 100:
                     break
                 data[i][j] = float(result.group(1))
                 j += 1
                 # print(result.group(1))
     i += 1
 # print(data)
-mpc_hopper = []
-for i in range(500):
-    for j in range(5):
-        mpc_hopper.append(data[j][i])
-'''
+mpcant = []
+for i in range(100):
+    for j in range(6):
+        mpcant.append(data[j][i])
+
+
+data2 = [[] for _ in range(100)]
+for i in range(100):
+    for j in range(6):
+        data2[i].append(data[j][i])
+
+for i in range(100):
+    data2[i].sort()
+
+dir_name = 'mpc-ant30'
+data = [[0] * 100 for _ in range(3)]
+i = 0
+for file in glob(dir_name + '/*.log'):
+    # print(file)
+    with open(file) as f:
+        j = 0
+        for line in f:
+            # print(line)
+            pattern = '.*score: (-*\d*.?\d*)'
+            result = re.match(pattern, line)
+            # print(result)
+            if result:
+                if j >= 100:
+                    break
+                data[i][j] = float(result.group(1))
+                j += 1
+                # print(result.group(1))
+    i += 1
+# print(data)
+mpcant30 = []
+for i in range(100):
+    for j in range(3):
+        mpcant30.append(data[j][i])
+
+
+data2 = [[] for _ in range(100)]
+for i in range(100):
+    for j in range(3):
+        data2[i].append(data[j][i])
+
+for i in range(100):
+    data2[i].sort()
+
+
+policy2 = []
+for i in range(100):
+    policy2.append(data2[i][1])
 
 dir_name = 'sac_ant'
-data = [[0] * 1000 for _ in range(5)]
+data = [[0] * 100 for _ in range(5)]
 i = 0
 for file in glob(dir_name + '/*.log'):
     # print(file)
@@ -45,28 +92,34 @@ for file in glob(dir_name + '/*.log'):
             result = re.match(pattern, line)
             # print(result)
             if result:
-                if j >= 1000:
+                if j >= 100:
                     break
                 data[i][j] = float(result.group(1))
                 j += 1
                 # print(result.group(1))
     i += 1
 # print(data)
-saccart = []
-for i in range(1000):
+sacant = []
+for i in range(100):
     for j in range(5):
-        saccart.append(data[j][i])
+        sacant.append(data[j][i])
 
 
 sns.set(font='Yu Gothic')
 # plt.plot(x, np.array(reward_teian), label='proposedmethod')
-x = np.repeat(np.arange(0, 500, 1), 5)
-y = np.repeat(np.arange(0, 1000, 1), 5)
+x = np.repeat(np.arange(0, 100, 1), 6)
+y = np.repeat(np.arange(0, 100, 1), 5)
+z = np.repeat(np.arange(0, 100, 1), 3)
+
+X = np.repeat(np.arange(0, 100, 1), 1)
 sns.set_context('poster')
 plt.figure(figsize=(15, 10))
-plt.ylim(0, 10000)
-#sns.lineplot(x, np.array(mpc_hopper), label='random_model')
-sns.lineplot(y, np.array(saccart), label='SAC')
+#plt.ylim(0, 10000)
+sns.lineplot(x, np.array(mpcant), label='random_model')
+sns.lineplot(y, np.array(sacant), label='SAC')
+sns.lineplot(z, np.array(mpcant30), label='random_model30')
+#sns.lineplot(X, np.array(policy2), label='random_model_median')
+
 plt.legend(loc='upper left')
 # plt.legend()
 
@@ -74,5 +127,5 @@ plt.legend(loc='upper left')
 plt.xlabel('episode')
 plt.ylabel('reward')
 plt.grid()
-# plt.savefig('sac.png')
+plt.savefig('mpc_ant.png')
 plt.show()

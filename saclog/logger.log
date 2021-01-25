@@ -854,3 +854,676 @@ INFO : 2020-12-16 03:47:49,152 : mpc horizon: 10 mpc_samples: 500
 INFO : 2020-12-17 16:53:19,955 : method: Model Predictive Contorol
 INFO : 2020-12-17 16:53:19,956 : parameter n_steps: 50 ensemble_size: 3 env: HalfCheetah-v2
 INFO : 2020-12-17 16:53:20,012 : mpc horizon: 10 mpc_samples: 100
+INFO : 2021-01-20 22:17:42,063 : method: Model Predictive Contorol
+INFO : 2021-01-20 22:17:42,064 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-20 22:17:42,159 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-20 22:17:42,159 : mpc_function policy
+INFO : 2021-01-20 22:17:42,159 : policy
+INFO : 2021-01-20 22:18:06,488 : method: Model Predictive Contorol
+INFO : 2021-01-20 22:18:06,489 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-20 22:18:06,560 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-20 22:18:06,561 : mpc_function policy
+INFO : 2021-01-20 22:18:06,561 : policy
+INFO : 2021-01-20 22:21:23,993 : episode: 0 score: -74.8 100 games avg: -74.8 steps 1000 
+INFO : 2021-01-20 22:24:51,837 : episode: 1 score: -85.6 100 games avg: -85.6 steps 1000 
+INFO : 2021-01-20 22:28:24,750 : episode: 2 score: -230.6 100 games avg: -230.6 steps 1000 
+INFO : 2021-01-20 22:32:01,843 : episode: 3 score: -277.5 100 games avg: -277.5 steps 1000 
+INFO : 2021-01-20 22:35:44,840 : episode: 4 score: -172.3 100 games avg: -172.3 steps 1000 
+INFO : 2021-01-20 22:38:42,001 : method: Model Predictive Contorol
+INFO : 2021-01-20 22:38:42,001 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-20 22:38:42,096 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-20 22:38:42,097 : mpc_function policy
+INFO : 2021-01-20 22:38:42,097 : policy
+INFO : 2021-01-20 22:42:11,286 : episode: 0 score: -102.4 100 games avg: -102.4 steps 1000 
+INFO : 2021-01-20 22:46:02,058 : episode: 1 score: -149.4 100 games avg: -149.4 steps 1000 
+INFO : 2021-01-20 22:49:53,679 : episode: 2 score: -143.8 100 games avg: -143.8 steps 1000 
+INFO : 2021-01-20 22:53:48,442 : episode: 3 score: 22.3 100 games avg: 22.3 steps 1000 
+INFO : 2021-01-20 22:57:51,081 : episode: 4 score: -196.4 100 games avg: -196.4 steps 1000 
+INFO : 2021-01-20 23:01:38,458 : episode: 5 score: -230.6 100 games avg: -230.6 steps 1000 
+INFO : 2021-01-20 23:05:25,338 : episode: 6 score: -209.7 100 games avg: -209.7 steps 1000 
+INFO : 2021-01-20 23:09:15,315 : episode: 7 score: -59.1 100 games avg: -59.1 steps 1000 
+INFO : 2021-01-20 23:13:17,645 : episode: 8 score: -118.3 100 games avg: -118.3 steps 1000 
+INFO : 2021-01-20 23:17:25,119 : episode: 9 score: -157.1 100 games avg: -157.1 steps 1000 
+INFO : 2021-01-20 23:46:09,320 : method: Model Predictive Contorol
+INFO : 2021-01-20 23:46:09,320 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-20 23:46:09,385 : mpc horizon: 20 mpc_samples: 500 elite_sample: 50 grad_steps: 10
+INFO : 2021-01-20 23:46:09,385 : mpc_function policy
+INFO : 2021-01-20 23:46:09,385 : policy
+INFO : 2021-01-20 23:56:30,482 : method: Model Predictive Contorol
+INFO : 2021-01-20 23:56:30,483 : parameter n_steps: 10 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-20 23:56:30,561 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-20 23:56:30,562 : mpc_function policy
+INFO : 2021-01-20 23:56:30,562 : policy
+INFO : 2021-01-21 23:25:11,479 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:25:11,480 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:25:32,157 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:25:32,157 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:25:32,227 : mpc_function policy
+INFO : 2021-01-21 23:25:32,227 : policy
+INFO : 2021-01-21 23:26:45,260 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:26:45,261 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:26:45,331 : mpc_function policy
+INFO : 2021-01-21 23:26:45,331 : policy
+INFO : 2021-01-21 23:27:16,596 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:27:16,597 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:27:16,667 : mpc_function policy
+INFO : 2021-01-21 23:27:16,668 : policy
+INFO : 2021-01-21 23:29:26,307 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:29:26,307 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:29:26,379 : mpc_function policy
+INFO : 2021-01-21 23:29:26,379 : policy
+INFO : 2021-01-21 23:30:44,818 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:30:44,818 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:30:44,899 : mpc_function policy
+INFO : 2021-01-21 23:30:44,899 : policy
+INFO : 2021-01-21 23:31:05,227 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:31:05,228 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:31:05,299 : mpc_function policy
+INFO : 2021-01-21 23:31:05,299 : policy
+INFO : 2021-01-21 23:31:26,888 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:31:26,889 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:31:26,960 : mpc_function policy
+INFO : 2021-01-21 23:31:26,960 : policy
+INFO : 2021-01-21 23:32:32,142 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:32:32,142 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:32:32,217 : mpc_function policy
+INFO : 2021-01-21 23:32:32,217 : policy
+INFO : 2021-01-21 23:32:44,859 : method: Soft-Actor Critic
+INFO : 2021-01-21 23:32:44,860 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-21 23:32:44,933 : mpc_function policy
+INFO : 2021-01-21 23:32:44,934 : policy
+INFO : 2021-01-21 23:33:12,882 : episode: 0 score: -99.1 100 games avg: -99.1 steps 1000 
+INFO : 2021-01-22 00:16:59,027 : method: Soft-Actor Critic
+INFO : 2021-01-22 00:16:59,028 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:16:59,102 : mpc_function policy
+INFO : 2021-01-22 00:16:59,102 : policy
+INFO : 2021-01-22 00:17:12,441 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:17:12,441 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:17:12,515 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:17:12,515 : mpc_function policy
+INFO : 2021-01-22 00:17:12,515 : policy
+INFO : 2021-01-22 00:17:27,809 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:17:27,809 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:17:27,883 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:17:27,883 : mpc_function policy
+INFO : 2021-01-22 00:17:27,883 : policy
+INFO : 2021-01-22 00:18:32,483 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:18:32,483 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:18:32,557 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:18:32,557 : mpc_function policy
+INFO : 2021-01-22 00:18:32,557 : policy
+INFO : 2021-01-22 00:24:02,666 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:24:02,666 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:24:02,737 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:24:02,737 : mpc_function policy
+INFO : 2021-01-22 00:24:02,737 : policy
+INFO : 2021-01-22 00:24:59,216 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:24:59,217 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:24:59,297 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:24:59,297 : mpc_function policy
+INFO : 2021-01-22 00:24:59,297 : policy
+INFO : 2021-01-22 00:25:43,518 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:25:43,519 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:25:43,592 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:25:43,592 : mpc_function policy
+INFO : 2021-01-22 00:25:43,592 : policy
+INFO : 2021-01-22 00:26:16,903 : episode: 0 score: -0.4 100 games avg: -0.4 steps 91 
+INFO : 2021-01-22 00:26:51,757 : episode: 1 score: 0.1 100 games avg: 0.1 steps 91 
+INFO : 2021-01-22 00:27:26,924 : episode: 2 score: -2.1 100 games avg: -2.1 steps 91 
+INFO : 2021-01-22 00:34:33,172 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:34:33,172 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:34:33,481 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:34:33,481 : mpc_function policy
+INFO : 2021-01-22 00:34:33,481 : policy
+INFO : 2021-01-22 00:38:37,162 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:38:37,163 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:38:37,236 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:38:37,236 : mpc_function policy
+INFO : 2021-01-22 00:38:37,237 : policy
+INFO : 2021-01-22 00:40:36,198 : method: Model Predictive Contorol
+INFO : 2021-01-22 00:40:36,199 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:40:36,275 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 00:40:36,275 : mpc_function policy
+INFO : 2021-01-22 00:40:36,275 : policy
+INFO : 2021-01-22 00:41:30,367 : method: Soft-Actor Critic
+INFO : 2021-01-22 00:41:30,368 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 00:41:30,445 : mpc_function policy
+INFO : 2021-01-22 00:41:30,445 : policy
+INFO : 2021-01-22 00:42:08,296 : episode: 0 score: -123.4 100 games avg: -123.4 steps 1000 
+INFO : 2021-01-22 01:31:22,630 : method: Model Predictive Contorol
+INFO : 2021-01-22 01:31:22,630 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 01:31:22,721 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 01:31:22,721 : mpc_function policy
+INFO : 2021-01-22 01:31:22,721 : policy
+INFO : 2021-01-22 01:34:48,581 : method: Model Predictive Contorol
+INFO : 2021-01-22 01:34:48,582 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 01:34:48,649 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 01:34:48,650 : mpc_function policy
+INFO : 2021-01-22 01:34:48,650 : policy
+INFO : 2021-01-22 01:40:34,594 : episode: 0 score: -165.2 100 games avg: -165.2 steps 1000 
+INFO : 2021-01-22 01:47:55,230 : method: Model Predictive Contorol
+INFO : 2021-01-22 01:47:55,231 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 01:47:55,331 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 01:47:55,331 : mpc_function policy
+INFO : 2021-01-22 01:47:55,331 : policy
+INFO : 2021-01-22 01:48:19,915 : method: Model Predictive Contorol
+INFO : 2021-01-22 01:48:19,915 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 01:48:19,980 : mpc horizon: 10 mpc_samples: 200 elite_sample: 20 grad_steps: 10
+INFO : 2021-01-22 01:48:19,980 : mpc_function policy
+INFO : 2021-01-22 01:48:19,980 : policy
+INFO : 2021-01-22 01:48:20,281 : state_square_error: 1.383 reward_error: 2.680
+INFO : 2021-01-22 01:48:24,454 : state_square_error: 0.813 reward_error: 3.092
+INFO : 2021-01-22 01:48:27,480 : state_square_error: 0.688 reward_error: 3.158
+INFO : 2021-01-22 01:48:30,595 : state_square_error: 0.714 reward_error: 3.244
+INFO : 2021-01-22 01:48:33,738 : state_square_error: 0.440 reward_error: 2.310
+INFO : 2021-01-22 01:48:36,876 : state_square_error: 0.974 reward_error: 3.728
+INFO : 2021-01-22 01:48:40,094 : state_square_error: 1.351 reward_error: 2.277
+INFO : 2021-01-22 01:57:18,352 : method: Model Predictive Contorol
+INFO : 2021-01-22 01:57:18,352 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 01:57:18,417 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 01:57:18,417 : mpc_function policy
+INFO : 2021-01-22 01:57:18,417 : policy
+INFO : 2021-01-22 01:57:18,581 : state_square_error: 1.590 reward_error: 3.905
+INFO : 2021-01-22 19:10:27,480 : method: Model Predictive Contorol
+INFO : 2021-01-22 19:10:27,480 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 19:10:27,598 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 19:10:27,598 : mpc_function policy
+INFO : 2021-01-22 19:10:27,599 : policy
+INFO : 2021-01-22 19:10:28,495 : state_square_error: 0.438 reward_error: 4.782
+INFO : 2021-01-22 19:10:46,202 : state_square_error: 0.600 reward_error: 2.535
+INFO : 2021-01-22 19:11:48,386 : method: Model Predictive Contorol
+INFO : 2021-01-22 19:11:48,387 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 19:11:48,454 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 19:11:48,454 : mpc_function policy
+INFO : 2021-01-22 19:11:48,454 : policy
+INFO : 2021-01-22 19:11:49,353 : state_square_error: 0.810 reward_error: 1.506
+INFO : 2021-01-22 19:12:06,362 : state_square_error: 1.131 reward_error: 3.135
+INFO : 2021-01-22 19:12:24,175 : state_square_error: 0.409 reward_error: 2.103
+INFO : 2021-01-22 19:12:41,798 : state_square_error: 69.592 reward_error: 5.573
+INFO : 2021-01-22 19:13:00,448 : state_square_error: 55.817 reward_error: 8.303
+INFO : 2021-01-22 19:13:18,822 : state_square_error: 31.246 reward_error: 15.861
+INFO : 2021-01-22 19:13:37,294 : state_square_error: 57.273 reward_error: 15.858
+INFO : 2021-01-22 19:13:55,771 : state_square_error: 40.640 reward_error: 10.164
+INFO : 2021-01-22 19:14:15,159 : state_square_error: 75.501 reward_error: 20.547
+INFO : 2021-01-22 19:14:33,671 : state_square_error: 55.468 reward_error: 8.156
+INFO : 2021-01-22 19:14:52,363 : episode: 0 score: -87.8 100 games avg: -87.8 steps 1000 
+INFO : 2021-01-22 19:14:55,572 : state_square_error: 22.434 reward_error: 6.379
+INFO : 2021-01-22 19:15:14,228 : state_square_error: 16.379 reward_error: 9.558
+INFO : 2021-01-22 19:15:33,010 : state_square_error: 10.164 reward_error: 12.079
+INFO : 2021-01-22 19:15:52,182 : state_square_error: 28.897 reward_error: 7.173
+INFO : 2021-01-22 19:16:11,956 : state_square_error: 20.801 reward_error: 12.004
+INFO : 2021-01-22 19:16:30,682 : state_square_error: 9.138 reward_error: 3.676
+INFO : 2021-01-22 19:16:49,182 : state_square_error: 29.846 reward_error: 2.519
+INFO : 2021-01-22 19:17:07,850 : state_square_error: 20.900 reward_error: 3.829
+INFO : 2021-01-22 19:17:26,255 : state_square_error: 21.204 reward_error: 5.758
+INFO : 2021-01-22 19:17:45,534 : state_square_error: 28.930 reward_error: 7.595
+INFO : 2021-01-22 19:18:04,692 : episode: 1 score: -53.7 100 games avg: -53.7 steps 1000 
+INFO : 2021-01-22 19:18:13,393 : state_square_error: 61.555 reward_error: 14.691
+INFO : 2021-01-22 19:18:32,189 : state_square_error: 105.445 reward_error: 13.106
+INFO : 2021-01-22 19:18:50,890 : state_square_error: 68.704 reward_error: 15.716
+INFO : 2021-01-22 19:19:10,294 : state_square_error: 103.035 reward_error: 27.964
+INFO : 2021-01-22 19:19:29,350 : state_square_error: 61.126 reward_error: 18.972
+INFO : 2021-01-22 19:19:49,257 : state_square_error: 103.767 reward_error: 24.676
+INFO : 2021-01-22 19:20:07,790 : state_square_error: 47.357 reward_error: 13.017
+INFO : 2021-01-22 19:20:27,553 : state_square_error: 122.605 reward_error: 16.747
+INFO : 2021-01-22 19:20:46,336 : state_square_error: 30.177 reward_error: 20.096
+INFO : 2021-01-22 19:21:05,327 : state_square_error: 37.697 reward_error: 16.191
+INFO : 2021-01-22 19:21:23,892 : episode: 2 score: -159.7 100 games avg: -159.7 steps 1000 
+INFO : 2021-01-22 19:21:35,387 : state_square_error: 28.562 reward_error: 17.753
+INFO : 2021-01-22 19:21:53,640 : state_square_error: 29.224 reward_error: 14.648
+INFO : 2021-01-22 19:22:12,385 : state_square_error: 89.934 reward_error: 16.544
+INFO : 2021-01-22 19:22:30,997 : state_square_error: 88.519 reward_error: 21.979
+INFO : 2021-01-22 19:22:49,306 : state_square_error: 133.766 reward_error: 10.684
+INFO : 2021-01-22 19:23:07,699 : state_square_error: 65.702 reward_error: 16.531
+INFO : 2021-01-22 19:23:26,245 : state_square_error: 71.638 reward_error: 16.046
+INFO : 2021-01-22 19:23:44,712 : state_square_error: 30.315 reward_error: 11.968
+INFO : 2021-01-22 19:24:03,258 : state_square_error: 33.183 reward_error: 15.248
+INFO : 2021-01-22 19:24:21,927 : state_square_error: 196.726 reward_error: 19.348
+INFO : 2021-01-22 19:24:40,123 : episode: 3 score: -147.3 100 games avg: -147.3 steps 1000 
+INFO : 2021-01-22 19:24:55,850 : state_square_error: 1425.353 reward_error: 18.658
+INFO : 2021-01-22 19:25:13,999 : state_square_error: 236.659 reward_error: 14.211
+INFO : 2021-01-22 19:25:32,563 : state_square_error: 1551.238 reward_error: 34.702
+INFO : 2021-01-22 19:25:51,129 : state_square_error: 68.434 reward_error: 15.990
+INFO : 2021-01-22 19:26:09,845 : state_square_error: 847.251 reward_error: 9.577
+INFO : 2021-01-22 19:26:28,634 : state_square_error: 1264.775 reward_error: 33.214
+INFO : 2021-01-22 19:26:47,594 : state_square_error: 84.221 reward_error: 7.949
+INFO : 2021-01-22 19:27:06,158 : state_square_error: 1102.555 reward_error: 26.840
+INFO : 2021-01-22 19:27:24,874 : state_square_error: 3449.238 reward_error: 35.136
+INFO : 2021-01-22 19:27:43,579 : state_square_error: 226.516 reward_error: 18.693
+INFO : 2021-01-22 19:28:27,242 : method: Model Predictive Contorol
+INFO : 2021-01-22 19:28:27,242 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 19:28:27,307 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 19:28:27,307 : mpc_function policy
+INFO : 2021-01-22 19:28:27,307 : policy
+INFO : 2021-01-22 19:28:28,207 : state_square_error: 0.596 reward_error: 1.284
+INFO : 2021-01-22 19:28:52,305 : method: Model Predictive Contorol
+INFO : 2021-01-22 19:28:52,305 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 19:28:52,369 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 19:28:52,369 : mpc_function policy
+INFO : 2021-01-22 19:28:52,369 : policy
+INFO : 2021-01-22 19:28:53,257 : state_square_error: 1.111 reward_error: 3.193
+INFO : 2021-01-22 19:29:58,919 : method: Model Predictive Contorol
+INFO : 2021-01-22 19:29:58,919 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 19:29:58,984 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 19:29:58,984 : mpc_function policy
+INFO : 2021-01-22 19:29:58,984 : policy
+INFO : 2021-01-22 19:29:59,906 : state_square_error: 1.310 reward_error: 3.463
+INFO : 2021-01-22 19:30:20,854 : state_square_error: 0.588 reward_error: 2.905
+INFO : 2021-01-22 19:30:41,370 : state_square_error: 1.376 reward_error: 2.014
+INFO : 2021-01-22 19:31:02,666 : state_square_error: 27.716 reward_error: 5.367
+INFO : 2021-01-22 19:32:07,897 : method: Model Predictive Contorol
+INFO : 2021-01-22 19:32:07,897 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 19:32:07,963 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 19:32:07,963 : mpc_function policy
+INFO : 2021-01-22 19:32:07,963 : policy
+INFO : 2021-01-22 19:32:10,834 : state_square_error: 0.997 reward_error: 3.415
+INFO : 2021-01-22 19:32:38,543 : method: Model Predictive Contorol
+INFO : 2021-01-22 19:32:38,544 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 19:32:38,608 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 19:32:38,608 : mpc_function policy
+INFO : 2021-01-22 19:32:38,608 : policy
+INFO : 2021-01-22 19:32:41,462 : state_square_error: 1.645 reward_error: 3.411
+INFO : 2021-01-23 01:20:57,661 : method: Model Predictive Contorol
+INFO : 2021-01-23 01:20:57,662 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 01:20:57,727 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 01:20:57,727 : mpc_function policy-kl
+INFO : 2021-01-23 01:20:57,727 : policy-kl
+INFO : 2021-01-23 01:21:29,914 : method: Model Predictive Contorol
+INFO : 2021-01-23 01:21:29,915 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 01:21:29,980 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 01:21:29,980 : mpc_function policy-kl
+INFO : 2021-01-23 01:21:29,980 : policy-kl
+INFO : 2021-01-23 01:21:30,837 : state_square_error: 5.657 reward_error: 4.269
+INFO : 2021-01-23 01:21:58,980 : method: Model Predictive Contorol
+INFO : 2021-01-23 01:21:58,981 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 01:21:59,046 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 01:21:59,046 : mpc_function policy-kl
+INFO : 2021-01-23 01:21:59,046 : policy-kl
+INFO : 2021-01-23 01:21:59,897 : state_square_error: 4.020 reward_error: 4.163
+INFO : 2021-01-23 01:22:11,747 : method: Model Predictive Contorol
+INFO : 2021-01-23 01:22:11,748 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 01:22:11,813 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 01:22:11,813 : mpc_function policy-kl
+INFO : 2021-01-23 01:22:11,813 : policy-kl
+INFO : 2021-01-23 01:22:12,684 : state_square_error: 3.567 reward_error: 4.430
+INFO : 2021-01-23 01:24:47,150 : method: Model Predictive Contorol
+INFO : 2021-01-23 01:24:47,150 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 01:24:47,217 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 01:24:47,218 : mpc_function policy-kl
+INFO : 2021-01-23 01:24:47,218 : policy-kl
+INFO : 2021-01-23 01:24:48,110 : state_square_error: 4.679 reward_error: 6.395
+INFO : 2021-01-23 03:09:58,148 : method: Model Predictive Contorol
+INFO : 2021-01-23 03:09:58,149 : parameter n_steps: 100 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-23 03:09:58,207 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 03:09:58,207 : mpc_function policy
+INFO : 2021-01-23 03:09:58,207 : policy
+INFO : 2021-01-23 14:51:44,837 : method: Model Predictive Contorol
+INFO : 2021-01-23 14:51:44,837 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 14:51:44,919 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 14:51:44,919 : mpc_function policy-kl
+INFO : 2021-01-23 14:51:44,919 : policy-kl
+INFO : 2021-01-23 14:51:45,877 : state_square_error: 0.629 reward_error: 4.131
+INFO : 2021-01-23 14:52:22,642 : method: Model Predictive Contorol
+INFO : 2021-01-23 14:52:22,643 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 14:52:22,707 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 14:52:22,707 : mpc_function policy
+INFO : 2021-01-23 14:52:22,707 : policy
+INFO : 2021-01-23 14:52:22,876 : state_square_error: 1.321 reward_error: 4.585
+INFO : 2021-01-23 14:59:11,724 : method: Model Predictive Contorol
+INFO : 2021-01-23 14:59:11,725 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 14:59:11,795 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 14:59:11,795 : mpc_function policy-kl
+INFO : 2021-01-23 14:59:11,795 : policy-kl
+INFO : 2021-01-23 14:59:12,820 : state_square_error: 3.114 reward_error: 3.547
+INFO : 2021-01-23 15:10:23,295 : method: Model Predictive Contorol
+INFO : 2021-01-23 15:10:23,296 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 15:10:23,374 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 15:10:23,374 : mpc_function policy-kl
+INFO : 2021-01-23 15:10:23,374 : policy-kl
+INFO : 2021-01-23 15:10:24,357 : state_square_error: 0.723 reward_error: 3.275
+INFO : 2021-01-23 23:43:07,441 : method: Model Predictive Contorol
+INFO : 2021-01-23 23:43:07,442 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 23:43:07,506 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 23:43:07,506 : mpc_function policy
+INFO : 2021-01-23 23:43:07,507 : policy
+INFO : 2021-01-23 23:43:07,686 : state_square_error: 0.814 reward_error: 1.591
+INFO : 2021-01-23 23:43:24,539 : state_square_error: 0.905 reward_error: 1.307
+INFO : 2021-01-23 23:43:44,075 : method: Model Predictive Contorol
+INFO : 2021-01-23 23:43:44,076 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 23:43:44,143 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-23 23:43:44,143 : mpc_function policy
+INFO : 2021-01-23 23:43:44,143 : policy
+INFO : 2021-01-23 23:43:44,338 : state_square_error: 2.385 reward_error: 0.808
+INFO : 2021-01-23 23:44:02,111 : state_square_error: 0.492 reward_error: 1.505
+INFO : 2021-01-23 23:44:20,091 : state_square_error: 1.119 reward_error: 1.279
+INFO : 2021-01-23 23:45:40,597 : method: Model Predictive Contorol
+INFO : 2021-01-23 23:45:40,597 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 23:45:40,662 : mpc horizon: 10 mpc_samples: 10 elite_sample: 3 grad_steps: 10
+INFO : 2021-01-23 23:45:40,662 : mpc_function policy
+INFO : 2021-01-23 23:45:40,662 : policy
+INFO : 2021-01-23 23:45:40,711 : state_square_error: 0.828 reward_error: 1.868
+INFO : 2021-01-23 23:46:51,385 : method: Model Predictive Contorol
+INFO : 2021-01-23 23:46:51,386 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-23 23:46:51,452 : mpc horizon: 10 mpc_samples: 5 elite_sample: 3 grad_steps: 10
+INFO : 2021-01-23 23:46:51,452 : mpc_function policy
+INFO : 2021-01-23 23:46:51,452 : policy
+INFO : 2021-01-23 23:46:51,501 : state_square_error: 1.425 reward_error: 1.889
+INFO : 2021-01-23 23:46:55,437 : state_square_error: 3.727 reward_error: 3.525
+INFO : 2021-01-23 23:46:59,209 : state_square_error: 3.109 reward_error: 3.553
+INFO : 2021-01-23 23:47:04,006 : state_square_error: 144.749 reward_error: 18.612
+INFO : 2021-01-23 23:47:10,205 : state_square_error: 63.106 reward_error: 7.304
+INFO : 2021-01-23 23:47:16,475 : state_square_error: 120.785 reward_error: 4.409
+INFO : 2021-01-23 23:47:23,132 : state_square_error: 17.586 reward_error: 10.758
+INFO : 2021-01-23 23:47:29,760 : state_square_error: 67.888 reward_error: 5.987
+INFO : 2021-01-23 23:47:35,949 : state_square_error: 33.099 reward_error: 9.135
+INFO : 2021-01-23 23:47:42,222 : state_square_error: 20.752 reward_error: 9.855
+INFO : 2021-01-23 23:47:48,303 : episode: 0 score: -65.2 100 games avg: -65.2 steps 1000 
+INFO : 2021-01-23 23:47:51,529 : state_square_error: 7.006 reward_error: -1.512
+INFO : 2021-01-23 23:47:57,708 : state_square_error: 9.945 reward_error: 1.509
+INFO : 2021-01-23 23:48:03,698 : state_square_error: 8.461 reward_error: -0.895
+INFO : 2021-01-23 23:48:09,661 : state_square_error: 12.463 reward_error: 0.203
+INFO : 2021-01-23 23:48:15,667 : state_square_error: 10.552 reward_error: 1.697
+INFO : 2021-01-23 23:48:21,730 : state_square_error: 15.555 reward_error: 0.796
+INFO : 2021-01-23 23:48:27,721 : state_square_error: 31.156 reward_error: 6.756
+INFO : 2021-01-23 23:48:33,688 : state_square_error: 12.778 reward_error: 5.535
+INFO : 2021-01-23 23:48:39,738 : state_square_error: 20.089 reward_error: 2.986
+INFO : 2021-01-23 23:48:45,776 : state_square_error: 22.280 reward_error: 0.324
+INFO : 2021-01-23 23:48:51,761 : episode: 1 score: -302.8 100 games avg: -302.8 steps 1000 
+INFO : 2021-01-23 23:48:59,080 : state_square_error: 45.372 reward_error: 11.016
+INFO : 2021-01-23 23:49:05,015 : state_square_error: 68.505 reward_error: -0.911
+INFO : 2021-01-23 23:49:11,044 : state_square_error: 59.701 reward_error: 9.008
+INFO : 2021-01-23 23:49:17,019 : state_square_error: 53.004 reward_error: 10.979
+INFO : 2021-01-23 23:49:22,996 : state_square_error: 51.331 reward_error: 4.694
+INFO : 2021-01-23 23:49:28,938 : state_square_error: 146.562 reward_error: 5.054
+INFO : 2021-01-23 23:49:34,938 : state_square_error: 82.619 reward_error: 0.841
+INFO : 2021-01-23 23:49:41,035 : state_square_error: 126.711 reward_error: 5.807
+INFO : 2021-01-23 23:49:47,060 : state_square_error: 20.617 reward_error: 5.440
+INFO : 2021-01-23 23:49:53,159 : state_square_error: 37.844 reward_error: 5.286
+INFO : 2021-01-23 23:49:59,156 : episode: 2 score: -146.4 100 games avg: -146.4 steps 1000 
+INFO : 2021-01-23 23:50:10,353 : state_square_error: 233.991 reward_error: -4.359
+INFO : 2021-01-23 23:50:16,325 : state_square_error: 247.592 reward_error: 7.198
+INFO : 2021-01-23 23:50:22,292 : state_square_error: 440.593 reward_error: 4.182
+INFO : 2021-01-23 23:50:28,309 : state_square_error: 362.626 reward_error: 5.273
+INFO : 2021-01-23 23:50:34,263 : state_square_error: 94.387 reward_error: -1.239
+INFO : 2021-01-23 23:50:40,240 : state_square_error: 71.294 reward_error: -3.246
+INFO : 2021-01-23 23:50:46,227 : state_square_error: 236.929 reward_error: 9.758
+INFO : 2021-01-23 23:50:52,236 : state_square_error: 113.440 reward_error: 0.193
+INFO : 2021-01-23 23:50:58,333 : state_square_error: 320.330 reward_error: 8.115
+INFO : 2021-01-23 23:51:04,573 : state_square_error: 120.694 reward_error: -1.237
+INFO : 2021-01-23 23:51:10,983 : episode: 3 score: -53.2 100 games avg: -53.2 steps 1000 
+INFO : 2021-01-23 23:51:26,757 : state_square_error: 1014.271 reward_error: -3.069
+INFO : 2021-01-23 23:51:33,121 : state_square_error: 145.767 reward_error: 10.634
+INFO : 2021-01-23 23:51:39,271 : state_square_error: 40.926 reward_error: 5.749
+INFO : 2021-01-23 23:51:45,261 : state_square_error: 120.688 reward_error: 2.729
+INFO : 2021-01-23 23:51:51,251 : state_square_error: 277.876 reward_error: 14.113
+INFO : 2021-01-23 23:51:57,342 : state_square_error: 181.408 reward_error: 5.898
+INFO : 2021-01-23 23:52:03,326 : state_square_error: 76.583 reward_error: 2.996
+INFO : 2021-01-23 23:52:09,427 : state_square_error: 533.326 reward_error: 10.824
+INFO : 2021-01-23 23:52:15,605 : state_square_error: 48.553 reward_error: 5.804
+INFO : 2021-01-23 23:52:21,651 : state_square_error: 129.349 reward_error: 8.078
+INFO : 2021-01-23 23:52:27,620 : episode: 4 score: -157.5 100 games avg: -157.5 steps 1000 
+INFO : 2021-01-23 23:52:47,095 : state_square_error: 35.725 reward_error: 1.687
+INFO : 2021-01-23 23:52:53,317 : state_square_error: 119.333 reward_error: 8.049
+INFO : 2021-01-23 23:52:59,315 : state_square_error: 94.888 reward_error: 5.512
+INFO : 2021-01-23 23:53:05,342 : state_square_error: 64.488 reward_error: 6.638
+INFO : 2021-01-23 23:53:11,387 : state_square_error: 5.158 reward_error: 1.069
+INFO : 2021-01-23 23:53:17,536 : state_square_error: 62.514 reward_error: 4.098
+INFO : 2021-01-23 23:53:23,645 : state_square_error: 333.519 reward_error: 4.067
+INFO : 2021-01-23 23:53:29,742 : state_square_error: 54.122 reward_error: -1.467
+INFO : 2021-01-23 23:53:35,893 : state_square_error: 38.704 reward_error: 2.768
+INFO : 2021-01-23 23:53:41,993 : state_square_error: 13.840 reward_error: -0.134
+INFO : 2021-01-23 23:53:48,045 : episode: 5 score: -124.6 100 games avg: -124.6 steps 1000 
+INFO : 2021-01-23 23:54:11,816 : state_square_error: 32.370 reward_error: -2.594
+INFO : 2021-01-23 23:54:17,959 : state_square_error: 40.547 reward_error: 1.657
+INFO : 2021-01-23 23:54:24,144 : state_square_error: 25.404 reward_error: 0.176
+INFO : 2021-01-23 23:54:30,219 : state_square_error: 25.473 reward_error: -1.391
+INFO : 2021-01-23 23:54:36,321 : state_square_error: 74.595 reward_error: 0.003
+INFO : 2021-01-23 23:54:42,440 : state_square_error: 47.934 reward_error: 4.939
+INFO : 2021-01-23 23:54:48,614 : state_square_error: 68.205 reward_error: 2.466
+INFO : 2021-01-23 23:54:54,825 : state_square_error: 20.672 reward_error: 7.277
+INFO : 2021-01-23 23:55:00,950 : state_square_error: 118.831 reward_error: 3.502
+INFO : 2021-01-23 23:55:07,131 : state_square_error: 40.621 reward_error: 6.364
+INFO : 2021-01-23 23:55:13,270 : episode: 6 score: -183.1 100 games avg: -183.1 steps 1000 
+INFO : 2021-01-23 23:55:40,866 : state_square_error: 28.083 reward_error: 0.290
+INFO : 2021-01-23 23:55:47,113 : state_square_error: 44.261 reward_error: 0.156
+INFO : 2021-01-23 23:55:53,215 : state_square_error: 98.621 reward_error: 1.297
+INFO : 2021-01-23 23:55:59,256 : state_square_error: 47.560 reward_error: 4.650
+INFO : 2021-01-23 23:56:05,298 : state_square_error: 73.220 reward_error: 4.184
+INFO : 2021-01-23 23:56:11,447 : state_square_error: 63.981 reward_error: 5.550
+INFO : 2021-01-23 23:56:17,712 : state_square_error: 22.833 reward_error: 2.874
+INFO : 2021-01-23 23:56:23,841 : state_square_error: 99.415 reward_error: 3.766
+INFO : 2021-01-23 23:56:30,093 : state_square_error: 20.053 reward_error: -0.190
+INFO : 2021-01-23 23:56:36,222 : state_square_error: 26.525 reward_error: -0.701
+INFO : 2021-01-23 23:56:42,337 : episode: 7 score: -145.7 100 games avg: -145.7 steps 1000 
+INFO : 2021-01-23 23:57:14,354 : state_square_error: 31.132 reward_error: 0.070
+INFO : 2021-01-23 23:57:20,575 : state_square_error: 21.310 reward_error: -0.522
+INFO : 2021-01-23 23:57:26,725 : state_square_error: 11.814 reward_error: 5.662
+INFO : 2021-01-23 23:57:32,805 : state_square_error: 8.106 reward_error: 0.725
+INFO : 2021-01-23 23:57:38,918 : state_square_error: 50.818 reward_error: -0.031
+INFO : 2021-01-23 23:57:45,001 : state_square_error: 21.477 reward_error: 6.483
+INFO : 2021-01-23 23:57:51,159 : state_square_error: 51.313 reward_error: 2.209
+INFO : 2021-01-23 23:57:57,361 : state_square_error: 86.924 reward_error: 3.536
+INFO : 2021-01-23 23:58:03,524 : state_square_error: 36.216 reward_error: 0.874
+INFO : 2021-01-23 23:58:09,733 : state_square_error: 25.356 reward_error: 0.831
+INFO : 2021-01-23 23:58:15,866 : episode: 8 score: -160.1 100 games avg: -160.1 steps 1000 
+INFO : 2021-01-23 23:58:52,104 : state_square_error: 4.855 reward_error: 0.580
+INFO : 2021-01-23 23:58:58,257 : state_square_error: 36.473 reward_error: 0.944
+INFO : 2021-01-23 23:59:04,385 : state_square_error: 14.740 reward_error: 8.293
+INFO : 2021-01-23 23:59:10,440 : state_square_error: 16.382 reward_error: 4.371
+INFO : 2021-01-23 23:59:16,488 : state_square_error: 70.292 reward_error: 9.473
+INFO : 2021-01-23 23:59:22,533 : state_square_error: 54.078 reward_error: 1.647
+INFO : 2021-01-23 23:59:28,802 : state_square_error: 15.518 reward_error: 5.173
+INFO : 2021-01-23 23:59:34,965 : state_square_error: 85.667 reward_error: -1.314
+INFO : 2021-01-23 23:59:41,068 : state_square_error: 36.949 reward_error: 3.445
+INFO : 2021-01-23 23:59:47,182 : state_square_error: 39.092 reward_error: 0.949
+INFO : 2021-01-23 23:59:53,295 : episode: 9 score: -144.4 100 games avg: -144.4 steps 1000 
+INFO : 2021-01-24 01:51:54,305 : method: Model Predictive Contorol
+INFO : 2021-01-24 01:51:54,306 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-24 01:51:54,372 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 01:51:54,372 : mpc_function policy
+INFO : 2021-01-24 01:51:54,372 : policy
+INFO : 2021-01-24 01:51:54,541 : state_square_error: 1.463 reward_error: 1.686
+INFO : 2021-01-24 01:52:23,822 : method: Model Predictive Contorol
+INFO : 2021-01-24 01:52:23,823 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-24 01:52:23,906 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 01:52:23,906 : mpc_function policy-kl
+INFO : 2021-01-24 01:52:23,906 : policy-kl
+INFO : 2021-01-24 01:52:24,926 : state_square_error: 0.779 reward_error: 3.133
+INFO : 2021-01-24 01:52:44,544 : method: Model Predictive Contorol
+INFO : 2021-01-24 01:52:44,544 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-24 01:52:44,612 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 01:52:44,612 : mpc_function policy-kl
+INFO : 2021-01-24 01:52:44,612 : policy-kl
+INFO : 2021-01-24 01:52:45,413 : state_square_error: 0.947 reward_error: 3.739
+INFO : 2021-01-24 01:54:05,143 : state_square_error: 0.599 reward_error: 2.233
+INFO : 2021-01-24 01:55:26,640 : state_square_error: 1.812 reward_error: 2.103
+INFO : 2021-01-24 19:34:43,374 : method: Model Predictive Contorol
+INFO : 2021-01-24 19:34:43,375 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-24 19:34:43,446 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 19:34:43,446 : mpc_function policy
+INFO : 2021-01-24 19:34:43,446 : policy
+INFO : 2021-01-24 19:34:43,604 : state_square_error: 1.827 reward_error: 4.872
+INFO : 2021-01-24 19:35:59,263 : method: Model Predictive Contorol
+INFO : 2021-01-24 19:35:59,263 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-24 19:35:59,332 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 19:35:59,332 : mpc_function policy
+INFO : 2021-01-24 19:35:59,332 : policy
+INFO : 2021-01-24 19:35:59,499 : state_square_error: 1.113 reward_error: 2.174
+INFO : 2021-01-24 19:37:19,922 : method: Model Predictive Contorol
+INFO : 2021-01-24 19:37:19,922 : parameter n_steps: 10 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-01-24 19:37:19,977 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 19:37:19,977 : mpc_function policy
+INFO : 2021-01-24 19:37:19,977 : policy
+INFO : 2021-01-24 19:38:42,908 : method: Model Predictive Contorol
+INFO : 2021-01-24 19:38:42,908 : parameter n_steps: 10 ensemble_size: 5 env: Ant-v2
+INFO : 2021-01-24 19:38:43,048 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 19:38:43,049 : mpc_function policy
+INFO : 2021-01-24 19:38:43,049 : policy
+INFO : 2021-01-24 19:38:43,232 : state_square_error: 7.435 reward_error: -0.156
+INFO : 2021-01-24 19:39:24,890 : method: Model Predictive Contorol
+INFO : 2021-01-24 19:39:24,890 : parameter n_steps: 10 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-24 19:39:24,951 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-24 19:39:24,951 : mpc_function policy
+INFO : 2021-01-24 19:39:24,952 : policy
+INFO : 2021-01-24 19:39:25,108 : state_square_error: 0.755 reward_error: -7.863
+INFO : 2021-01-24 23:35:10,172 : method: Soft-Actor Critic
+INFO : 2021-01-24 23:35:10,173 : parameter n_steps: 10 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-01-24 23:35:10,229 : mpc_function policy
+INFO : 2021-01-24 23:35:10,229 : policy
+INFO : 2021-01-24 23:35:10,701 : episode: 0 score: 15.0 100 games avg: 15.0 steps 16 
+INFO : 2021-01-24 23:35:10,951 : episode: 1 score: 14.0 100 games avg: 14.0 steps 15 
+INFO : 2021-01-24 23:35:11,184 : episode: 2 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-01-24 23:35:11,434 : episode: 3 score: 14.0 100 games avg: 14.0 steps 15 
+INFO : 2021-01-24 23:35:11,718 : episode: 4 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-01-24 23:35:11,951 : episode: 5 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-01-24 23:35:12,218 : episode: 6 score: 15.0 100 games avg: 15.0 steps 16 
+INFO : 2021-01-24 23:35:12,467 : episode: 7 score: 14.0 100 games avg: 14.0 steps 15 
+INFO : 2021-01-24 23:35:12,751 : episode: 8 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-01-24 23:35:13,051 : episode: 9 score: 17.0 100 games avg: 17.0 steps 18 
+INFO : 2021-01-24 23:35:21,109 : method: Soft-Actor Critic
+INFO : 2021-01-24 23:35:21,110 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-01-24 23:35:21,166 : mpc_function policy
+INFO : 2021-01-24 23:35:21,166 : policy
+INFO : 2021-01-24 23:35:21,501 : episode: 0 score: 14.0 100 games avg: 14.0 steps 15 
+INFO : 2021-01-24 23:35:21,784 : episode: 1 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-01-24 23:35:22,034 : episode: 2 score: 14.0 100 games avg: 14.0 steps 15 
+INFO : 2021-01-24 23:35:22,268 : episode: 3 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-01-24 23:35:22,550 : episode: 4 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-01-24 23:35:22,800 : episode: 5 score: 14.0 100 games avg: 14.0 steps 15 
+INFO : 2021-01-24 23:35:23,033 : episode: 6 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-01-24 23:35:23,267 : episode: 7 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-01-24 23:35:23,550 : episode: 8 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-01-24 23:35:23,783 : episode: 9 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-01-24 23:35:24,050 : episode: 10 score: 15.0 100 games avg: 15.0 steps 16 
+INFO : 2021-01-24 23:35:24,350 : episode: 11 score: 17.0 100 games avg: 17.0 steps 18 
+INFO : 2021-01-24 23:35:24,650 : episode: 12 score: 17.0 100 games avg: 17.0 steps 18 
+INFO : 2021-01-24 23:35:24,900 : episode: 13 score: 14.0 100 games avg: 14.0 steps 15 
+INFO : 2021-01-24 23:35:25,200 : episode: 14 score: 17.0 100 games avg: 17.0 steps 18 
+INFO : 2021-01-24 23:35:25,500 : episode: 15 score: 17.0 100 games avg: 17.0 steps 18 
+INFO : 2021-01-24 23:35:26,033 : episode: 16 score: 31.0 100 games avg: 31.0 steps 32 
+INFO : 2021-01-24 23:35:26,366 : episode: 17 score: 19.0 100 games avg: 19.0 steps 20 
+INFO : 2021-01-24 23:35:26,530 : episode: 18 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-01-24 23:35:26,707 : episode: 19 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-01-24 23:35:27,018 : episode: 20 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-01-24 23:35:27,181 : episode: 21 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-01-24 23:35:27,428 : episode: 22 score: 12.0 100 games avg: 12.0 steps 13 
+INFO : 2021-01-24 23:35:27,739 : episode: 23 score: 15.0 100 games avg: 15.0 steps 16 
+INFO : 2021-01-24 23:35:27,862 : episode: 24 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-01-24 23:35:28,040 : episode: 25 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-01-24 23:35:28,222 : episode: 26 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-01-24 23:35:28,441 : episode: 27 score: 10.0 100 games avg: 10.0 steps 11 
+INFO : 2021-01-24 23:35:28,641 : episode: 28 score: 9.0 100 games avg: 9.0 steps 10 
+INFO : 2021-01-24 23:35:28,766 : episode: 29 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-01-24 23:35:28,950 : episode: 30 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-01-24 23:35:29,108 : episode: 31 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-01-24 23:35:29,309 : episode: 32 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-01-24 23:35:29,507 : episode: 33 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-01-24 23:35:29,674 : episode: 34 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-01-24 23:35:30,036 : episode: 35 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-01-24 23:35:30,256 : episode: 36 score: 10.0 100 games avg: 10.0 steps 11 
+INFO : 2021-01-24 23:35:30,559 : episode: 37 score: 12.0 100 games avg: 12.0 steps 13 
+INFO : 2021-01-24 23:35:31,149 : episode: 38 score: 20.0 100 games avg: 20.0 steps 21 
+INFO : 2021-01-24 23:35:31,461 : episode: 39 score: 12.0 100 games avg: 12.0 steps 13 
+INFO : 2021-01-24 23:35:31,795 : episode: 40 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-01-24 23:35:33,506 : episode: 41 score: 77.0 100 games avg: 77.0 steps 78 
+INFO : 2021-01-24 23:35:33,927 : episode: 42 score: 21.0 100 games avg: 21.0 steps 22 
+INFO : 2021-01-24 23:35:34,160 : episode: 43 score: 11.0 100 games avg: 11.0 steps 12 
+INFO : 2021-01-24 23:35:34,721 : episode: 44 score: 18.0 100 games avg: 18.0 steps 19 
+INFO : 2021-01-24 23:35:52,412 : method: Soft-Actor Critic
+INFO : 2021-01-24 23:35:52,413 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-01-24 23:35:52,493 : mpc_function policy
+INFO : 2021-01-24 23:35:52,493 : policy
+INFO : 2021-01-24 23:35:52,998 : episode: 0 score: 19.0 100 games avg: 19.0 steps 20 
+INFO : 2021-01-24 23:35:53,531 : episode: 1 score: 31.0 100 games avg: 31.0 steps 32 
+INFO : 2021-01-24 23:35:54,081 : episode: 2 score: 32.0 100 games avg: 32.0 steps 33 
+INFO : 2021-01-24 23:35:54,631 : episode: 3 score: 32.0 100 games avg: 32.0 steps 33 
+INFO : 2021-01-24 23:35:55,130 : episode: 4 score: 29.0 100 games avg: 29.0 steps 30 
+INFO : 2021-01-24 23:35:55,764 : episode: 5 score: 37.0 100 games avg: 37.0 steps 38 
+INFO : 2021-01-24 23:36:02,029 : method: Soft-Actor Critic
+INFO : 2021-01-24 23:36:02,030 : parameter n_steps: 100 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-24 23:36:02,112 : mpc_function policy
+INFO : 2021-01-24 23:36:02,112 : policy
+INFO : 2021-01-24 23:36:02,856 : episode: 0 score: 28.1 100 games avg: 28.1 steps 24 
+INFO : 2021-01-24 23:36:02,944 : episode: 1 score: 25.9 100 games avg: 25.9 steps 26 
+INFO : 2021-01-24 23:36:03,055 : episode: 2 score: 25.4 100 games avg: 25.4 steps 28 
+INFO : 2021-01-24 23:36:03,138 : episode: 3 score: 26.3 100 games avg: 26.3 steps 27 
+INFO : 2021-01-24 23:36:03,221 : episode: 4 score: 28.1 100 games avg: 28.1 steps 26 
+INFO : 2021-01-24 23:36:03,301 : episode: 5 score: 29.3 100 games avg: 29.3 steps 27 
+INFO : 2021-01-24 23:36:03,409 : episode: 6 score: 26.0 100 games avg: 26.0 steps 27 
+INFO : 2021-01-24 23:36:03,487 : episode: 7 score: 26.8 100 games avg: 26.8 steps 27 
+INFO : 2021-01-24 23:36:03,565 : episode: 8 score: 27.6 100 games avg: 27.6 steps 26 
+INFO : 2021-01-24 23:36:03,821 : episode: 9 score: 27.5 100 games avg: 27.5 steps 26 
+INFO : 2021-01-24 23:36:04,794 : episode: 10 score: 90.7 100 games avg: 90.7 steps 52 
+INFO : 2021-01-24 23:36:05,143 : episode: 11 score: 17.1 100 games avg: 17.1 steps 18 
+INFO : 2021-01-24 23:36:05,445 : episode: 12 score: 12.9 100 games avg: 12.9 steps 14 
+INFO : 2021-01-24 23:36:05,626 : episode: 13 score: 6.4 100 games avg: 6.4 steps 9 
+INFO : 2021-01-24 23:36:05,810 : episode: 14 score: 6.6 100 games avg: 6.6 steps 9 
+INFO : 2021-01-24 23:36:06,144 : episode: 15 score: 11.1 100 games avg: 11.1 steps 16 
+INFO : 2021-01-24 23:36:06,435 : episode: 16 score: 12.1 100 games avg: 12.1 steps 13 
+INFO : 2021-01-24 23:36:06,724 : episode: 17 score: 7.5 100 games avg: 7.5 steps 11 
+INFO : 2021-01-24 23:36:07,331 : episode: 18 score: 41.0 100 games avg: 41.0 steps 24 
+INFO : 2021-01-24 23:36:07,610 : episode: 19 score: 10.1 100 games avg: 10.1 steps 12 
+INFO : 2021-01-24 23:36:07,856 : episode: 20 score: 13.8 100 games avg: 13.8 steps 12 
+INFO : 2021-01-24 23:36:08,375 : episode: 21 score: 42.6 100 games avg: 42.6 steps 25 
+INFO : 2021-01-24 23:36:09,057 : episode: 22 score: 53.1 100 games avg: 53.1 steps 33 
+INFO : 2021-01-24 23:36:18,393 : method: Soft-Actor Critic
+INFO : 2021-01-24 23:36:18,393 : parameter n_steps: 100 ensemble_size: 5 env: Ant-v2
+INFO : 2021-01-24 23:36:18,537 : mpc_function policy
+INFO : 2021-01-24 23:36:18,537 : policy
+INFO : 2021-01-24 23:36:54,869 : method: Soft-Actor Critic
+INFO : 2021-01-24 23:36:54,869 : parameter n_steps: 100 ensemble_size: 5 env: Ant-v2
+INFO : 2021-01-24 23:36:55,010 : mpc_function policy
+INFO : 2021-01-24 23:36:55,011 : policy
+INFO : 2021-01-24 23:37:04,250 : episode: 0 score: 209.2 100 games avg: 209.2 steps 432 
+INFO : 2021-01-24 23:37:04,894 : episode: 1 score: -20.4 100 games avg: -20.4 steps 20 
+INFO : 2021-01-24 23:37:05,372 : episode: 2 score: 8.2 100 games avg: 8.2 steps 15 
+INFO : 2021-01-24 23:37:06,094 : episode: 3 score: -7.5 100 games avg: -7.5 steps 22 
+INFO : 2021-01-24 23:37:07,931 : episode: 4 score: -29.3 100 games avg: -29.3 steps 53 
+INFO : 2021-01-24 23:37:08,494 : episode: 5 score: -15.4 100 games avg: -15.4 steps 18 
+INFO : 2021-01-24 23:37:36,032 : method: Soft-Actor Critic
+INFO : 2021-01-24 23:37:36,033 : parameter n_steps: 100 ensemble_size: 5 env: Ant-v2
+INFO : 2021-01-24 23:37:36,184 : mpc_function policy
+INFO : 2021-01-24 23:37:36,184 : policy
+INFO : 2021-01-24 23:37:41,651 : episode: 0 score: 271.0 100 games avg: 271.0 steps 312 
+INFO : 2021-01-24 23:37:42,542 : episode: 1 score: -27.8 100 games avg: -27.8 steps 26 
+INFO : 2021-01-25 11:33:43,661 : method: Model Predictive Contorol
+INFO : 2021-01-25 11:33:43,662 : parameter n_steps: 100 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-25 11:33:43,734 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-25 11:33:43,734 : mpc_function policy-kl2
+INFO : 2021-01-25 11:33:43,734 : policy-kl2
+INFO : 2021-01-25 11:33:50,288 : episode: 0 score: 20.9 100 games avg: 20.9 steps 31 
+INFO : 2021-01-25 11:34:04,043 : method: Model Predictive Contorol
+INFO : 2021-01-25 11:34:04,043 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-25 11:34:04,119 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-25 11:34:04,119 : mpc_function policy-kl2
+INFO : 2021-01-25 11:34:04,120 : policy-kl2
+INFO : 2021-01-25 13:27:33,234 : method: Model Predictive Contorol
+INFO : 2021-01-25 13:27:33,235 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-25 13:27:33,396 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-25 13:27:33,397 : mpc_function policy-kl2
+INFO : 2021-01-25 13:27:33,397 : policy-kl2
+INFO : 2021-01-25 13:33:58,520 : episode: 0 score: -156.4 100 games avg: -156.4 steps 1000 
+INFO : 2021-01-25 13:41:14,465 : episode: 1 score: -149.5 100 games avg: -149.5 steps 1000 
+INFO : 2021-01-25 15:09:00,590 : method: Model Predictive Contorol
+INFO : 2021-01-25 15:09:00,591 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-25 15:09:00,688 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-25 15:09:00,688 : mpc_function policy-kl2
+INFO : 2021-01-25 15:09:00,688 : policy-kl2
+INFO : 2021-01-25 15:14:35,421 : episode: 0 score: -156.5 100 games avg: -156.5 steps 1000 
+INFO : 2021-01-25 15:20:22,143 : episode: 1 score: -253.9 100 games avg: -253.9 steps 1000 
+INFO : 2021-01-25 15:26:13,017 : episode: 2 score: -188.4 100 games avg: -188.4 steps 1000 
+INFO : 2021-01-25 15:32:08,917 : episode: 3 score: -169.6 100 games avg: -169.6 steps 1000 
+INFO : 2021-01-25 15:38:10,195 : episode: 4 score: -45.8 100 games avg: -45.8 steps 1000 
+INFO : 2021-01-25 15:44:17,923 : episode: 5 score: -109.6 100 games avg: -109.6 steps 1000 
+INFO : 2021-01-25 15:50:28,060 : episode: 6 score: -24.0 100 games avg: -24.0 steps 1000 
+INFO : 2021-01-25 15:56:47,150 : episode: 7 score: -182.3 100 games avg: -182.3 steps 1000 
+INFO : 2021-01-25 16:03:06,865 : episode: 8 score: -276.3 100 games avg: -276.3 steps 1000 
+INFO : 2021-01-25 16:09:33,464 : episode: 9 score: -185.9 100 games avg: -185.9 steps 1000 
+INFO : 2021-01-25 16:16:01,488 : episode: 10 score: 49.4 100 games avg: 49.4 steps 1000 
+INFO : 2021-01-25 16:22:34,761 : episode: 11 score: -178.8 100 games avg: -178.8 steps 1000 
+INFO : 2021-01-25 16:29:09,319 : episode: 12 score: -157.2 100 games avg: -157.2 steps 1000 
+INFO : 2021-01-25 16:35:54,627 : episode: 13 score: -175.4 100 games avg: -175.4 steps 1000 
+INFO : 2021-01-25 16:42:42,490 : episode: 14 score: -43.6 100 games avg: -43.6 steps 1000 
+INFO : 2021-01-25 16:49:33,968 : episode: 15 score: -131.2 100 games avg: -131.2 steps 1000 
+INFO : 2021-01-25 16:56:36,941 : episode: 16 score: 48.7 100 games avg: 48.7 steps 1000 
+INFO : 2021-01-25 17:03:28,663 : episode: 17 score: -12.6 100 games avg: -12.6 steps 1000 
