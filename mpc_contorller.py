@@ -286,7 +286,7 @@ class MPCController:
                 (self.N, self.env.observation_space.shape[0])).float().to(self.device)
             model_id = self.choose_index_model(
                 state_means_, state_vars_)
-            # print(model_id.shape)
+            #print(model_id[0])
             for j in range(self.N):
                 for k in range(self.env.observation_space.shape[0]):
                     state_means[j][k] = state_means_[j][model_id[j][k]][k]

@@ -89,18 +89,17 @@ def square_mean_error(env, env_evaluate, actions, states, model_sum_reward, hori
     for i in range(horizon):
         obs, reward, done, _ = env_evaluate.step(actions[i])
         real_sum_reward += reward
-    print(obs)
-    print(states[-1])
-    state_square_error = np.square(obs - states[-1])
-    state_square_error = state_square_error.sum()
-    state_square_error /= env_evaluate.observation_space.shape[0]
-    reward_error = model_sum_reward - real_sum_reward
-    env.set_state(qpos, qvel)
-
-    logging.info('state_square_error: %.3f reward_error: %.3f',
+        if done:
+            break
+    if not done:
+        state_square_error = np.square(obs - states[-1])
+        state_square_error = state_square_error.sum()
+        state_square_error /= env_evaluate.observation_space.shape[0]
+        reward_error = model_sum_reward - real_sum_reward
+        logging.info('state_square_error: %.3f reward_error: %.3f',
                  state_square_error, reward_error)
-    #env.set_state(qpos, qvel)
-    return state_square_error, reward_error
+    env.set_state(qpos, qvel)
+    
 
 
 def set_log(s):
@@ -171,7 +170,7 @@ if __name__ == '__main__':
     num_control_samples = 100
     num_elite = 30
     grad_steps = 10
-    mpc = MPCController(agent_cuda, env, horizon=10, num_control_samples=num_control_samples, num_elite=num_elite,  agent=agent,
+    mpc = MPCController(agent_cuda, env, horizon=horizon, num_control_samples=num_control_samples, num_elite=num_elite,  agent=agent,
                         model=model, rewardmodel=rewardmodel, model_buffer=buffer)
 
     if use_mpc == 1:
@@ -218,7 +217,7 @@ if __name__ == '__main__':
                            next_state=observation_, reward=reward)
                 agent.learn()
                 score += reward
-                if steps % 100 == 0:
+                if steps % 10 == 0:
                     print(steps)
                 observation = observation_
                 env.render()
@@ -234,16 +233,13 @@ if __name__ == '__main__':
                                reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
-                print(observation_)
-                time.sleep(2)
-                print(observation_)
                 agent.learn()
                 #env.render()
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
-                    square_mean_error(env, env_evaluate, actions,
-                                      states, sum_rewards, horizon, steps)
+                    #square_mean_error(env, env_evaluate, actions,
+                                      #states, sum_rewards, horizon, steps)
 
                     print(steps)
 
