@@ -425,7 +425,7 @@ class MPCController:
         '''next_means(torch array): (self.N, en_size,dim_state)'''
         '''next_vars(torch array): (self.N, en_size,dim_state)'''
         en_size = self.model.ensemble_size
-        next_sigmas = torch.rsqrt(next_vars)
+        next_sigmas = torch.sqrt(next_vars)
         space_dim = 1
         # first calc mu
         mu = torch.zeros((self.N, en_size, space_dim)).float().to(self.device)
@@ -471,7 +471,7 @@ class MPCController:
         '''next_vars(torch array): (self.N, en_size,dim_state)'''
 
         en_size = self.model.ensemble_size
-        next_sigmas = torch.rsqrt(next_vars)
+        next_sigmas = torch.sqrt(next_vars)
         space_dim = self.env.observation_space.shape[0]
         # first calc mu
         mu = torch.zeros((self.N, en_size, space_dim)).float().to(self.device)
@@ -516,7 +516,7 @@ class MPCController:
         '''next_vars(torch array): (self.N, en_size,dim_state)'''
 
         en_size = self.model.ensemble_size
-        next_sigmas = torch.rsqrt(next_vars)
+        next_sigmas = torch.sqrt(next_vars)
         space_dim = self.env.observation_space.shape[0]
         # first calc mu
         mu = torch.zeros((self.N, en_size, space_dim)).float().to(self.device)
@@ -557,7 +557,7 @@ class MPCController:
         # print(kl_result_sum)
         model_id = torch.zeros((self.N)).long().to(self.device)
         model_id[:] = torch.argmin(kl_result_sum[:, :], axis=1)
-        # print(model_id)
+        print(model_id)
         return model_id
 
     '''PETS reward_function '''
