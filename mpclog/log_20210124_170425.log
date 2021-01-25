@@ -353,3 +353,49 @@ INFO : 2021-01-25 10:14:13,726 : state_square_error: 1.200 reward_error: 38.250
 INFO : 2021-01-25 10:17:43,147 : state_square_error: 2.820 reward_error: 20.239
 INFO : 2021-01-25 10:21:14,787 : state_square_error: 2.679 reward_error: 31.440
 INFO : 2021-01-25 10:24:45,150 : state_square_error: 0.710 reward_error: 29.885
+INFO : 2021-01-25 10:28:15,243 : state_square_error: 5.777 reward_error: 29.715
+INFO : 2021-01-25 10:31:45,110 : state_square_error: 0.641 reward_error: 26.944
+INFO : 2021-01-25 10:35:14,105 : state_square_error: 1.127 reward_error: 32.573
+INFO : 2021-01-25 10:38:43,787 : state_square_error: 4.290 reward_error: 31.514
+INFO : 2021-01-25 10:42:15,180 : state_square_error: 0.496 reward_error: 39.440
+INFO : 2021-01-25 10:45:42,333 : episode: 53 score: 427.2 100 games avg: 427.2 steps 1000 
+INFO : 2021-01-25 10:46:26,955 : state_square_error: 0.634 reward_error: 45.387
+INFO : 2021-01-25 10:49:56,200 : state_square_error: 1.439 reward_error: 12.627
+INFO : 2021-01-25 10:53:26,175 : state_square_error: 0.978 reward_error: 25.587
+INFO : 2021-01-25 10:56:58,051 : state_square_error: 1.351 reward_error: 33.970
+INFO : 2021-01-25 11:00:27,276 : state_square_error: 0.928 reward_error: 33.689
+INFO : 2021-01-25 11:03:56,954 : state_square_error: 1.596 reward_error: 18.414
+INFO : 2021-01-25 11:07:26,385 : state_square_error: 0.471 reward_error: 13.394
+INFO : 2021-01-25 11:10:56,073 : state_square_error: 1.360 reward_error: 26.256
+INFO : 2021-01-25 11:14:26,180 : state_square_error: 1.327 reward_error: 25.865
+INFO : 2021-01-25 11:17:57,892 : state_square_error: 1.402 reward_error: 41.309
+INFO : 2021-01-25 11:21:25,889 : episode: 54 score: 472.3 100 games avg: 472.3 steps 1000 
+INFO : 2021-01-25 11:22:11,835 : state_square_error: 1.311 reward_error: 45.065
+INFO : 2021-01-25 11:25:41,436 : state_square_error: 1.437 reward_error: 27.633
+INFO : 2021-01-25 11:29:10,795 : state_square_error: 0.803 reward_error: 29.533
+INFO : 2021-01-25 11:32:40,934 : state_square_error: 3.850 reward_error: 32.725
+INFO : 2021-01-25 11:36:10,618 : state_square_error: 0.789 reward_error: 15.612
+INFO : 2021-01-25 11:43:10,951 : state_square_error: 2.403 reward_error: 46.860
+INFO : 2021-01-25 11:46:40,496 : state_square_error: 1.492 reward_error: 31.694
+INFO : 2021-01-25 11:50:10,529 : state_square_error: 2.013 reward_error: 36.588
+INFO : 2021-01-25 11:53:39,879 : state_square_error: 1.724 reward_error: 42.972
+INFO : 2021-01-25 11:57:06,791 : episode: 55 score: 578.1 100 games avg: 578.1 steps 1000 
+INFO : 2021-01-25 11:57:55,002 : state_square_error: 2.779 reward_error: 71.728
+INFO : 2021-01-25 12:01:24,813 : state_square_error: 0.983 reward_error: 39.835
+INFO : 2021-01-25 12:04:54,402 : state_square_error: 0.473 reward_error: 8.431
+INFO : 2021-01-25 12:08:24,591 : state_square_error: 1.273 reward_error: 20.549
+INFO : 2021-01-25 12:11:55,646 : state_square_error: 0.550 reward_error: 4.622
+INFO : 2021-01-25 12:15:26,899 : state_square_error: 1.491 reward_error: 37.211
+INFO : 2021-01-25 12:18:56,925 : state_square_error: 1.020 reward_error: 22.577
+INFO : 2021-01-25 12:22:25,936 : state_square_error: 1.034 reward_error: 15.278
+INFO : 2021-01-25 12:25:55,708 : state_square_error: 1.787 reward_error: 22.962
+INFO : 2021-01-25 12:29:26,196 : state_square_error: 0.900 reward_error: 27.444
+INFO : 2021-01-25 12:32:55,431 : episode: 56 score: 621.4 100 games avg: 621.4 steps 1000 
+INFO : 2021-01-25 12:33:44,914 : state_square_error: 1.547 reward_error: 26.415
+INFO : 2021-01-25 12:37:14,542 : state_square_error: 1.153 reward_error: 41.042
+INFO : 2021-01-25 12:40:43,748 : state_square_error: 0.748 reward_error: 37.574
+INFO : 2021-01-25 12:44:15,313 : state_square_error: 0.791 reward_error: 20.591
+INFO : 2021-01-25 12:47:45,679 : state_square_error: 1.152 reward_error: 28.480
+INFO : 2021-01-25 12:51:14,467 : state_square_error: 0.738 reward_error: 26.576
+INFO : 2021-01-25 12:54:44,212 : state_square_error: 1.280 reward_error: 32.594
+INFO : 2021-01-25 12:58:14,032 : state_square_error: 1.429 reward_error: 45.501

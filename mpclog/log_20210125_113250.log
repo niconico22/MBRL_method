@@ -1,0 +1,2 @@
+INFO : 2021-01-25 11:32:50,482 : method: Model Predictive Contorol
+INFO : 2021-01-25 11:32:50,482 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
