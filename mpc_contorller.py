@@ -452,6 +452,7 @@ class MPCController:
         for i in range(en_size):
             next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 0.5)
             next_means[:, i, :] = torch.pow(next_means[:, i, :], 0.5)
+            sigma[:, i, :] = torch.pow(sigma[:, i, :], 0.5)
 
         # calc kl div
         kl_result = torch.zeros(
@@ -459,10 +460,10 @@ class MPCController:
 
         kl_result[:, :, :] = self.calc_kl(
             next_means[:, :, :], next_sigmas[:, :, :], mu[:, :, :], sigma[:, :, :])
+
         rewardmodel_id = torch.zeros(
             (self.N, space_dim)).long().to(self.device)
         rewardmodel_id[:, :] = torch.argmin(kl_result[:, :, :], axis=1)
-
         return rewardmodel_id
 
     def choose_index_model(self, next_means, next_vars):
@@ -497,6 +498,7 @@ class MPCController:
         for i in range(en_size):
             next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 0.5)
             next_means[:, i, :] = torch.pow(next_means[:, i, :], 0.5)
+            sigma[:, i, :] = torch.pow(sigma[:, i, :], 0.5)
 
         # calc kl div
         kl_result = torch.zeros(
@@ -541,7 +543,7 @@ class MPCController:
         for i in range(en_size):
             next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 0.5)
             next_means[:, i, :] = torch.pow(next_means[:, i, :], 0.5)
-
+            sigma[:, i, :] = torch.pow(sigma[:, i, :], 0.5)
         # calc kl div
         kl_result = torch.zeros(
             (self.N, en_size, space_dim)).float().to(self.device)
@@ -555,7 +557,7 @@ class MPCController:
         # print(kl_result_sum)
         model_id = torch.zeros((self.N)).long().to(self.device)
         model_id[:] = torch.argmin(kl_result_sum[:, :], axis=1)
-        #print(model_id)
+        # print(model_id)
         return model_id
 
     '''PETS reward_function '''
