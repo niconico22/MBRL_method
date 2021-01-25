@@ -1,0 +1,12 @@
+INFO : 2021-01-25 14:05:25,361 : method: Model Predictive Contorol
+INFO : 2021-01-25 14:05:25,362 : parameter n_steps: 200 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-25 14:05:29,038 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-25 14:05:29,039 : mpc_function policy
+INFO : 2021-01-25 14:05:29,039 : policy
+INFO : 2021-01-25 14:05:29,375 : state_square_error: 1.385 reward_error: -8.122
+INFO : 2021-01-25 14:05:35,019 : episode: 0 score: 17.0 100 games avg: 17.0 steps 19 
+INFO : 2021-01-25 14:05:35,476 : state_square_error: 0.240 reward_error: 4.542
+INFO : 2021-01-25 14:05:41,154 : episode: 1 score: 16.8 100 games avg: 16.8 steps 19 
+INFO : 2021-01-25 14:05:41,698 : state_square_error: 0.181 reward_error: 4.190
+INFO : 2021-01-25 14:05:47,243 : episode: 2 score: 16.9 100 games avg: 16.9 steps 19 
+INFO : 2021-01-25 14:05:47,666 : state_square_error: 0.131 reward_error: 5.042

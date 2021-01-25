@@ -250,6 +250,8 @@ if __name__ == '__main__':
                     square_mean_error(env, env_evaluate, actions,
                     states, sum_rewards, horizon, steps)
 
+                    
+
                     print(steps)
 
                 steps += 1

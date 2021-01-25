@@ -854,6 +854,7 @@ INFO : 2020-12-16 03:47:49,152 : mpc horizon: 10 mpc_samples: 500
 INFO : 2020-12-17 16:53:19,955 : method: Model Predictive Contorol
 INFO : 2020-12-17 16:53:19,956 : parameter n_steps: 50 ensemble_size: 3 env: HalfCheetah-v2
 INFO : 2020-12-17 16:53:20,012 : mpc horizon: 10 mpc_samples: 100
+<<<<<<< Updated upstream
 INFO : 2021-01-20 22:17:42,063 : method: Model Predictive Contorol
 INFO : 2021-01-20 22:17:42,064 : parameter n_steps: 10 ensemble_size: 5 env: HalfCheetah-v2
 INFO : 2021-01-20 22:17:42,159 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
@@ -1527,3 +1528,20 @@ INFO : 2021-01-25 16:42:42,490 : episode: 14 score: -43.6 100 games avg: -43.6 s
 INFO : 2021-01-25 16:49:33,968 : episode: 15 score: -131.2 100 games avg: -131.2 steps 1000 
 INFO : 2021-01-25 16:56:36,941 : episode: 16 score: 48.7 100 games avg: 48.7 steps 1000 
 INFO : 2021-01-25 17:03:28,663 : episode: 17 score: -12.6 100 games avg: -12.6 steps 1000 
+=======
+INFO : 2021-01-22 01:55:56,888 : method: Model Predictive Contorol
+INFO : 2021-01-22 01:55:56,889 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 01:55:59,633 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 01:55:59,633 : mpc_function policy
+INFO : 2021-01-22 01:55:59,633 : policy
+INFO : 2021-01-22 02:00:33,464 : method: Model Predictive Contorol
+INFO : 2021-01-22 02:00:33,465 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-22 02:00:36,296 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-22 02:00:36,296 : mpc_function policy
+INFO : 2021-01-22 02:00:36,296 : policy
+INFO : 2021-01-22 02:00:36,490 : state_square_error: 1.963 reward_error: 2.855
+INFO : 2021-01-22 02:00:54,952 : state_square_error: 1.226 reward_error: 1.657
+INFO : 2021-01-22 02:01:13,459 : state_square_error: 2.466 reward_error: 1.554
+INFO : 2021-01-22 02:01:32,650 : state_square_error: 60.199 reward_error: 2.096
+INFO : 2021-01-22 02:01:52,344 : state_square_error: 115.571 reward_error: 15.975
+>>>>>>> Stashed changes
