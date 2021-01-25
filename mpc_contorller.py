@@ -455,6 +455,7 @@ class MPCController:
             sigma[:, i, :] = torch.pow(sigma[:, i, :], 0.5)
 
         # calc kl div
+
         kl_result = torch.zeros(
             (self.N, en_size, space_dim)).float().to(self.device)
 
