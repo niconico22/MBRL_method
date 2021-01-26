@@ -1,0 +1,17 @@
+INFO : 2021-01-26 12:36:16,597 : method: Model Predictive Contorol
+INFO : 2021-01-26 12:36:16,598 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-26 12:36:19,520 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-26 12:36:19,520 : mpc_function policy
+INFO : 2021-01-26 12:36:19,520 : policy
+INFO : 2021-01-26 12:36:19,716 : state_square_error: 0.887 reward_error: 4.027
+INFO : 2021-01-26 12:36:39,153 : state_square_error: 1.731 reward_error: 1.785
+INFO : 2021-01-26 12:36:58,570 : state_square_error: 2.626 reward_error: 3.631
+INFO : 2021-01-26 12:37:18,377 : state_square_error: 70.524 reward_error: 8.453
+INFO : 2021-01-26 12:37:38,993 : state_square_error: 180.835 reward_error: 20.075
+INFO : 2021-01-26 12:37:59,343 : state_square_error: 13.814 reward_error: 12.774
+INFO : 2021-01-26 12:38:19,942 : state_square_error: 76.686 reward_error: 9.207
+INFO : 2021-01-26 12:38:40,356 : state_square_error: 87.857 reward_error: 19.480
+INFO : 2021-01-26 12:39:00,873 : state_square_error: 86.951 reward_error: 14.333
+INFO : 2021-01-26 12:39:21,095 : state_square_error: 13.661 reward_error: 10.925
+INFO : 2021-01-26 12:39:42,699 : episode: 0 score: -207.3 100 games avg: -207.3 steps 1000 
+INFO : 2021-01-26 12:39:43,292 : state_square_error: 8.112 reward_error: -1.305
