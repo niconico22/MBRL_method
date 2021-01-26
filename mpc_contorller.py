@@ -557,7 +557,7 @@ class MPCController:
         # print(kl_result_sum)
         model_id = torch.zeros((self.N)).long().to(self.device)
         model_id[:] = torch.argmin(kl_result_sum[:, :], axis=1)
-        print(model_id)
+        # print(model_id)
         return model_id
 
     '''PETS reward_function '''

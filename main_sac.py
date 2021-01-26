@@ -242,7 +242,7 @@ if __name__ == '__main__':
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
                 agent.learn()
-                print(steps)
+                
                 # env.render()
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
