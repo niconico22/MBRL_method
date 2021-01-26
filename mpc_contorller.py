@@ -396,6 +396,138 @@ class MPCController:
 
         return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
 
+    def get_action_policy_kl_3(self, cur_state):
+        '''states(numpy array): (dim_state)'''
+        cur_state = torch.from_numpy(cur_state).float().clone()
+        # 初期化
+        # model rewardmodel 共にランダムが良い
+        # reward +sum u_k を用いて不確実さを組み込む
+        all_samples = torch.zeros(
+            (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
+        all_states = torch.zeros(
+            (self.N, self.horizon, self.env.observation_space.shape[0])).float().clone().to(self.device)
+        for i in range(self.N):
+            all_states[i][0] = cur_state
+        model_id = torch.randint(
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+
+        rewardmodel_id = torch.randint(
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+
+        rewards_ = torch.zeros((self.N, self.horizon)).float().to(self.device)
+
+        real_rewards = torch.zeros(
+            (self.N, self.horizon)).float().to(self.device)
+
+        sum_rewards = torch.zeros(self.N).float().to(self.device)
+        real_sum_rewards = torch.zeros(self.N).float().to(self.device)
+
+        sum_uncertain = torch.zeros(
+            (self.N, self.horizon+1)).float().to(self.device)
+        for i in range(self.horizon):
+            # predict next_state
+
+            all_samples[:, i, :] = self.agent.choose_action_batch(
+                all_states[:, i, :])
+            state_means_, state_vars_ = self.model.forward_all(
+                all_states[:, i, :], all_samples[:, i, :])
+
+            state_means = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+            state_vars = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+
+            for j in range(self.N):
+                state_means[j] = state_means_[j][model_id[i][j]]
+                state_vars[j] = state_vars_[j][model_id[i][j]]
+
+            next_states = self.model.sample(
+                state_means, state_vars)
+            if i != self.horizon - 1:
+
+                all_states[:, i + 1, :] = next_states
+
+            # predict_reward
+            reward_means_, reward_vars_ = self.rewardmodel.forward_all(
+                all_states[:, i, :], all_samples[:, i, :])
+            reward_means = torch.zeros(
+                (self.N)).float().to(self.device)
+            reward_vars = torch.zeros(
+                (self.N)).float().to(self.device)
+
+            for j in range(self.N):
+
+                reward_means[j] = reward_means_[j][rewardmodel_id[i][j]]
+                reward_vars[j] = reward_vars_[j][rewardmodel_id[i][j]]
+
+            rewards = self.rewardmodel.sample(
+                reward_means, reward_vars)
+            sum_uncertain[:, i+1] = sum_uncertain[:, i] + self.calc_uncertain(
+                state_means_, state_vars_, model_id[i])
+            rewards_[:, i] = rewards - 0.01 * sum_uncertain[:, i + 1]
+            real_rewards[:, i] = rewards
+
+        sum_rewards = torch.sum(rewards_, 1)
+        real_sum_rewards = torch.sum(real_rewards, 1)
+
+        id = sum_rewards.argmax()
+        id2 = real_sum_rewards.argmax()
+        print(id, id2)
+        best_action = all_samples[id, 0, :]
+
+        sum_rewards = torch.sum(rewards_, 1)
+
+        return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
+
+    def calc_uncertain(self, next_means, next_vars, index):
+        '''next_means(torch array): (self.N, en_size,dim_state)'''
+        '''next_vars(torch array): (self.N, en_size,dim_state)'''
+        '''index : (self.N)'''
+        en_size = self.model.ensemble_size
+        next_sigmas = torch.sqrt(next_vars)
+        space_dim = self.env.observation_space.shape[0]
+
+        # first calc mu
+        mu = torch.zeros((self.N, en_size, space_dim)).float().to(self.device)
+        sigma = torch.zeros((self.N, en_size, space_dim)
+                            ).float().to(self.device)
+
+        for i in range(en_size):
+            mu[:, i, :] = torch.sum(next_means, axis=1)
+            mu[:, i, :] -= next_means[:, i, :]
+            mu[:, i, :] /= (en_size-1)
+
+        # next calc sigma
+        for i in range(en_size):
+
+            next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 2)
+            next_means[:, i, :] = torch.pow(next_means[:, i, :], 2)
+
+        for i in range(en_size):
+            sigma[:, i, :] = torch.sum(next_sigmas[:, :, :], axis=1) + torch.sum(
+                next_means[:, :, :], axis=1) - (next_sigmas[:, i, :] + next_means[:, i, :])
+            sigma[:, i, :] /= (en_size - 1)
+            sigma[:, i, :] -= torch.pow(mu[:, i, :], 2)
+
+        for i in range(en_size):
+            next_sigmas[:, i, :] = torch.pow(next_sigmas[:, i, :], 0.5)
+            next_means[:, i, :] = torch.pow(next_means[:, i, :], 0.5)
+            sigma[:, i, :] = torch.pow(sigma[:, i, :], 0.5)
+
+        kl_result = torch.zeros(
+            (self.N, en_size, space_dim)).float().to(self.device)
+
+        kl_result[:, :, :] = self.calc_kl(
+            next_means[:, :, :], next_sigmas[:, :, :], mu[:, :, :], sigma[:, :, :])
+        kl_result_sum = torch.zeros((self.N, en_size)).float().to(self.device)
+        kl_result_sum[:, :] = torch.sum(kl_result[:, :, :], axis=2)
+        kl_result_sum[:, :] /= space_dim
+        uncertain = torch.zeros(self.N).float().to(self.device)
+        for i in range(self.N):
+            uncertain[i] = kl_result_sum[i][index[i]]
+
+        return uncertain
+
     def remember(self, state, action, reward, new_state, done):
         self.agent.memory.store_transition(
             state, action, reward, new_state, done)
@@ -558,7 +690,7 @@ class MPCController:
         # print(kl_result_sum)
         model_id = torch.zeros((self.N)).long().to(self.device)
         model_id[:] = torch.argmin(kl_result_sum[:, :], axis=1)
-        print(model_id)
+        # print(model_id)
         return model_id
 
     '''PETS reward_function '''
@@ -718,7 +850,7 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action, *a = mpc.get_action_policy_kl_2(observation)
+            action, *a = mpc.get_action_policy_kl_3(observation)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_
