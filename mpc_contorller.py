@@ -26,6 +26,14 @@ class MPCController:
         self.model_buffer = model_buffer
         self.device = torch.device(
             dev_name if torch.cuda.is_available() else 'cpu')
+        self.gamma = 0.99
+        self.gamma_list = torch.ones(
+            (self.N, self.horizon+1)).float().to(self.device)
+        for i in range(self.horizon):
+            self.gamma_list[:, i + 1] = self.gamma * self.gamma_list[:, i]
+            #print(self.gamma_list[:, i], self.gamma_list[:, i+1])
+        #print(self.gamma_list[:, 0].shape)
+        # print(self.gamma_list)
         ######################cem#############################
 
         self.mean = torch.zeros(
@@ -43,7 +51,7 @@ class MPCController:
         self.max_iters = 5
         self.epsilon = 0.001
         self.dU = self.env.action_space.shape[0]
-        self.sol_dim = self.horizon*self.dU
+        self.sol_dim = self.horizon * self.dU
         ######################cem#############################
 
     def get_action_random(self, cur_state):
@@ -182,7 +190,7 @@ class MPCController:
 
         return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
 
-    def get_action_policy_entropy(self, cur_state):
+    def get_action_policy_gamma(self, cur_state):
         '''states(numpy array): (dim_state)'''
         cur_state = torch.from_numpy(cur_state).float().clone()
         # 初期化
@@ -190,7 +198,7 @@ class MPCController:
         all_samples = torch.zeros(
             (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
         all_states = torch.zeros(
-            (self.N, self.horizon, self.env.observation_space.shape[0])).float().clone().to(self.device)
+            (self.N, self.horizon+1, self.env.observation_space.shape[0])).float().clone().to(self.device)
         for i in range(self.N):
             all_states[i][0] = cur_state
         model_id = torch.randint(
@@ -199,7 +207,8 @@ class MPCController:
         rewardmodel_id = torch.randint(
             self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
 
-        rewards_ = torch.zeros((self.N, self.horizon)).float().to(self.device)
+        rewards_ = torch.zeros((self.N, self.horizon+1)
+                               ).float().to(self.device)
         sum_rewards = torch.zeros(self.N).float().to(self.device)
         for i in range(self.horizon):
             # predict next_state
@@ -220,9 +229,8 @@ class MPCController:
 
             next_states = self.model.sample(
                 state_means, state_vars)
-            if i != self.horizon - 1:
 
-                all_states[:, i + 1, :] = next_states
+            all_states[:, i + 1, :] = next_states
 
             # predict_reward
             reward_means_, reward_vars_ = self.rewardmodel.forward_all(
@@ -239,18 +247,18 @@ class MPCController:
 
             rewards = self.rewardmodel.sample(
                 reward_means, reward_vars)
-            action, entropy = self.agent.actor.sample_normal(
-                all_states[:, i, :], reparameterize=False)
-            print(entropy)
-            entropy = entropy.view(-1)
-            rewards_[:, i] = rewards+0.5*entropy
-
+            rewards_[:, i] = rewards*self.gamma_list[:, i]
+        # print(self.agent.value(
+        #    all_states[:, self.horizon, :]).view(-1))
+        rewards_[:, self.horizon] = self.agent.value(
+            all_states[:, self.horizon, :]).view(-1)*self.gamma_list[:, self.horizon]
         sum_rewards = torch.sum(rewards_, 1)
         id = sum_rewards.argmax()
-
         best_action = all_samples[id, 0, :]
 
-        return best_action.to('cpu').detach().numpy().copy()
+        sum_rewards = torch.sum(rewards_, 1)
+
+        return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
 
     def get_action_policy_kl(self, cur_state):
         '''states(numpy array): (dim_state)'''
@@ -464,7 +472,8 @@ class MPCController:
                 reward_means, reward_vars)
             sum_uncertain[:, i+1] = sum_uncertain[:, i] + self.calc_uncertain(
                 state_means_, state_vars_, model_id[i])
-            rewards_[:, i] = rewards - (0.01/self.horizon) * sum_uncertain[:, i + 1]
+            rewards_[:, i] = rewards - \
+                (0.01/self.horizon) * sum_uncertain[:, i + 1]
             real_rewards[:, i] = rewards
 
         sum_rewards = torch.sum(rewards_, 1)
@@ -850,7 +859,7 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action, *a = mpc.get_action_policy_kl_3(observation)
+            action, *a = mpc.get_action_policy_gamma(observation)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_
