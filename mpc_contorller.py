@@ -464,7 +464,7 @@ class MPCController:
                 reward_means, reward_vars)
             sum_uncertain[:, i+1] = sum_uncertain[:, i] + self.calc_uncertain(
                 state_means_, state_vars_, model_id[i])
-            rewards_[:, i] = rewards - 0.01 * sum_uncertain[:, i + 1]
+            rewards_[:, i] = rewards - (0.01/self.horizon) * sum_uncertain[:, i + 1]
             real_rewards[:, i] = rewards
 
         sum_rewards = torch.sum(rewards_, 1)
@@ -472,12 +472,12 @@ class MPCController:
 
         id = sum_rewards.argmax()
         id2 = real_sum_rewards.argmax()
-        print(id, id2)
+        print(id.item(), id2.item())
         best_action = all_samples[id, 0, :]
 
         sum_rewards = torch.sum(rewards_, 1)
 
-        return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
+        return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), real_sum_rewards[id].to('cpu').detach().numpy().copy()
 
     def calc_uncertain(self, next_means, next_vars, index):
         '''next_means(torch array): (self.N, en_size,dim_state)'''
