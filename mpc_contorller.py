@@ -478,13 +478,16 @@ class MPCController:
             # rewards_[:, i] = rewards - \
             #    (0.01/self.horizon) * sum_uncertain[:, i + 1]
             uncertain_sum_N = torch.sum(sum_uncertain[:, i + 1], axis=0)
-            x = 0
-            for j in range(self.N):
+            u = (sum_uncertain[:, i + 1] / uncertain_sum_N)*(self.N/100)
+            u = 1 - u
+            keisuu_uncertain[:, i + 1] = keisuu_uncertain[:, i] * u
+            rewards_[:, i] = keisuu_uncertain[:, i+1]*rewards
+            '''for j in range(self.N):
                 keisuu_uncertain[j, i+1] = keisuu_uncertain[j, i] * \
                     (1 - (sum_uncertain[j, i + 1] /
                           uncertain_sum_N)*(self.N/100))
-                rewards_[j, i] = keisuu_uncertain[j, i+1]*rewards[j]
-
+                rewards_[j, i] = keisuu_uncertain[j, i+1]*rewards[j]'''
+            #print(keisuu_uncertain[:, i+1])
             #real_rewards[:, i] = rewards
             real_rewards[:, i] = rewards * self.gamma_list[:, i]
 
