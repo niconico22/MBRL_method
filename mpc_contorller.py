@@ -413,7 +413,7 @@ class MPCController:
         all_samples = torch.zeros(
             (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
         all_states = torch.zeros(
-            (self.N, self.horizon, self.env.observation_space.shape[0])).float().clone().to(self.device)
+            (self.N, self.horizon+1, self.env.observation_space.shape[0])).float().clone().to(self.device)
         for i in range(self.N):
             all_states[i][0] = cur_state
         model_id = torch.randint(
@@ -422,16 +422,20 @@ class MPCController:
         rewardmodel_id = torch.randint(
             self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
 
-        rewards_ = torch.zeros((self.N, self.horizon)).float().to(self.device)
+        rewards_ = torch.zeros((self.N, self.horizon+1)
+                               ).float().to(self.device)
 
         real_rewards = torch.zeros(
-            (self.N, self.horizon)).float().to(self.device)
+            (self.N, self.horizon+1)).float().to(self.device)
 
         sum_rewards = torch.zeros(self.N).float().to(self.device)
         real_sum_rewards = torch.zeros(self.N).float().to(self.device)
 
         sum_uncertain = torch.zeros(
             (self.N, self.horizon+1)).float().to(self.device)
+        keisuu_uncertain = torch.ones(
+            (self.N, self.horizon+1)).float().to(self.device)
+
         for i in range(self.horizon):
             # predict next_state
 
@@ -451,9 +455,8 @@ class MPCController:
 
             next_states = self.model.sample(
                 state_means, state_vars)
-            if i != self.horizon - 1:
 
-                all_states[:, i + 1, :] = next_states
+            all_states[:, i + 1, :] = next_states
 
             # predict_reward
             reward_means_, reward_vars_ = self.rewardmodel.forward_all(
@@ -472,16 +475,30 @@ class MPCController:
                 reward_means, reward_vars)
             sum_uncertain[:, i+1] = sum_uncertain[:, i] + self.calc_uncertain(
                 state_means_, state_vars_, model_id[i])
-            rewards_[:, i] = rewards - \
-                (0.01/self.horizon) * sum_uncertain[:, i + 1]
-            real_rewards[:, i] = rewards
+            # rewards_[:, i] = rewards - \
+            #    (0.01/self.horizon) * sum_uncertain[:, i + 1]
+            uncertain_sum_N = torch.sum(sum_uncertain[:, i + 1], axis=0)
+            x = 0
+            for j in range(self.N):
+                keisuu_uncertain[j, i+1] = keisuu_uncertain[j, i] * \
+                    (1 - (sum_uncertain[j, i + 1] /
+                          uncertain_sum_N)*(self.N/100))
+                rewards_[j, i] = keisuu_uncertain[j, i+1]*rewards[j]
+
+            #real_rewards[:, i] = rewards
+            real_rewards[:, i] = rewards * self.gamma_list[:, i]
+
+        real_rewards[:, self.horizon] = self.agent.value(
+            all_states[:, self.horizon, :]).view(-1)*self.gamma_list[:, self.horizon]
+        rewards_[:, self.horizon] = self.agent.value(
+            all_states[:, self.horizon, :]).view(-1)*keisuu_uncertain[:, self.horizon]
 
         sum_rewards = torch.sum(rewards_, 1)
         real_sum_rewards = torch.sum(real_rewards, 1)
 
         id = sum_rewards.argmax()
         id2 = real_sum_rewards.argmax()
-        print(id.item(), id2.item())
+        print(id.item() == id2.item())
         best_action = all_samples[id, 0, :]
 
         sum_rewards = torch.sum(rewards_, 1)
@@ -544,20 +561,6 @@ class MPCController:
     def model_remember(self, state, action, reward, new_state):
         self.model_buffer.add(
             state, action, new_state, reward)
-
-    def rollout(self, get_action, observation):
-        done = False
-        observation = env.reset()
-        step = 0
-
-        while not done:
-
-            step += 1
-            action = get_action(observation)
-            observation_, reward, done, _ = self.env.step(action)
-            self.remember(observation, action, reward, observation_, done)
-            self.model_remember(observation, action, reward, observation_)
-    # def model_rollout(self, state):
 
     def calc_kl(self, mu1, sigma1, mu2, sigma2):
         return torch.log(sigma2/sigma1) + (torch.pow(sigma1, 2) + torch.pow(mu1 - mu2, 2))/(2*torch.pow(sigma2, 2)) - 0.5
@@ -850,7 +853,7 @@ if __name__ == '__main__':
     buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, buffer_size)
     rewardmodel = RewardModel('cpu', n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
-    mpc = MPCController('cpu', env, 3, 5, 5, agent,
+    mpc = MPCController('cpu', env, 3, 100, 5, agent,
                         model, rewardmodel, buffer)
     observation = env.reset()
     done = False
@@ -859,7 +862,7 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action, *a = mpc.get_action_policy_gamma(observation)
+            action, *a = mpc.get_action_policy_kl_3(observation)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_
