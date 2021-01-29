@@ -1,0 +1,5 @@
+INFO : 2021-01-29 11:03:06,641 : method: Model Predictive Contorol
+INFO : 2021-01-29 11:03:06,641 : parameter n_steps: 200 ensemble_size: 5 env: Ant-v2
+INFO : 2021-01-29 11:03:11,970 : mpc horizon: 5 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-29 11:03:11,974 : mpc_function policy-kl
+INFO : 2021-01-29 11:03:11,974 : policy-kl
