@@ -190,6 +190,74 @@ class MPCController:
 
         return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
 
+    def get_action_policy_mean(self, cur_state):
+        '''states(numpy array): (dim_state)'''
+        cur_state = torch.from_numpy(cur_state).float().clone()
+        # 初期化
+
+        all_samples = torch.zeros(
+            (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
+        all_states = torch.zeros(
+            (self.N, self.horizon, self.env.observation_space.shape[0])).float().clone().to(self.device)
+        for i in range(self.N):
+            all_states[i][0] = cur_state
+        model_id = torch.randint(
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+        # ここにKLdivergenceを加えてモデルの精度を向上させたい
+        rewardmodel_id = torch.randint(
+            self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+
+        rewards_ = torch.zeros((self.N, self.horizon)).float().to(self.device)
+        sum_rewards = torch.zeros(self.N).float().to(self.device)
+        for i in range(self.horizon):
+            # predict next_state
+
+            all_samples[:, i, :] = self.agent.choose_action_batch(
+                all_states[:, i, :])
+            state_means_, state_vars_ = self.model.forward_all(
+                all_states[:, i, :], all_samples[:, i, :])
+
+            state_means = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+            state_vars = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+
+            for j in range(self.N):
+                state_means[j] = torch.mean(state_means_[j, :, :], axis=0)
+                state_vars[j] = torch.mean(state_vars_[j, :, :], axis=0)
+
+            next_states = self.model.sample(
+                state_means, state_vars)
+            if i != self.horizon - 1:
+
+                all_states[:, i + 1, :] = next_states
+
+            # predict_reward
+            reward_means_, reward_vars_ = self.rewardmodel.forward_all(
+                all_states[:, i, :], all_samples[:, i, :])
+            reward_means = torch.zeros(
+                (self.N)).float().to(self.device)
+            reward_vars = torch.zeros(
+                (self.N)).float().to(self.device)
+
+            for j in range(self.N):
+
+                reward_means[j] = torch.mean(reward_means_[j, :, :], axis=0)
+                reward_vars[j] = torch.mean(reward_vars_[j, :, :], axis=0)
+
+            rewards = self.rewardmodel.sample(
+                reward_means, reward_vars)
+
+            rewards_[:, i] = rewards
+
+        sum_rewards = torch.sum(rewards_, 1)
+        id = sum_rewards.argmax()
+        best_action = all_samples[id, 0, :]
+
+        sum_rewards = torch.sum(rewards_, 1)
+
+        return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
+
     def get_action_policy_gamma(self, cur_state):
         '''states(numpy array): (dim_state)'''
         cur_state = torch.from_numpy(cur_state).float().clone()
@@ -554,7 +622,7 @@ class MPCController:
         uncertain = torch.zeros(self.N).float().to(self.device)
         for i in range(self.N):
             uncertain[i] = kl_result_sum[i][index[i]]
-
+        print(uncertain)
         return uncertain
 
     def remember(self, state, action, reward, new_state, done):
@@ -856,7 +924,7 @@ if __name__ == '__main__':
     buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, buffer_size)
     rewardmodel = RewardModel('cpu', n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
-    mpc = MPCController('cpu', env, 3, 100, 5, agent,
+    mpc = MPCController('cpu', env, 3, 7, 5, agent,
                         model, rewardmodel, buffer)
     observation = env.reset()
     done = False
@@ -865,7 +933,7 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action, *a = mpc.get_action_policy_kl_3(observation)
+            action, *a = mpc.get_action_policy_mean(observation)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_
