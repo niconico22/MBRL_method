@@ -501,7 +501,7 @@ class MPCController:
 
         id = sum_rewards.argmax()
         id2 = real_sum_rewards.argmax()
-        print(id.item() == id2.item())
+        #print(id.item() == id2.item())
         best_action = all_samples[id, 0, :]
 
         sum_rewards = torch.sum(rewards_, 1)
