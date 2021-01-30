@@ -1,0 +1,19 @@
+INFO : 2021-01-31 02:03:25,212 : method: Model Predictive Contorol
+INFO : 2021-01-31 02:03:25,213 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-31 02:03:28,159 : mpc horizon: 5 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-31 02:03:28,159 : mpc_function policy-kl3
+INFO : 2021-01-31 02:03:28,159 : policy-kl3
+INFO : 2021-01-31 02:11:06,025 : episode: 0 score: -78.9 100 games avg: -78.9 steps 1000 
+INFO : 2021-01-31 02:22:14,960 : episode: 1 score: -69.0 100 games avg: -69.0 steps 1000 
+INFO : 2021-01-31 02:24:35,075 : episode: 2 score: -248.1 100 games avg: -248.1 steps 1000 
+INFO : 2021-01-31 02:26:55,775 : episode: 3 score: -275.6 100 games avg: -275.6 steps 1000 
+INFO : 2021-01-31 02:29:19,672 : episode: 4 score: -175.5 100 games avg: -175.5 steps 1000 
+INFO : 2021-01-31 02:38:27,098 : episode: 5 score: -95.3 100 games avg: -95.3 steps 1000 
+INFO : 2021-01-31 02:48:19,911 : episode: 6 score: -224.2 100 games avg: -224.2 steps 1000 
+INFO : 2021-01-31 02:50:41,905 : episode: 7 score: -90.8 100 games avg: -90.8 steps 1000 
+INFO : 2021-01-31 02:53:04,172 : episode: 8 score: -158.7 100 games avg: -158.7 steps 1000 
+INFO : 2021-01-31 03:00:43,821 : episode: 9 score: -134.1 100 games avg: -134.1 steps 1000 
+INFO : 2021-01-31 03:12:03,871 : episode: 10 score: -184.3 100 games avg: -184.3 steps 1000 
+INFO : 2021-01-31 03:14:27,524 : episode: 11 score: -139.3 100 games avg: -139.3 steps 1000 
+INFO : 2021-01-31 03:16:51,026 : episode: 12 score: -43.8 100 games avg: -43.8 steps 1000 
+INFO : 2021-01-31 03:21:45,070 : episode: 13 score: 196.0 100 games avg: 196.0 steps 1000 

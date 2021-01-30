@@ -3,3 +3,19 @@ INFO : 2021-01-31 00:30:11,861 : parameter n_steps: 100 ensemble_size: 5 env: Co
 INFO : 2021-01-31 00:30:14,761 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
 INFO : 2021-01-31 00:30:14,761 : mpc_function policy
 INFO : 2021-01-31 00:30:14,761 : policy
+INFO : 2021-01-31 00:30:28,082 : episode: 0 score: 27.0 100 games avg: 27.0 steps 28 
+INFO : 2021-01-31 00:30:37,695 : episode: 1 score: 19.0 100 games avg: 19.0 steps 20 
+INFO : 2021-01-31 00:30:48,725 : episode: 2 score: 22.0 100 games avg: 22.0 steps 23 
+INFO : 2021-01-31 00:31:00,236 : episode: 3 score: 23.0 100 games avg: 23.0 steps 24 
+INFO : 2021-01-31 00:31:09,847 : episode: 4 score: 19.0 100 games avg: 19.0 steps 20 
+INFO : 2021-01-31 00:31:23,272 : episode: 5 score: 27.0 100 games avg: 27.0 steps 28 
+INFO : 2021-01-31 00:31:36,224 : episode: 6 score: 26.0 100 games avg: 26.0 steps 27 
+INFO : 2021-01-31 00:31:49,184 : episode: 7 score: 26.0 100 games avg: 26.0 steps 27 
+INFO : 2021-01-31 00:32:00,705 : episode: 8 score: 23.0 100 games avg: 23.0 steps 24 
+INFO : 2021-01-31 00:32:08,891 : episode: 9 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-01-31 00:32:18,080 : episode: 10 score: 18.0 100 games avg: 18.0 steps 19 
+INFO : 2021-01-31 00:32:28,167 : episode: 11 score: 19.0 100 games avg: 19.0 steps 20 
+INFO : 2021-01-31 00:32:34,252 : episode: 12 score: 11.0 100 games avg: 11.0 steps 12 
+INFO : 2021-01-31 00:32:39,337 : episode: 13 score: 9.0 100 games avg: 9.0 steps 10 
+INFO : 2021-01-31 00:32:49,927 : episode: 14 score: 20.0 100 games avg: 20.0 steps 21 
+INFO : 2021-01-31 00:32:54,508 : episode: 15 score: 8.0 100 games avg: 8.0 steps 9 
