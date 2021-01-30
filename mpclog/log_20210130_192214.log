@@ -1,0 +1,18 @@
+INFO : 2021-01-30 19:22:14,498 : method: Model Predictive Contorol
+INFO : 2021-01-30 19:22:14,499 : parameter n_steps: 200 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-30 19:22:17,520 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-30 19:22:17,520 : mpc_function policy
+INFO : 2021-01-30 19:22:17,520 : policy
+INFO : 2021-01-30 19:22:29,809 : episode: 0 score: 22.2 100 games avg: 22.2 steps 26 
+INFO : 2021-01-30 19:22:43,037 : episode: 1 score: 21.0 100 games avg: 21.0 steps 27 
+INFO : 2021-01-30 19:22:56,837 : episode: 2 score: 22.7 100 games avg: 22.7 steps 27 
+INFO : 2021-01-30 19:23:10,450 : episode: 3 score: 21.5 100 games avg: 21.5 steps 26 
+INFO : 2021-01-30 19:23:24,281 : episode: 4 score: 21.1 100 games avg: 21.1 steps 26 
+INFO : 2021-01-30 19:23:38,198 : episode: 5 score: 22.2 100 games avg: 22.2 steps 27 
+INFO : 2021-01-30 19:23:52,637 : episode: 6 score: 23.3 100 games avg: 23.3 steps 27 
+INFO : 2021-01-30 19:24:06,041 : episode: 7 score: 20.5 100 games avg: 20.5 steps 26 
+INFO : 2021-01-30 19:24:19,673 : episode: 8 score: 22.6 100 games avg: 22.6 steps 26 
+INFO : 2021-01-30 19:24:34,056 : episode: 9 score: 21.8 100 games avg: 21.8 steps 27 
+INFO : 2021-01-30 19:24:45,304 : episode: 10 score: 20.6 100 games avg: 20.6 steps 21 
+INFO : 2021-01-30 19:25:03,710 : episode: 11 score: 12.7 100 games avg: 12.7 steps 34 
+INFO : 2021-01-30 19:25:15,825 : episode: 12 score: 18.1 100 games avg: 18.1 steps 23 

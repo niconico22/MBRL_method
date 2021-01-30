@@ -1,0 +1,9 @@
+INFO : 2021-01-30 19:22:55,129 : method: Model Predictive Contorol
+INFO : 2021-01-30 19:22:55,130 : parameter n_steps: 200 ensemble_size: 5 env: Hopper-v2
+INFO : 2021-01-30 19:22:58,277 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-30 19:22:58,278 : mpc_function policy
+INFO : 2021-01-30 19:22:58,278 : policy
+INFO : 2021-01-30 19:23:33,109 : episode: 0 score: 40.9 100 games avg: 40.9 steps 65 
+INFO : 2021-01-30 19:24:09,352 : episode: 1 score: 42.9 100 games avg: 42.9 steps 68 
+INFO : 2021-01-30 19:24:42,798 : episode: 2 score: 40.8 100 games avg: 40.8 steps 63 
+INFO : 2021-01-30 19:25:17,633 : episode: 3 score: 41.7 100 games avg: 41.7 steps 65 
