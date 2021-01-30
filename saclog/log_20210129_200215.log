@@ -1,0 +1,4 @@
+INFO : 2021-01-29 20:02:16,015 : method: Soft-Actor Critic
+INFO : 2021-01-29 20:02:16,016 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-29 20:02:18,769 : mpc_function policy-kl3
+INFO : 2021-01-29 20:02:18,770 : policy-kl3
