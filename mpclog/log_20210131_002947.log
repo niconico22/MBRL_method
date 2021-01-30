@@ -1,0 +1,6 @@
+INFO : 2021-01-31 00:29:47,449 : method: Model Predictive Contorol
+INFO : 2021-01-31 00:29:47,450 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-01-31 00:29:50,457 : mpc horizon: 30 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-31 00:29:50,457 : mpc_function policy-kl3
+INFO : 2021-01-31 00:29:50,458 : policy-kl3
+INFO : 2021-01-31 00:30:12,926 : episode: 0 score: 31.0 100 games avg: 31.0 steps 32 
