@@ -108,7 +108,7 @@ def set_log(s):
     filename = './' + s + 'log/' + 'log_' + \
         now.strftime('%Y%m%d_%H%M%S') + '.log'
     # DEBUGする時用のファイル
-    filename = './saclog/logger.log'
+    #filename = './saclog/logger.log'
     formatter = '%(levelname)s : %(asctime)s : %(message)s'
 
     logging.basicConfig(filename=filename,
@@ -168,7 +168,7 @@ if __name__ == '__main__':
                   env=env, batch_size=256, layer1_size=256, layer2_size=256,
                   n_actions=n_actions)
     horizon = int(args[9])
-    num_control_samples = 20
+    num_control_samples = 100
     num_elite = 30
     grad_steps = 10
     mpc = MPCController(agent_cuda, env, horizon=horizon, num_control_samples=num_control_samples, num_elite=num_elite,  agent=agent,
@@ -193,9 +193,12 @@ if __name__ == '__main__':
         func = mpc.get_action_cem
     elif function_name == 'policy-entropy':
         func = mpc.get_action_policy_entropy
-    elif function_name == 'policy-kl3':
-        func = mpc.get_action_policy_kl_3
-
+    elif function_name == 'policy-kl4':
+        func = mpc.get_action_policy_kl_4
+    elif function_name == 'policy-gamma':
+        func = mpc.get_action_policy_gamma
+    elif function_name == 'policy-mean':
+        func = mpc.get_action_policy_mean
     else:
         print('error')
         exit()
@@ -225,10 +228,10 @@ if __name__ == '__main__':
                            next_state=observation_, reward=reward)
                 agent.learn()
                 score += reward
-                if steps % 10 == 0:
+                if steps % 100 == 0:
                     print(steps)
                 observation = observation_
-                env.render()
+                #env.render()
                 ep_length += 1
                 # time.sleep(0.1)
         else:
@@ -249,8 +252,8 @@ if __name__ == '__main__':
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
-                    square_mean_error(env, env_evaluate, actions,
-                                      states, sum_rewards, horizon, steps)
+                    #square_mean_error(env, env_evaluate, actions,
+                                   #states, sum_rewards, horizon, steps)
 
                     print(steps)
 
