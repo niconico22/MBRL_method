@@ -200,3 +200,6 @@ INFO : 2021-01-31 18:02:59,974 : episode: 193 score: 1810.3 100 games avg: 1810.
 INFO : 2021-01-31 18:06:46,791 : episode: 194 score: 100.0 100 games avg: 100.0 steps 64 
 INFO : 2021-01-31 18:17:21,383 : episode: 195 score: 704.8 100 games avg: 704.8 steps 1000 
 INFO : 2021-01-31 18:25:10,304 : episode: 196 score: 1281.6 100 games avg: 1281.6 steps 639 
+INFO : 2021-01-31 18:35:43,859 : episode: 197 score: 1911.5 100 games avg: 1911.5 steps 1000 
+INFO : 2021-01-31 18:46:05,673 : episode: 198 score: 933.5 100 games avg: 933.5 steps 1000 
+INFO : 2021-01-31 18:56:31,094 : episode: 199 score: 1896.0 100 games avg: 1896.0 steps 1000 
