@@ -474,10 +474,9 @@ class MPCController:
 
     def get_action_policy_kl_3(self, cur_state):
         '''states(numpy array): (dim_state)'''
+        # 1/28のよる以降
         cur_state = torch.from_numpy(cur_state).float().clone()
-        # 初期化
-        # model rewardmodel 共にランダムが良い
-        # reward +sum u_k を用いて不確実さを組み込む
+
         all_samples = torch.zeros(
             (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
         all_states = torch.zeros(
@@ -621,8 +620,8 @@ class MPCController:
         kl_result_sum[:, :] /= space_dim
         uncertain = torch.zeros(self.N).float().to(self.device)
         for i in range(self.N):
-            uncertain[i] = kl_result_sum[i][index[i]]
-        print(uncertain)
+            uncertain[i] = kl_result_sum[i, index[i]]
+        print(uncertain.is_cuda())
         return uncertain
 
     def remember(self, state, action, reward, new_state, done):
@@ -933,7 +932,7 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action, *a = mpc.get_action_policy_mean(observation)
+            action, *a = mpc.get_action_policy_kl_3(observation)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_
