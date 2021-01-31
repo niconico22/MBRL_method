@@ -472,12 +472,13 @@ class MPCController:
 
         return best_action.to('cpu').detach().numpy().copy(), all_samples[id].to('cpu').detach().numpy().copy(), all_states[id].to('cpu').detach().numpy().copy(), sum_rewards[id].to('cpu').detach().numpy().copy()
 
-    def get_action_policy_kl_3(self, cur_state):
+    def get_action_policy_kl_4(self, cur_state):
         '''states(numpy array): (dim_state)'''
         cur_state = torch.from_numpy(cur_state).float().clone()
         # 初期化
         # model rewardmodel 共にランダムが良い
         # reward +sum u_k を用いて不確実さを組み込む
+        #1/29-31は3で1\31昼に4に名前変更
         all_samples = torch.zeros(
             (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
         all_states = torch.zeros(
@@ -622,7 +623,7 @@ class MPCController:
         uncertain = torch.zeros(self.N).float().to(self.device)
         for i in range(self.N):
             uncertain[i] = kl_result_sum[i][index[i]]
-        print(uncertain)
+        #print(uncertain.is_cuda)
         return uncertain
 
     def remember(self, state, action, reward, new_state, done):
