@@ -183,3 +183,12 @@ INFO : 2021-02-01 18:00:39,685 : episode: 176 score: 483.8 100 games avg: 483.8 
 INFO : 2021-02-01 18:03:31,393 : episode: 177 score: 215.5 100 games avg: 215.5 steps 137 
 INFO : 2021-02-01 18:07:30,640 : episode: 178 score: 275.3 100 games avg: 275.3 steps 170 
 INFO : 2021-02-01 18:16:48,956 : episode: 179 score: 1265.0 100 games avg: 1265.0 steps 732 
+INFO : 2021-02-01 18:29:05,178 : episode: 180 score: 1677.5 100 games avg: 1677.5 steps 1000 
+INFO : 2021-02-01 18:41:20,121 : episode: 181 score: 1676.1 100 games avg: 1676.1 steps 1000 
+INFO : 2021-02-01 18:53:24,610 : episode: 182 score: 1683.2 100 games avg: 1683.2 steps 1000 
+INFO : 2021-02-01 19:06:52,846 : episode: 183 score: 1762.2 100 games avg: 1762.2 steps 1000 
+INFO : 2021-02-01 19:18:06,467 : episode: 184 score: 1491.5 100 games avg: 1491.5 steps 890 
+INFO : 2021-02-01 19:29:51,815 : episode: 185 score: 658.5 100 games avg: 658.5 steps 1000 
+INFO : 2021-02-01 19:41:33,281 : episode: 186 score: 671.2 100 games avg: 671.2 steps 1000 
+INFO : 2021-02-01 19:47:56,247 : episode: 187 score: 877.3 100 games avg: 877.3 steps 505 
+INFO : 2021-02-01 19:49:39,912 : episode: 188 score: 45.7 100 games avg: 45.7 steps 31 
