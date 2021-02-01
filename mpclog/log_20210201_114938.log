@@ -1,0 +1,11 @@
+INFO : 2021-02-01 11:49:38,762 : method: Model Predictive Contorol
+INFO : 2021-02-01 11:49:38,763 : parameter n_steps: 200 ensemble_size: 5 env: Ant-v2
+INFO : 2021-02-01 11:49:41,824 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-02-01 11:49:41,825 : mpc_function policy
+INFO : 2021-02-01 11:49:41,825 : policy
+INFO : 2021-02-01 11:51:14,396 : episode: 0 score: 266.9 100 games avg: 266.9 steps 294 
+INFO : 2021-02-01 11:53:10,665 : episode: 1 score: -214.0 100 games avg: -214.0 steps 315 
+INFO : 2021-02-01 11:53:21,423 : episode: 2 score: -0.8 100 games avg: -0.8 steps 27 
+INFO : 2021-02-01 11:53:41,282 : episode: 3 score: -43.9 100 games avg: -43.9 steps 53 
+INFO : 2021-02-01 11:54:11,813 : episode: 4 score: -103.3 100 games avg: -103.3 steps 82 
+INFO : 2021-02-01 12:00:28,607 : episode: 5 score: 3.9 100 games avg: 3.9 steps 1000 
