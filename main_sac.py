@@ -199,6 +199,9 @@ if __name__ == '__main__':
         func = mpc.get_action_policy_gamma
     elif function_name == 'policy-mean':
         func = mpc.get_action_policy_mean
+    elif function_name == 'policy-kl5':
+        func = mpc.get_action_policy_kl_5
+
     else:
         print('error')
         exit()
@@ -231,7 +234,7 @@ if __name__ == '__main__':
                 if steps % 100 == 0:
                     print(steps)
                 observation = observation_
-                #env.render()
+                # env.render()
                 ep_length += 1
                 # time.sleep(0.1)
         else:
@@ -252,8 +255,8 @@ if __name__ == '__main__':
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
-                    #square_mean_error(env, env_evaluate, actions,
-                                   #states, sum_rewards, horizon, steps)
+                    # square_mean_error(env, env_evaluate, actions,
+                    # states, sum_rewards, horizon, steps)
 
                     print(steps)
 
