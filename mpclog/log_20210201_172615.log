@@ -3,3 +3,32 @@ INFO : 2021-02-01 17:26:15,709 : parameter n_steps: 100 ensemble_size: 5 env: Ha
 INFO : 2021-02-01 17:26:18,135 : mpc horizon: 5 mpc_samples: 100 elite_sample: 30 grad_steps: 10
 INFO : 2021-02-01 17:26:18,135 : mpc_function policy
 INFO : 2021-02-01 17:26:18,135 : policy
+INFO : 2021-02-01 17:27:51,891 : episode: 0 score: -190.2 100 games avg: -190.2 steps 1000 
+INFO : 2021-02-01 17:29:31,915 : episode: 1 score: -270.8 100 games avg: -270.8 steps 1000 
+INFO : 2021-02-01 17:31:12,379 : episode: 2 score: -204.9 100 games avg: -204.9 steps 1000 
+INFO : 2021-02-01 17:32:52,716 : episode: 3 score: -151.4 100 games avg: -151.4 steps 1000 
+INFO : 2021-02-01 17:34:33,733 : episode: 4 score: -202.1 100 games avg: -202.1 steps 1000 
+INFO : 2021-02-01 17:36:15,066 : episode: 5 score: -203.0 100 games avg: -203.0 steps 1000 
+INFO : 2021-02-01 17:37:56,626 : episode: 6 score: -195.5 100 games avg: -195.5 steps 1000 
+INFO : 2021-02-01 17:39:38,595 : episode: 7 score: -107.4 100 games avg: -107.4 steps 1000 
+INFO : 2021-02-01 17:41:20,782 : episode: 8 score: -176.6 100 games avg: -176.6 steps 1000 
+INFO : 2021-02-01 17:43:03,282 : episode: 9 score: -176.0 100 games avg: -176.0 steps 1000 
+INFO : 2021-02-01 17:44:46,052 : episode: 10 score: -112.3 100 games avg: -112.3 steps 1000 
+INFO : 2021-02-01 17:46:29,285 : episode: 11 score: -62.0 100 games avg: -62.0 steps 1000 
+INFO : 2021-02-01 17:48:12,544 : episode: 12 score: -86.5 100 games avg: -86.5 steps 1000 
+INFO : 2021-02-01 17:49:56,209 : episode: 13 score: -104.4 100 games avg: -104.4 steps 1000 
+INFO : 2021-02-01 17:51:40,138 : episode: 14 score: -107.4 100 games avg: -107.4 steps 1000 
+INFO : 2021-02-01 17:53:24,448 : episode: 15 score: -96.9 100 games avg: -96.9 steps 1000 
+INFO : 2021-02-01 17:55:08,858 : episode: 16 score: -102.8 100 games avg: -102.8 steps 1000 
+INFO : 2021-02-01 17:56:53,684 : episode: 17 score: -62.9 100 games avg: -62.9 steps 1000 
+INFO : 2021-02-01 17:58:39,007 : episode: 18 score: -24.6 100 games avg: -24.6 steps 1000 
+INFO : 2021-02-01 18:00:24,484 : episode: 19 score: -23.1 100 games avg: -23.1 steps 1000 
+INFO : 2021-02-01 18:02:10,300 : episode: 20 score: -15.1 100 games avg: -15.1 steps 1000 
+INFO : 2021-02-01 18:03:56,382 : episode: 21 score: 54.6 100 games avg: 54.6 steps 1000 
+INFO : 2021-02-01 18:05:42,629 : episode: 22 score: 14.7 100 games avg: 14.7 steps 1000 
+INFO : 2021-02-01 18:07:29,562 : episode: 23 score: 89.6 100 games avg: 89.6 steps 1000 
+INFO : 2021-02-01 18:09:16,558 : episode: 24 score: 109.5 100 games avg: 109.5 steps 1000 
+INFO : 2021-02-01 18:11:04,027 : episode: 25 score: 54.2 100 games avg: 54.2 steps 1000 
+INFO : 2021-02-01 18:12:51,526 : episode: 26 score: 111.0 100 games avg: 111.0 steps 1000 
+INFO : 2021-02-01 18:14:39,473 : episode: 27 score: 155.8 100 games avg: 155.8 steps 1000 
+INFO : 2021-02-01 18:16:28,094 : episode: 28 score: 164.4 100 games avg: 164.4 steps 1000 
