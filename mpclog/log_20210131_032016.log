@@ -192,3 +192,6 @@ INFO : 2021-02-01 10:08:08,912 : episode: 185 score: 1048.0 100 games avg: 1048.
 INFO : 2021-02-01 10:30:58,955 : episode: 186 score: 567.5 100 games avg: 567.5 steps 1000 
 INFO : 2021-02-01 10:43:13,064 : episode: 187 score: 446.4 100 games avg: 446.4 steps 294 
 INFO : 2021-02-01 10:54:33,034 : episode: 188 score: 346.8 100 games avg: 346.8 steps 213 
+INFO : 2021-02-01 11:11:28,059 : episode: 189 score: 916.6 100 games avg: 916.6 steps 542 
+INFO : 2021-02-01 11:25:56,606 : episode: 190 score: 929.2 100 games avg: 929.2 steps 606 
+INFO : 2021-02-01 11:30:31,633 : episode: 191 score: 1793.4 100 games avg: 1793.4 steps 1000 
