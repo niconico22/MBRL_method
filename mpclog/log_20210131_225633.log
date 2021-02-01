@@ -106,3 +106,6 @@ INFO : 2021-02-01 10:29:03,990 : episode: 99 score: 201.0 100 games avg: 201.0 s
 INFO : 2021-02-01 10:40:57,585 : episode: 100 score: 566.4 100 games avg: 566.4 steps 1000 
 INFO : 2021-02-01 10:50:59,272 : episode: 101 score: 643.0 100 games avg: 643.0 steps 574 
 INFO : 2021-02-01 11:00:31,657 : episode: 102 score: 703.8 100 games avg: 703.8 steps 606 
+INFO : 2021-02-01 11:11:42,202 : episode: 103 score: 563.1 100 games avg: 563.1 steps 1000 
+INFO : 2021-02-01 11:18:48,698 : episode: 104 score: 14.3 100 games avg: 14.3 steps 19 
+INFO : 2021-02-01 11:31:00,871 : episode: 105 score: 973.4 100 games avg: 973.4 steps 1000 
