@@ -175,3 +175,5 @@ INFO : 2021-02-01 21:39:16,909 : episode: 168 score: 1912.9 100 games avg: 1912.
 INFO : 2021-02-01 21:42:45,562 : episode: 169 score: 1246.7 100 games avg: 1246.7 steps 619 
 INFO : 2021-02-01 21:47:27,472 : episode: 170 score: 2055.1 100 games avg: 2055.1 steps 1000 
 INFO : 2021-02-01 21:51:12,937 : episode: 171 score: 1296.7 100 games avg: 1296.7 steps 701 
+INFO : 2021-02-01 21:55:48,250 : episode: 172 score: 1420.1 100 games avg: 1420.1 steps 1000 
+INFO : 2021-02-01 21:59:58,659 : episode: 173 score: 1974.5 100 games avg: 1974.5 steps 1000 
