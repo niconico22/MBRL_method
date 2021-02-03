@@ -1,0 +1,23 @@
+INFO : 2021-02-02 10:09:42,024 : method: Soft-Actor Critic
+INFO : 2021-02-02 10:09:42,025 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-02-02 10:09:44,727 : mpc_function policy-kl5
+INFO : 2021-02-02 10:09:44,727 : policy-kl5
+INFO : 2021-02-02 10:09:44,781 : episode: 0 score: 49.0 100 games avg: 49.0 steps 50 
+INFO : 2021-02-02 10:09:44,814 : episode: 1 score: 31.0 100 games avg: 31.0 steps 32 
+INFO : 2021-02-02 10:09:44,837 : episode: 2 score: 21.0 100 games avg: 21.0 steps 22 
+INFO : 2021-02-02 10:09:44,860 : episode: 3 score: 21.0 100 games avg: 21.0 steps 22 
+INFO : 2021-02-02 10:09:44,901 : episode: 4 score: 40.0 100 games avg: 40.0 steps 41 
+INFO : 2021-02-02 10:09:44,927 : episode: 5 score: 24.0 100 games avg: 24.0 steps 25 
+INFO : 2021-02-02 10:09:44,973 : episode: 6 score: 44.0 100 games avg: 44.0 steps 45 
+INFO : 2021-02-02 10:09:45,315 : episode: 7 score: 35.0 100 games avg: 35.0 steps 36 
+INFO : 2021-02-02 10:09:45,509 : episode: 8 score: 10.0 100 games avg: 10.0 steps 11 
+INFO : 2021-02-02 10:09:45,632 : episode: 9 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-02 10:09:45,756 : episode: 10 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-02 10:09:45,895 : episode: 11 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-02 10:09:46,107 : episode: 12 score: 11.0 100 games avg: 11.0 steps 12 
+INFO : 2021-02-02 10:09:46,263 : episode: 13 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-02-02 10:09:46,511 : episode: 14 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-02-02 10:09:46,828 : episode: 15 score: 17.0 100 games avg: 17.0 steps 18 
+INFO : 2021-02-02 10:09:47,026 : episode: 16 score: 10.0 100 games avg: 10.0 steps 11 
+INFO : 2021-02-02 10:09:47,356 : episode: 17 score: 18.0 100 games avg: 18.0 steps 19 
+INFO : 2021-02-02 10:09:47,641 : episode: 18 score: 15.0 100 games avg: 15.0 steps 16 
