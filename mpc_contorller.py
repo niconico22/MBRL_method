@@ -545,7 +545,7 @@ class MPCController:
             #    (0.01/self.horizon) * sum_uncertain[:, i + 1]
             uncertain_sum_N = torch.sum(sum_uncertain[:, i + 1], axis=0)
             u = (sum_uncertain[:, i + 1] / uncertain_sum_N)*(self.N/100)
-            u = 1 - u
+            u = 1 - self.alpha * u
             keisuu_uncertain[:, i + 1] = keisuu_uncertain[:, i] * u
             rewards_[:, i] = keisuu_uncertain[:, i+1]*rewards
             '''for j in range(self.N):
@@ -962,8 +962,8 @@ class MPCController:
 
                 rewards_[:, i] = rewards
             rewards_ = rewards_.to('cpu').detach().numpy().copy()
-            # sum_rewards = np.sum(rewards_, 1)
-            sum_rewards = self.reward_max(rewards_)
+            sum_rewards = np.sum(rewards_, 1)
+            #sum_rewards = self.reward_max(rewards_)
             all_samples = all_samples.to('cpu').detach().numpy().copy()
             # print(sum_rewards)
             # print(np.argsort(-sum_rewards))
@@ -983,17 +983,130 @@ class MPCController:
         sol, solvar = mean, var
         return sol
 
-    def reward_max(self, rewards_):
+    def get_action_cem_proposed(self, cur_state):
+        '''cur_state(numpy array): (dim_state)'''
+        # print(self.prev_sol)
+        soln = self.obtain_solution_proposed(
+            self.prev_sol, self.init_var, cur_state)
+        self.prev_sol = np.concatenate(
+            [np.copy(soln)[self.dU:], np.zeros(self.dU)])
 
-        max_rewards = np.zeros(self.N)
-        for i in range(self.N):
-            cnt = 0
-            max_r = -10000
-            for j in range(self.horizon):
-                cnt += rewards_[i, j]
-                max_r = max(cnt, max_r)
-            max_rewards[i] = max_r
-        return max_rewards
+        best_action = soln[: self.dU].reshape(-1, self.dU)
+        # print(best_action)
+        return best_action[0]
+
+    def obtain_solution_proposed(self, init_mean, init_var, cur_state):
+        cur_state = torch.from_numpy(cur_state).float().clone()
+
+        mean, var, t = init_mean, init_var, 0
+        ac_lower_bound = np.tile(self.ac_lb, [self.horizon])
+        ac_upper_bound = np.tile(self.ac_ub, [self.horizon])
+
+        X = stats.truncnorm(-2, 2, loc=np.zeros_like(mean),
+                            scale=np.ones_like(mean))
+
+        while (t < self.max_iters):
+
+            lb_dist, ub_dist = mean - ac_lower_bound, ac_upper_bound - mean
+            constrained_var = np.minimum(np.minimum(
+                np.square(lb_dist / 2), np.square(ub_dist / 2)), var)
+
+            samples = X.rvs(size=[self.N, self.sol_dim]
+                            ) * np.sqrt(constrained_var) + mean
+            # print(mean)
+            samples = samples.reshape(self.N, self.sol_dim//self.dU, self.dU)
+            # print(var)
+            all_samples = torch.from_numpy(samples).float().clone()
+
+            # costs = self.cost_function(samples)
+            all_states = np.zeros(
+                (self.N, self.horizon, self.env.observation_space.shape[0]))
+            all_states = torch.from_numpy(all_states).float().clone()
+            all_states = all_states.to(self.device)
+            for i in range(self.N):
+                all_states[i][0] = cur_state
+            model_id = torch.randint(
+                self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+            rewardmodel_id = torch.randint(
+                self.model.ensemble_size, (self.horizon, self.N)).to(self.device)
+
+            rewards_ = torch.zeros((self.N, self.horizon)
+                                   ).float().to(self.device)
+            sum_rewards = torch.zeros(self.N).float().to(self.device)
+            state_means = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+            state_vars = torch.zeros(
+                (self.N, self.env.observation_space.shape[0])).float().to(self.device)
+            reward_means = torch.zeros(
+                (self.N)).float().to(self.device)
+            reward_vars = torch.zeros(
+                (self.N)).float().to(self.device)
+
+            sum_uncertain = torch.zeros(
+                (self.N, self.horizon+1)).float().to(self.device)
+            keisuu_uncertain = torch.ones(
+                (self.N, self.horizon+1)).float().to(self.device)
+
+            for i in range(self.horizon):
+                # predict next_state
+                state_means_, state_vars_ = self.model.forward_all(
+                    all_states[:, i, :], all_samples[:, i, :])
+
+                for j in range(self.N):
+                    state_means[j] = state_means_[j][model_id[i][j]]
+                    state_vars[j] = state_vars_[j][model_id[i][j]]
+
+                next_states = self.model.sample(
+                    state_means, state_vars)
+                if i != self.horizon - 1:
+
+                    all_states[:, i + 1, :] = next_states
+
+                # predict_reward
+                reward_means_, reward_vars_ = self.rewardmodel.forward_all(
+                    all_states[:, i, :], all_samples[:, i, :])
+
+                for j in range(self.N):
+
+                    reward_means[j] = reward_means_[j][rewardmodel_id[i][j]]
+                    reward_vars[j] = reward_vars_[j][rewardmodel_id[i][j]]
+
+                rewards = self.rewardmodel.sample(
+                    reward_means, reward_vars)
+
+                sum_uncertain[:, i+1] = sum_uncertain[:, i] + self.calc_uncertain(
+                    state_means_, state_vars_, model_id[i])
+            # rewards_[:, i] = rewards - \
+            #    (0.01/self.horizon) * sum_uncertain[:, i + 1]
+                uncertain_sum_N = torch.sum(sum_uncertain[:, i + 1], axis=0)
+                u = (sum_uncertain[:, i + 1] / uncertain_sum_N)*(self.N/100)
+                u = 1 - u
+                keisuu_uncertain[:, i + 1] = keisuu_uncertain[:, i] * u
+                #print(keisuu_uncertain[:, i+1])
+                rewards_[:, i] = keisuu_uncertain[:, i+1]*rewards
+
+                #rewards_[:, i] = rewards
+            rewards_ = rewards_.to('cpu').detach().numpy().copy()
+            sum_rewards = np.sum(rewards_, 1)
+
+            all_samples = all_samples.to('cpu').detach().numpy().copy()
+            # print(sum_rewards)
+            # print(np.argsort(-sum_rewards))
+            elites = all_samples[np.argsort(-sum_rewards)][: self.num_elites]
+            elites = elites.reshape(self.num_elites, self.dU*self.horizon)
+            # print(elites.shape)
+            # elites = elites.to('cpu').detach().numpy().copy()
+            new_mean = np.mean(elites, axis=0)
+            new_var = np.var(elites, axis=0)
+            # print(elites)
+            # print(new_mean)
+            # print(new_mean)
+            mean = self.alpha * mean + (1 - self.alpha) * new_mean
+            var = self.alpha * var + (1 - self.alpha) * new_var
+
+            t += 1
+        sol, solvar = mean, var
+        return sol
 
 
 if __name__ == '__main__':
@@ -1032,7 +1145,7 @@ if __name__ == '__main__':
         sum_reward = 0
         done = False
         while not done:
-            action, *a = mpc.get_action_policy_kl_5(observation)
+            action = mpc.get_action_cem_proposed(observation)
             observation_, reward, done, _ = env.step(action)
             sum_reward += reward
             observation = observation_

@@ -134,8 +134,8 @@ if __name__ == '__main__':
     env_id = args[6]
     env = gym.make(env_id)
     env_evaluate = gym.make(env_id)
-    #env_id = 'Continuous_CartPole'
-    #env = ContinuousCartPoleEnv()
+    env_id = 'Continuous_CartPole'
+    env = ContinuousCartPoleEnv()
     use_mpc = int(args[1])
 
     if use_mpc == 0:
@@ -201,6 +201,8 @@ if __name__ == '__main__':
         func = mpc.get_action_policy_mean
     elif function_name == 'policy-kl5':
         func = mpc.get_action_policy_kl_5
+    elif function_name == 'proposed_cem':
+        func = mpc.get_action_cem_proposed
 
     else:
         print('error')
@@ -244,14 +246,15 @@ if __name__ == '__main__':
                     func = mpc.get_action_policy_kl_2
             while not done:
                 # return best_action ,,actions, states, sum_rewards
-                action, actions, states, sum_rewards = func(observation)
+                #action, actions, states, sum_rewards = func(observation)
+                action = func(observation)
                 observation_, reward, done, info = env.step(action)
                 agent.remember(observation, action,
                                reward, observation_, done)
                 buffer.add(state=observation, action=action,
                            next_state=observation_, reward=reward)
                 agent.learn()
-                # env.render()
+                env.render()
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
                 if steps % 100 == 0:
