@@ -1,0 +1,9 @@
+INFO : 2021-02-02 00:46:08,750 : method: Soft-Actor Critic
+INFO : 2021-02-02 00:46:08,750 : parameter n_steps: 100 ensemble_size: 5 env: Pendulum-v0
+INFO : 2021-02-02 00:46:08,810 : mpc_function policy
+INFO : 2021-02-02 00:46:08,810 : policy
+INFO : 2021-02-02 00:46:08,965 : episode: 0 score: -1206.5 100 games avg: -1206.5 steps 200 
+INFO : 2021-02-02 00:46:11,844 : episode: 1 score: -891.1 100 games avg: -891.1 steps 200 
+INFO : 2021-02-02 00:46:15,857 : episode: 2 score: -970.0 100 games avg: -970.0 steps 200 
+INFO : 2021-02-02 00:46:20,025 : episode: 3 score: nan 100 games avg: nan steps 200 
+INFO : 2021-02-02 00:46:24,401 : episode: 4 score: nan 100 games avg: nan steps 200 

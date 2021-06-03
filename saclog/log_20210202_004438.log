@@ -1,0 +1,2 @@
+INFO : 2021-02-02 00:44:38,701 : method: Soft-Actor Critic
+INFO : 2021-02-02 00:44:38,702 : parameter n_steps: 100 ensemble_size: 5 env: Pendulum-v0

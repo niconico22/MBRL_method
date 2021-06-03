@@ -1,0 +1,48 @@
+INFO : 2021-02-07 03:26:52,117 : method: Model Predictive Contorol
+INFO : 2021-02-07 03:26:52,118 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-02-07 03:26:52,211 : mpc horizon: 5 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-02-07 03:26:52,211 : mpc_function proposed_cem
+INFO : 2021-02-07 03:26:52,211 : cem
+INFO : 2021-02-07 03:27:07,670 : episode: 0 score: 26.0 100 games avg: 26.0 steps 27 
+INFO : 2021-02-07 03:27:12,634 : episode: 1 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-07 03:27:18,702 : episode: 2 score: 10.0 100 games avg: 10.0 steps 11 
+INFO : 2021-02-07 03:27:27,391 : episode: 3 score: 15.0 100 games avg: 15.0 steps 16 
+INFO : 2021-02-07 03:27:35,748 : episode: 4 score: 14.0 100 games avg: 14.0 steps 15 
+INFO : 2021-02-07 03:27:52,608 : episode: 5 score: 29.0 100 games avg: 29.0 steps 30 
+INFO : 2021-02-07 03:28:12,862 : episode: 6 score: 34.0 100 games avg: 34.0 steps 35 
+INFO : 2021-02-07 03:28:20,898 : episode: 7 score: 12.0 100 games avg: 12.0 steps 13 
+INFO : 2021-02-07 03:28:38,176 : episode: 8 score: 30.0 100 games avg: 30.0 steps 31 
+INFO : 2021-02-07 03:29:11,365 : episode: 9 score: 63.0 100 games avg: 63.0 steps 64 
+INFO : 2021-02-07 03:29:33,794 : episode: 10 score: 38.0 100 games avg: 38.0 steps 39 
+INFO : 2021-02-07 03:30:03,301 : episode: 11 score: 52.0 100 games avg: 52.0 steps 53 
+INFO : 2021-02-07 03:30:26,208 : episode: 12 score: 40.0 100 games avg: 40.0 steps 41 
+INFO : 2021-02-07 03:31:06,925 : episode: 13 score: 74.0 100 games avg: 74.0 steps 75 
+INFO : 2021-02-07 03:31:50,270 : episode: 14 score: 77.0 100 games avg: 77.0 steps 78 
+INFO : 2021-02-07 03:33:42,449 : episode: 15 score: 200.0 100 games avg: 200.0 steps 201 
+INFO : 2021-02-07 03:34:07,377 : episode: 16 score: 41.0 100 games avg: 41.0 steps 42 
+INFO : 2021-02-07 03:34:41,782 : episode: 17 score: 56.0 100 games avg: 56.0 steps 57 
+INFO : 2021-02-07 03:35:28,955 : episode: 18 score: 80.0 100 games avg: 80.0 steps 81 
+INFO : 2021-02-07 03:36:04,557 : episode: 19 score: 58.0 100 games avg: 58.0 steps 59 
+INFO : 2021-02-07 03:36:51,492 : episode: 20 score: 80.0 100 games avg: 80.0 steps 81 
+INFO : 2021-02-07 03:37:22,543 : episode: 21 score: 48.0 100 games avg: 48.0 steps 49 
+INFO : 2021-02-07 03:38:02,515 : episode: 22 score: 66.0 100 games avg: 66.0 steps 67 
+INFO : 2021-02-07 03:38:32,796 : episode: 23 score: 48.0 100 games avg: 48.0 steps 49 
+INFO : 2021-02-07 03:39:09,987 : episode: 24 score: 62.0 100 games avg: 62.0 steps 63 
+INFO : 2021-02-07 03:39:51,738 : episode: 25 score: 68.0 100 games avg: 68.0 steps 69 
+INFO : 2021-02-07 03:40:54,800 : episode: 26 score: 99.0 100 games avg: 99.0 steps 100 
+INFO : 2021-02-07 03:41:30,376 : episode: 27 score: 52.0 100 games avg: 52.0 steps 53 
+INFO : 2021-02-07 03:42:14,203 : episode: 28 score: 70.0 100 games avg: 70.0 steps 71 
+INFO : 2021-02-07 03:42:52,704 : episode: 29 score: 58.0 100 games avg: 58.0 steps 59 
+INFO : 2021-02-07 03:43:35,550 : episode: 30 score: 65.0 100 games avg: 65.0 steps 66 
+INFO : 2021-02-07 03:44:51,988 : episode: 31 score: 129.0 100 games avg: 129.0 steps 130 
+INFO : 2021-02-07 03:45:56,114 : episode: 32 score: 105.0 100 games avg: 105.0 steps 106 
+INFO : 2021-02-07 03:46:54,934 : episode: 33 score: 95.0 100 games avg: 95.0 steps 96 
+INFO : 2021-02-07 03:47:49,064 : episode: 34 score: 87.0 100 games avg: 87.0 steps 88 
+INFO : 2021-02-07 03:48:20,285 : episode: 35 score: 42.0 100 games avg: 42.0 steps 43 
+INFO : 2021-02-07 03:49:14,824 : episode: 36 score: 87.0 100 games avg: 87.0 steps 88 
+INFO : 2021-02-07 03:50:09,200 : episode: 37 score: 84.0 100 games avg: 84.0 steps 85 
+INFO : 2021-02-07 03:51:22,598 : episode: 38 score: 119.0 100 games avg: 119.0 steps 120 
+INFO : 2021-02-07 03:52:07,353 : episode: 39 score: 64.0 100 games avg: 64.0 steps 65 
+INFO : 2021-02-07 03:52:54,236 : episode: 40 score: 68.0 100 games avg: 68.0 steps 69 
+INFO : 2021-02-07 03:53:32,676 : episode: 41 score: 51.0 100 games avg: 51.0 steps 52 
+INFO : 2021-02-07 03:54:12,637 : episode: 42 score: 55.0 100 games avg: 55.0 steps 56 

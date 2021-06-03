@@ -108,7 +108,7 @@ def set_log(s):
     filename = './' + s + 'log/' + 'log_' + \
         now.strftime('%Y%m%d_%H%M%S') + '.log'
     # DEBUGする時用のファイル
-    #filename = './saclog/logger.log'
+    filename = './saclog/logger.log'
     formatter = '%(levelname)s : %(asctime)s : %(message)s'
 
     logging.basicConfig(filename=filename,
@@ -239,6 +239,31 @@ if __name__ == '__main__':
                 # env.render()
                 ep_length += 1
                 # time.sleep(0.1)
+            if nsteps % 10 == 0:
+                for _ in range(10):
+                    observation = env.reset()
+                    score = 0
+                    done = False
+                    ep_length = 0
+                    while not done:
+                        observation = torch.Tensor(
+                            [observation]).to(agent.actor.device)
+                        action, _ = agent.actor(observation)
+                        action = action.squeeze(0)
+                        action = torch.tanh(action)
+                        action = action.cpu().detach().numpy()
+                        # print(action)
+                        observation_, reward, done, info = env.step(action)
+                        #print(env.sim.data.qpos, env.sim.data.qvel)
+                        steps += 1
+                        score += reward
+                        if steps % 100 == 0:
+                            print(steps)
+                        observation = observation_
+                        env.render()
+                        ep_length += 1
+                        # time.sleep(0.1)
+                    print('exploit {0}'.format(score))
         else:
             model, rewardmodel = fit_model(buffer, grad_steps)
             if function_name == 'policy_double':
@@ -247,7 +272,7 @@ if __name__ == '__main__':
             while not done:
                 # return best_action ,,actions, states, sum_rewards
                 #action, actions, states, sum_rewards = func(observation)
-                action = func(observation)
+                action, *a = func(observation)
                 observation_, reward, done, info = env.step(action)
                 agent.remember(observation, action,
                                reward, observation_, done)
@@ -257,7 +282,7 @@ if __name__ == '__main__':
                 env.render()
                 # print(rewardmodel.forward_all(torch.from_numpy(
                 #    observation).float(), torch.from_numpy(action).float()))
-                if steps % 100 == 0:
+                if steps % 10 == 0:
                     # square_mean_error(env, env_evaluate, actions,
                     # states, sum_rewards, horizon, steps)
 
@@ -266,6 +291,32 @@ if __name__ == '__main__':
                 steps += 1
                 score += reward
                 observation = observation_
+
+            if nsteps % 10 == 0:
+                for _ in range(10):
+                    observation = env.reset()
+                    score = 0
+                    done = False
+                    ep_length = 0
+                    while not done:
+                        observation = torch.Tensor(
+                            [observation]).to(agent.actor.device)
+                        action, _ = agent.actor(observation)
+                        action = action.squeeze(0)
+                        action = torch.tanh(action)
+                        action = action.cpu().detach().numpy()
+                        # print(action)
+                        observation_, reward, done, info = env.step(action)
+                        #print(env.sim.data.qpos, env.sim.data.qvel)
+                        steps += 1
+                        score += reward
+                        if steps % 100 == 0:
+                            print(steps)
+                        observation = observation_
+                        env.render()
+                        ep_length += 1
+                        # time.sleep(0.1)
+                    print('exploit {0}'.format(score))
 
         score_history.append(score)
         avg_score = np.mean(score_history[-100:])

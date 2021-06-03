@@ -1,0 +1,45 @@
+INFO : 2021-02-07 01:44:20,738 : method: Model Predictive Contorol
+INFO : 2021-02-07 01:44:20,739 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-02-07 01:44:20,810 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-02-07 01:44:20,810 : mpc_function cem
+INFO : 2021-02-07 01:44:20,810 : cem
+INFO : 2021-02-07 01:44:46,381 : episode: 0 score: 27.0 100 games avg: 27.0 steps 28 
+INFO : 2021-02-07 01:44:59,572 : episode: 1 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-02-07 01:45:10,105 : episode: 2 score: 10.0 100 games avg: 10.0 steps 11 
+INFO : 2021-02-07 01:45:20,032 : episode: 3 score: 9.0 100 games avg: 9.0 steps 10 
+INFO : 2021-02-07 01:45:44,933 : episode: 4 score: 25.0 100 games avg: 25.0 steps 26 
+INFO : 2021-02-07 01:45:55,683 : episode: 5 score: 10.0 100 games avg: 10.0 steps 11 
+INFO : 2021-02-07 01:46:03,666 : episode: 6 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-07 01:46:17,925 : episode: 7 score: 13.0 100 games avg: 13.0 steps 14 
+INFO : 2021-02-07 01:46:28,310 : episode: 8 score: 9.0 100 games avg: 9.0 steps 10 
+INFO : 2021-02-07 01:46:35,844 : episode: 9 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:46:43,467 : episode: 10 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:46:53,661 : episode: 11 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-02-07 01:47:01,149 : episode: 12 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:47:08,827 : episode: 13 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:47:17,924 : episode: 14 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-07 01:47:25,730 : episode: 15 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:47:34,082 : episode: 16 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:47:41,301 : episode: 17 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-02-07 01:47:49,073 : episode: 18 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:47:58,160 : episode: 19 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-07 01:48:06,193 : episode: 20 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:48:12,866 : episode: 21 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-02-07 01:48:20,311 : episode: 22 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:48:28,128 : episode: 23 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:48:37,078 : episode: 24 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-07 01:48:44,677 : episode: 25 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:48:51,765 : episode: 26 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-02-07 01:48:59,805 : episode: 27 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:49:06,579 : episode: 28 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-02-07 01:49:14,658 : episode: 29 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:49:22,498 : episode: 30 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:49:31,482 : episode: 31 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-07 01:49:38,682 : episode: 32 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-02-07 01:49:46,011 : episode: 33 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-02-07 01:49:53,783 : episode: 34 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-02-07 01:50:02,880 : episode: 35 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:50:12,236 : episode: 36 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-07 01:50:20,347 : episode: 37 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:50:28,647 : episode: 38 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 01:50:36,824 : episode: 39 score: 6.0 100 games avg: 6.0 steps 7 

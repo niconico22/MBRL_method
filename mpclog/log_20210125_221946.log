@@ -1,0 +1,6 @@
+INFO : 2021-01-25 22:19:46,094 : method: Model Predictive Contorol
+INFO : 2021-01-25 22:19:46,095 : parameter n_steps: 100 ensemble_size: 5 env: HalfCheetah-v2
+INFO : 2021-01-25 22:19:46,180 : mpc horizon: 10 mpc_samples: 100 elite_sample: 30 grad_steps: 10
+INFO : 2021-01-25 22:19:46,181 : mpc_function policy-kl2
+INFO : 2021-01-25 22:19:46,181 : policy-kl2
+INFO : 2021-01-25 22:19:46,463 : state_square_error: 0.715 reward_error: 2.466

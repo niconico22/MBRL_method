@@ -545,7 +545,7 @@ class MPCController:
             #    (0.01/self.horizon) * sum_uncertain[:, i + 1]
             uncertain_sum_N = torch.sum(sum_uncertain[:, i + 1], axis=0)
             u = (sum_uncertain[:, i + 1] / uncertain_sum_N)*(self.N/100)
-            u = 1 - self.alpha * u
+            u = 1 - u
             keisuu_uncertain[:, i + 1] = keisuu_uncertain[:, i] * u
             rewards_[:, i] = keisuu_uncertain[:, i+1]*rewards
             '''for j in range(self.N):
@@ -576,7 +576,7 @@ class MPCController:
 
     def get_action_policy_kl_5(self, cur_state):
         '''states(numpy array): (dim_state)'''
-        # 1/28のよる以降
+
         cur_state = torch.from_numpy(cur_state).float().clone()
         all_samples = torch.zeros(
             (self.N, self.horizon, self.env.action_space.shape[0])).float().clone().to(self.device)
@@ -668,7 +668,7 @@ class MPCController:
 
         id = sum_rewards.argmax()
         id2 = real_sum_rewards.argmax()
-        print(id.item() == id2.item())
+        #print(id.item() == id2.item())
         best_action = all_samples[id, 0, :]
 
         sum_rewards = torch.sum(rewards_, 1)
@@ -1032,7 +1032,12 @@ class MPCController:
 
             rewards_ = torch.zeros((self.N, self.horizon)
                                    ).float().to(self.device)
+            real_rewards_ = torch.zeros((self.N, self.horizon)
+                                        ).float().to(self.device)
+
             sum_rewards = torch.zeros(self.N).float().to(self.device)
+            real_sum_rewards = torch.zeros(self.N).float().to(self.device)
+
             state_means = torch.zeros(
                 (self.N, self.env.observation_space.shape[0])).float().to(self.device)
             state_vars = torch.zeros(
@@ -1080,21 +1085,31 @@ class MPCController:
             #    (0.01/self.horizon) * sum_uncertain[:, i + 1]
                 uncertain_sum_N = torch.sum(sum_uncertain[:, i + 1], axis=0)
                 u = (sum_uncertain[:, i + 1] / uncertain_sum_N)*(self.N/100)
-                u = 1 - u
+                u = 1 - 0.01*u
                 keisuu_uncertain[:, i + 1] = keisuu_uncertain[:, i] * u
                 #print(keisuu_uncertain[:, i+1])
+                #keisuu_uncertain[:, i + 1] = self.gamma_list[:, i]
+
                 rewards_[:, i] = keisuu_uncertain[:, i+1]*rewards
+                real_rewards_[:, i] = rewards
 
                 #rewards_[:, i] = rewards
             rewards_ = rewards_.to('cpu').detach().numpy().copy()
+            real_rewards_ = real_rewards_.to('cpu').detach().numpy().copy()
             sum_rewards = np.sum(rewards_, 1)
+            real_sum_rewards = np.sum(real_rewards_, 1)
 
             all_samples = all_samples.to('cpu').detach().numpy().copy()
             # print(sum_rewards)
             # print(np.argsort(-sum_rewards))
             elites = all_samples[np.argsort(-sum_rewards)][: self.num_elites]
             elites = elites.reshape(self.num_elites, self.dU*self.horizon)
-            # print(elites.shape)
+            real_elites = all_samples[np.argsort(-real_sum_rewards)
+                                      ][: self.num_elites]
+            real_elites = real_elites.reshape(
+                self.num_elites, self.dU*self.horizon)
+
+            print(elites == real_elites)
             # elites = elites.to('cpu').detach().numpy().copy()
             new_mean = np.mean(elites, axis=0)
             new_var = np.var(elites, axis=0)
@@ -1136,7 +1151,7 @@ if __name__ == '__main__':
     buffer = Buffer(n_spaces, n_actions, 1, ensemble_size, buffer_size)
     rewardmodel = RewardModel('cpu', n_actions, n_spaces, 1,
                               512, 3, ensemble_size=ensemble_size)
-    mpc = MPCController('cpu', env, 3, 7, 5, agent,
+    mpc = MPCController('cpu', env, 10, 7, 5, agent,
                         model, rewardmodel, buffer)
     observation = env.reset()
     done = False

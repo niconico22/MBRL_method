@@ -1,0 +1,24 @@
+INFO : 2021-02-07 17:09:59,733 : method: Model Predictive Contorol
+INFO : 2021-02-07 17:09:59,734 : parameter n_steps: 100 ensemble_size: 5 env: Continuous_CartPole
+INFO : 2021-02-07 17:09:59,825 : mpc horizon: 10 mpc_samples: 100 elite_sample: 10 grad_steps: 10
+INFO : 2021-02-07 17:09:59,825 : mpc_function proposed_cem
+INFO : 2021-02-07 17:09:59,825 : cem
+INFO : 2021-02-07 17:10:22,160 : episode: 0 score: 16.0 100 games avg: 16.0 steps 17 
+INFO : 2021-02-07 17:10:32,864 : episode: 1 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 17:10:44,023 : episode: 2 score: 6.0 100 games avg: 6.0 steps 7 
+INFO : 2021-02-07 17:10:57,416 : episode: 3 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-02-07 17:11:09,981 : episode: 4 score: 7.0 100 games avg: 7.0 steps 8 
+INFO : 2021-02-07 17:11:19,087 : episode: 5 score: 5.0 100 games avg: 5.0 steps 6 
+INFO : 2021-02-07 17:11:32,897 : episode: 6 score: 8.0 100 games avg: 8.0 steps 9 
+INFO : 2021-02-07 17:12:24,275 : episode: 7 score: 35.0 100 games avg: 35.0 steps 36 
+INFO : 2021-02-07 17:13:09,574 : episode: 8 score: 32.0 100 games avg: 32.0 steps 33 
+INFO : 2021-02-07 17:14:10,706 : episode: 9 score: 45.0 100 games avg: 45.0 steps 46 
+INFO : 2021-02-07 17:15:53,278 : episode: 10 score: 76.0 100 games avg: 76.0 steps 77 
+INFO : 2021-02-07 17:17:03,702 : episode: 11 score: 48.0 100 games avg: 48.0 steps 49 
+INFO : 2021-02-07 17:18:02,004 : episode: 12 score: 41.0 100 games avg: 41.0 steps 42 
+INFO : 2021-02-07 17:19:55,888 : episode: 13 score: 79.0 100 games avg: 79.0 steps 80 
+INFO : 2021-02-07 17:21:25,413 : episode: 14 score: 65.0 100 games avg: 65.0 steps 66 
+INFO : 2021-02-07 17:23:30,914 : episode: 15 score: 93.0 100 games avg: 93.0 steps 94 
+INFO : 2021-02-07 17:25:47,041 : episode: 16 score: 99.0 100 games avg: 99.0 steps 100 
+INFO : 2021-02-07 17:26:42,232 : episode: 17 score: 39.0 100 games avg: 39.0 steps 40 
+INFO : 2021-02-07 17:27:56,447 : episode: 18 score: 57.0 100 games avg: 57.0 steps 58 
